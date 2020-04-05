@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/thesis?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    username: root
+    password: Bql879543~
+  freemarker:
+    # 是否启用模板引擎
+    enabled: true
+    # 设定模板的加载路径
+    template-loader-path: classpath:/templates
+    # Content-Type 的值
+    content-type: text/html
+    # 设定模板的后缀
+    suffix: .ftl
+    # 是否启用模板缓存
+    cache: false
+    # 是否优先从文件系统加载template，以支持热加载，默认为true
+    prefer-file-system-access: true

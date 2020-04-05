@@ -1,0 +1,49 @@
+
+#footer {
+	padding: 8em 0;
+	background: #ffffff;
+	color: #fff;
+	text-align: center;
+}
+
+#footer h3 {
+	color: #FFF;
+	margin-bottom: 2em !important;
+}
+
+#footer label {
+	text-align: left;
+	color: #FFF;
+}
+
+#footer .copyright {
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 2em;
+	margin: 0 0 2em 0;
+	padding: 0;
+}
+
+#footer .copyright a {
+	color: rgba(255, 255, 255, 0.5);
+	text-decoration: none;
+}
+
+#footer .copyright a:hover {
+	color: #FFF;
+}
+
+@media screen and (max-width: 980px) {
+
+	#footer {
+		padding: 4em 0;
+	}
+
+}
+
+@media screen and (max-width: 736px) {
+
+	#footer {
+		padding: 3em 0;
+	}
+
+}
