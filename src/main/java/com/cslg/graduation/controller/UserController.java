@@ -48,13 +48,46 @@ public class UserController {
         userService.add(user);
         return "redirect:/login";
     }
-//退出登录
 
+    /**
+     *  退出登录
+     */
     @GetMapping("/logout")
     public String logout(HttpSession httpSession){
         httpSession.invalidate();
         return "redirect:/";
     }
+    /**
+     * 管理员登录
+     */
+    @PostMapping("/adminLogin")
+    public String adminLogin(UserDTO userDTO,HttpSession httpSession){
+        System.out.println(userDTO.getUsername());
+        System.out.println(userDTO.getPassword());
+        User currentUser = userService.login(userDTO);
+        if (currentUser.getType()!=1){
+            httpSession.setAttribute("msg","登录失败，请检查输入是否正确或是否为管理员");
+            return "redirect:/admin/loginPage";
+        }
+        httpSession.setAttribute("currentUser",currentUser);
+        return "redirect:/admin";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/findAll")
     public List<User> findAll(){

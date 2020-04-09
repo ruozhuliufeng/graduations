@@ -24,6 +24,8 @@ public class User implements Serializable {
 
 	private String email;//邮箱
 
+	private String sex; //性别
+
 	private Integer status;//激活状态：0 待激活 1 已激活
 
 	private String hname;//兴趣名称

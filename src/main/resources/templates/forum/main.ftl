@@ -22,7 +22,7 @@
     <br>
     <br>
     <table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin-top: 8px;">
-        <c:forEach items="${zoneList }" var="zone">
+        <#list zongList as zone>
             <tr>
                 <td>
                     <table style="width: 1200px;" align="center">
@@ -34,6 +34,7 @@
                             <td>
                                 <ul class="unstyled inline">
                                     <c:forEach items="${zone.sectionList }" var="section">
+                                    <#list
                                         <li style="width: 394px; margin-left: 0px;padding: 0px;">
                                             <div align="center" style="margin-top: 20px;">
                                                 <div><a href="/topic/findlist?sectionId=${section.id }"><img
@@ -57,7 +58,8 @@
                     </table>
                 </td>
             </tr>
-        </c:forEach>
+        </#list>
+
     </table>
 
     <#include "../common/footer.ftl"/>

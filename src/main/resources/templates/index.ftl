@@ -142,7 +142,7 @@
             <a href="http://www.baidu.com/" target="_blank" title="解惑"><span style="color: #F5E79E;">解惑</span></a> --
             <a href="http://www.csdn.net" target="_blank" title="发现"><span style="color: lemonchiffon;">发现</span>
             </a> --
-            <a href="/adminLogin" title="后台管理" target="_blank"><span style="color: red;">后台</span>
+            <a href="/admin/login" title="后台管理" target="_blank"><span style="color: red;">后台</span>
             </a>
         </div>
     </div>

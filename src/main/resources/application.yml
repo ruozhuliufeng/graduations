@@ -10,7 +10,7 @@ spring:
     # 是否启用模板引擎
     enabled: true
     # 设定模板的加载路径
-    template-loader-path: classpath:/templates
+    template-loader-path: classpath:/templates/
     # Content-Type 的值
     content-type: text/html
     # 设定模板的后缀
@@ -19,3 +19,4 @@ spring:
     cache: false
     # 是否优先从文件系统加载template，以支持热加载，默认为true
     prefer-file-system-access: true
+

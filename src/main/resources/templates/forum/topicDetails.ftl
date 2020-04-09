@@ -21,7 +21,7 @@
             $(".show_e").emotionsToHtml();
         });
         function saveReply(){
-            if('${currentUser.nickName}'==''){
+            if('${currentUser.username}'==''){
                 alert("请先登陆，再回帖！");
                 /* var url="Report_preSave.action?role=0&reportType=1";
                 window.open("login.jsp?url="+url); */
@@ -35,7 +35,7 @@
                 alert("最多输入1000个字符！");
                 return false;
             }
-            $.post("Reply_save.action",$("#replyForm").serialize(),function(result){
+            $.post("/reply/save",$("#replyForm").serialize(),function(result){
                 if(result.success){
                     alert("回复成功！");
                     location.reload(true);
@@ -46,7 +46,7 @@
         }
         function deleteReply(replyId){
             if (confirm("您确定要删除这条回复吗？")) {
-                $.post("Reply_delete.action",{replyId:replyId},function(result){
+                $.post("/reply/delete",{replyId:replyId},function(result){
                     if(result.success){
                         alert("数据已成功删除！");
                         location.reload(true);
@@ -70,25 +70,25 @@
                     <tr>
                         <td>
                             ★楼主&nbsp;<a href="#" style="font-size: 9pt;color: black;">
-                                <strong>${topic.user.nickName }</strong>
+                                <strong>${topic.user.username }</strong>
                             </a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <c:choose>
-                                <c:when test="${(topic.user.face==null||topic.user.face=='')&&topic.user.sex=='男'}">
-                                    <img alt="" src="images/user/user0.gif" style="width: 100px;height: 100px;">
-                                </c:when>
-                                <c:when test="${(topic.user.face==null||topic.user.face=='')&&topic.user.sex=='女'}">
-                                    <img alt="" src="images/user/female.gif" style="width: 100px;height: 100px;">
-                                </c:when>
-                                <c:otherwise>
-                                    <img alt="" src="${topic.user.face}" style="width: 100px;height: 100px;">
-                                </c:otherwise>
-                            </c:choose>
-                        </td>
-                    </tr>
+<#--                    <tr>-->
+<#--                        <td>-->
+<#--                            <c:choose>-->
+<#--                                <c:when test="${(topic.user.face==null||topic.user.face=='')&&topic.user.sex=='男'}">-->
+<#--                                    <img alt="" src="images/user/user0.gif" style="width: 100px;height: 100px;">-->
+<#--                                </c:when>-->
+<#--                                <c:when test="${(topic.user.face==null||topic.user.face=='')&&topic.user.sex=='女'}">-->
+<#--                                    <img alt="" src="images/user/female.gif" style="width: 100px;height: 100px;">-->
+<#--                                </c:when>-->
+<#--                                <c:otherwise>-->
+<#--                                    <img alt="" src="${topic.user.face}" style="width: 100px;height: 100px;">-->
+<#--                                </c:otherwise>-->
+<#--                            </c:choose>-->
+<#--                        </td>-->
+<#--                    </tr>-->
                     <tr>
                         <td>
                             性别：${topic.user.sex }

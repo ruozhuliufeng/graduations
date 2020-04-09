@@ -23,7 +23,6 @@ public class AdviceController {
         advice.setEmail(email);
         advice.setName(name);
         advice.setAdvice(message);
-        System.out.println(message);
         adviceService.add(advice);
         return new Result();
     }

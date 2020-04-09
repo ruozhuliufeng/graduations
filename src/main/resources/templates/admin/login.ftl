@@ -1,40 +1,90 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Insert title here</title>
-    <link rel="stylesheet" href="admin/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="admin/css/bootstrap-responsive.min.css" />
-    <link rel="stylesheet" href="admin/css/unicorn.login.css" />
-    <script src="admin/js/jquery.min.js"></script>
-    <script src="admin/js/unicorn.login.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>登录页面</title>
+<link href="/admin/css/bootstrap.min.css" rel="stylesheet">
+<link href="/admin/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="/admin/css/style.min.css" rel="stylesheet">
+<style>
+.lyear-wrapper {
+    position: relative;
+}
+.lyear-login {
+    display: flex !important;
+    min-height: 100vh;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.login-center {
+    background: #fff;
+    min-width: 38.25rem;
+    padding: 2.14286em 3.57143em;
+    border-radius: 5px;
+    margin: 2.85714em 0;
+}
+.login-header {
+    margin-bottom: 1.5rem !important;
+}
+.login-center .has-feedback.feedback-left .form-control {
+    padding-left: 38px;
+    padding-right: 12px;
+}
+.login-center .has-feedback.feedback-left .form-control-feedback {
+    left: 0;
+    right: auto;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    z-index: 4;
+    color: #dcdcdc;
+}
+.login-center .has-feedback.feedback-left.row .form-control-feedback {
+    left: 15px;
+}
+</style>
 </head>
+  
 <body>
-<div id="loginbox">
-    <form id="loginform" class="form-vertical" action="/admin/login" method="post">
-        <p>输入用户昵称和密码进入后台.</p>
-        <div class="control-group">
-            <div class="controls">
-                <div class="input-prepend">
-                    <span class="add-on"><i class="icon-user"></i></span><input
-                            type="text" name="user.nickName" value="${user.nickName }" placeholder="昵称" />
-                </div>
-            </div>
+<div class="row lyear-wrapper">
+  <div class="lyear-login">
+    <div class="login-center">
+      <div class="login-header text-center">
+        <a href="/admin/index">
+          <img alt="light year admin" src="/admin/images/logo-sidebar.png">
+        </a>
+      </div>
+      <form action="/admin/log" method="post">
+        <div class="form-group has-feedback feedback-left">
+          <input type="text" placeholder="请输入您的用户名" class="form-control" name="username" id="username" />
+          <span class="mdi mdi-account form-control-feedback" aria-hidden="true"></span>
         </div>
-        <div class="control-group">
-            <div class="controls">
-                <div class="input-prepend">
-                    <span class="add-on"><i class="icon-lock"></i></span><input
-                            type="password" name="user.password" value="${user.password }" placeholder="密码" />
-                </div>
-            </div>
+        <div class="form-group has-feedback feedback-left">
+          <input type="password" placeholder="请输入密码" class="form-control" id="password" name="password" />
+          <span class="mdi mdi-lock form-control-feedback" aria-hidden="true"></span>
         </div>
-        <div class="form-actions">
-				 <span class="pull-right">
-				 	<font id="error" style="font-size: 20px;" color="red">${error }</font>
-				 	<input type="submit" class="btn btn-inverse" value="进入后台" />
-				 </span>
+        <div class="form-group has-feedback feedback-left row">
+          <div class="col-xs-7">
+            <input type="text" name="captcha" class="form-control" placeholder="验证码">
+            <span class="mdi mdi-check-all form-control-feedback" aria-hidden="true"></span>
+          </div>
+          <div class="col-xs-5">
+            <img src="/admin/images/captcha.png" class="pull-right" id="captcha" style="cursor: pointer;" onclick="this.src=this.src+'?d='+Math.random();" title="点击刷新" alt="captcha">
+          </div>
         </div>
-    </form>
+        <div class="form-group">
+          <button class="btn btn-block btn-primary" type="button" onclick="location.href='/admin/index'">立即登录</button>
+        </div>
+      </form>
+      <hr>
+      <footer class="col-sm-12 text-center">
+        <p class="m-b-0">Copyright © 2019-2020 个人成长助理平台</p>
+      </footer>
+    </div>
+  </div>
 </div>
+<script type="text/javascript" src="/admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
 </body>
 </html>
