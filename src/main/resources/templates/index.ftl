@@ -19,11 +19,10 @@
         <a href="/" class="logo"><strong>成长助理</strong> 平台</a>
         <nav id="nav">
             <a href="/">主页</a>
-            <a href="/learn">学习进度</a>
-            <a href="/forum">学习论坛</a>
+            <a href="/hobby/learn">学习进度</a>
+            <a href="/blog/">学习论坛</a>
             <#if currentUser??>
-                <a href="/center">个人中心</a>
-
+                <a href="/user/center">个人中心</a>
             <#else>
                 <a href="/register">注册</a>
                 <a href="/login">登录</a>
@@ -92,20 +91,19 @@
                 </header>
                 <table class="table table-striped table-condensed table-hover table-bordered">
                     <tr>
-                        <td><strong>所属方向</strong></td>
+                        <td><strong>所属分类</strong></td>
                         <td><strong>具体内容</strong></td>
                     </tr>
-                    <tr>
-                        <td>IT技能</td>
-                        <td>Java学习</td>
-                    </tr>
-                    <tr>
-                        <td>兴趣爱好</td>
-                        <td>笛子</td>
-                    </tr>
+
+                    <#list hobbyList as hobby>
+                        <tr>
+                            <td>${hobby.cname} </td>
+                            <td>${hobby.name}</td>
+                        </tr>
+                    </#list>
                 </table>
                 <footer>
-                    <a href="/center" class="button">前往选择</a>
+                    <a href="/user/center" class="button">前往选择</a>
                 </footer>
             </article>
         </div>
@@ -142,7 +140,7 @@
             <a href="http://www.baidu.com/" target="_blank" title="解惑"><span style="color: #F5E79E;">解惑</span></a> --
             <a href="http://www.csdn.net" target="_blank" title="发现"><span style="color: lemonchiffon;">发现</span>
             </a> --
-            <a href="/admin/login" title="后台管理" target="_blank"><span style="color: red;">后台</span>
+            <a href="/admin/loginPage" title="后台管理" target="_blank"><span style="color: red;">后台</span>
             </a>
         </div>
     </div>

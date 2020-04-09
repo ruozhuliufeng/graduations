@@ -23,11 +23,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="/learn">学习进度</a></li>
-                    <li><a href="/forum">学习论坛</a></li>
+                    <li><a href="/hobby/learn">学习进度</a></li>
+                    <li><a href="/blog/">学习论坛</a></li>
                     <#if currentUser??>
                         <li><a href="javascript:logout()">注销</a></li>
-                        <li><a href="/center">个人中心</a></li>
+                        <li><a href="/user/center">个人中心</a></li>
 
                     <#else>
                         <li><a href="/register">注册</a></li>

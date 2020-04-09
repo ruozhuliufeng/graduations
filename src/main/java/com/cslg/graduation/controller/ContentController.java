@@ -5,18 +5,31 @@ import com.cslg.graduation.entity.PageResult;
 import com.cslg.graduation.service.ContentService;
 import com.cslg.graduation.util.Result;
 import jdk.nashorn.internal.ir.annotations.Reference;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
 
-@RestController
+@Controller
 @RequestMapping("/content")
 public class ContentController {
 
-    @Reference
+    @Autowired
     private ContentService contentService;
+
+
+    //点击完成任务
+    @GetMapping("/complete")
+    public String complete(Integer id){
+        Content content = contentService.findById(id);
+        content.setStatus(1);
+        contentService.update(content);
+        return "redirect:/hobby/learn";
+    }
+
 
     @GetMapping("/findAll")
     public List<Content> findAll(){
@@ -56,10 +69,11 @@ public class ContentController {
         return new Result();
     }
 
+
     @GetMapping("/delete")
-    public Result delete(Integer id){
+    public String delete(Integer id){
         contentService.delete(id);
-        return new Result();
+        return "redirect:/admin/content";
     }
 
 }

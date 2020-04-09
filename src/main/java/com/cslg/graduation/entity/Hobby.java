@@ -23,6 +23,8 @@ public class Hobby implements Serializable {
 
 	private String sid;//兴趣阶段
 
+	private Integer cid;//所属分类
+
 
 	
 }

@@ -34,7 +34,7 @@
 					<div class="container-fluid">
 
 						<div class="row">
-						<table>
+						<table class="table table-striped table-hover">
 							<tr>
 								<th>序号</th>
 								<th>分类名称</th>
@@ -43,12 +43,12 @@
 							</tr>
 							<#list categoryList as category>
 								<tr>
-									<td>category_index</td>
-									<td>category.name</td>
-									<td>category.userName</td>
+									<td>${category_index+1}</td>
+									<td>${category.name}</td>
+									<td>${category.userName}</td>
 									<td>
-										<a href="#">删除</a> ||
-										<a href="#">修改</a>
+										<a href="/category/delete?id=${category.id}">删除</a> ||
+										<a href="/admin/categoryUpdate">修改</a>
 									</td>
 								</tr>
 							</#list>

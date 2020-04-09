@@ -5,13 +5,14 @@ import com.cslg.graduation.entity.PageResult;
 import com.cslg.graduation.service.CommentService;
 import com.cslg.graduation.util.Result;
 import jdk.nashorn.internal.ir.annotations.Reference;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
 
-@RestController
+@Controller
 @RequestMapping("/comment")
 public class CommentController {
 
@@ -57,9 +58,9 @@ public class CommentController {
     }
 
     @GetMapping("/delete")
-    public Result delete(Integer id){
+    public String delete(Integer id){
         commentService.delete(id);
-        return new Result();
+        return "redirect:/admin/comment";
     }
 
 }

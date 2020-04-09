@@ -34,7 +34,7 @@
 					<div class="container-fluid">
 
 						<div class="row">
-							<table>
+							<table class="table table-striped table-hover">
 								<tr>
 									<th>序号</th>
 									<th>发布时间</th>
@@ -49,18 +49,18 @@
 								</tr>
 								<#list blogList as blog>
 									<tr>
-										<td>blog_index</td>
-										<td>blog.publishTime</td>
-										<td>blog.modifyTime</td>
-										<td>blog.title</td>
-										<td>blog.content</td>
-										<td>blog.categoryName</td>
-										<td>blog.userName</td>
-										<td>blog.good</td>
-										<td>blog.top</td>
+										<td>${blog_index+1}</td>
+										<td>${blog.publishTime?date}</td>
+										<td>${blog.modifyTime?date}</td>
+										<td>${blog.title}</td>
+										<td>${blog.content}</td>
+										<td>${blog.categoryName}</td>
+										<td>${blog.userName}</td>
+										<td>${blog.good}</td>
+										<td>${blog.top}</td>
 										<td>
-											<a href="#">删除</a> ||
-											<a href="#">修改</a>
+											<a href="/blog/delete?id=${blog.id}">删除</a> ||
+											<a href="/admin/topicUpdate">修改</a>
 										</td>
 									</tr>
 								</#list>

@@ -55,7 +55,7 @@
           <img alt="light year admin" src="/admin/images/logo-sidebar.png">
         </a>
       </div>
-      <form action="/admin/log" method="post">
+      <form action="/admin/login" method="post">
         <div class="form-group has-feedback feedback-left">
           <input type="text" placeholder="请输入您的用户名" class="form-control" name="username" id="username" />
           <span class="mdi mdi-account form-control-feedback" aria-hidden="true"></span>
@@ -64,17 +64,8 @@
           <input type="password" placeholder="请输入密码" class="form-control" id="password" name="password" />
           <span class="mdi mdi-lock form-control-feedback" aria-hidden="true"></span>
         </div>
-        <div class="form-group has-feedback feedback-left row">
-          <div class="col-xs-7">
-            <input type="text" name="captcha" class="form-control" placeholder="验证码">
-            <span class="mdi mdi-check-all form-control-feedback" aria-hidden="true"></span>
-          </div>
-          <div class="col-xs-5">
-            <img src="/admin/images/captcha.png" class="pull-right" id="captcha" style="cursor: pointer;" onclick="this.src=this.src+'?d='+Math.random();" title="点击刷新" alt="captcha">
-          </div>
-        </div>
         <div class="form-group">
-          <button class="btn btn-block btn-primary" type="button" onclick="location.href='/admin/index'">立即登录</button>
+          <input class="btn btn-block btn-primary" type="submit"/>
         </div>
       </form>
       <hr>

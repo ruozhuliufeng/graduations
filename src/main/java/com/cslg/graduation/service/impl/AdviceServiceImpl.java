@@ -6,6 +6,8 @@ import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdviceServiceImpl implements AdviceService {
 
@@ -16,5 +18,15 @@ public class AdviceServiceImpl implements AdviceService {
     public void add(Advice advice) {
 
         adviceMapper.insert(advice);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        adviceMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Advice> findAll() {
+        return adviceMapper.selectAll();
     }
 }

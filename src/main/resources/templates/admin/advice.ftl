@@ -34,7 +34,7 @@
 					<div class="container-fluid">
 
 						<div class="row">
-							<table>
+							<table class="table table-striped table-hover">
 								<tr>
 									<th>序号</th>
 									<th>用户名称</th>
@@ -42,13 +42,13 @@
 									<th>用户建议</th>
 									<th>操作</th>
 								</tr>
-								<#list adviceList as advic>
+								<#list adviceList as advice>
 									<tr>
-										<td>advice_index</td>
-										<td>advice.name</td>
-										<td>advice.email</td>
-										<td>advice.advice</td>
-										<td><a href="#">删除</a></td>
+										<td>${advice_index+1}</td>
+										<td>${advice.name}</td>
+										<td>${advice.email}</td>
+										<td>${advice.advice}</td>
+										<td><a href="/advice/delete?id=${advice.id}">删除</a></td>
 									</tr>
 								</#list>
 							</table>

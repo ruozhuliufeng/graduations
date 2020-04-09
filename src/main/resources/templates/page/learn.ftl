@@ -1,11 +1,11 @@
 <html>
 <head>
     <title>学习</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
     <!-- Scripts -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
 
 </head>
 <body>
@@ -25,7 +25,7 @@
                     <#list stageList as stage>
                         <tr>
                             <td>
-                                ${stage.name}
+                                <a href="/hobby/stageLearn?id=${stage.id}">${stage.name}</a>
                             </td>
                         </tr>
                     </#list>
@@ -45,12 +45,17 @@
                         <tr>
                             <th>${content_index+1}</th>
                             <th>${content.name}</th>
-                            <th>${content.status}</th>
+                            <th>
+                                <#if content.status==1>
+                                    已完成
+                                    <#else>
+                                    未完成
+                                </#if>
+                            </th>
                             <th>${content.clink}</th>
                             <th>${content.note}</th>
                             <th>
-                                <a href="/content/delete?id=${content.id}">删除</a>
-                                <a href="/content/update?id=${content.id}">点击完成</a>
+                                <a href="/content/complete?id=${content.id}">点击完成</a>
                             </th>
                         </tr>
                     </#list>

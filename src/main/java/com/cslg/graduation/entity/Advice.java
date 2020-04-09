@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Data
 @Table(name="advice")
 public class Advice implements Serializable {
-
+	private Integer id;
 	private String name;//姓名
 	private String email;//邮箱
 	private String advice;//建议

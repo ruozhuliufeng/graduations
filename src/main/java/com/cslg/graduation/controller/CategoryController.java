@@ -5,12 +5,13 @@ import com.cslg.graduation.entity.PageResult;
 import com.cslg.graduation.service.CategoryService;
 import com.cslg.graduation.util.Result;
 import jdk.nashorn.internal.ir.annotations.Reference;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 @RequestMapping("/category")
 public class CategoryController {
 
@@ -56,9 +57,9 @@ public class CategoryController {
     }
 
     @GetMapping("/delete")
-    public Result delete(Integer id){
+    public String delete(Integer id){
         categoryService.delete(id);
-        return new Result();
+        return "redirect:/admin/category";
     }
 
 }

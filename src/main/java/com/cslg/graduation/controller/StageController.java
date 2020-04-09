@@ -5,13 +5,14 @@ import com.cslg.graduation.entity.Stage;
 import com.cslg.graduation.service.StageService;
 import com.cslg.graduation.util.Result;
 import jdk.nashorn.internal.ir.annotations.Reference;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
 
-@RestController
+@Controller
 @RequestMapping("/stage")
 public class StageController {
 
@@ -57,9 +58,9 @@ public class StageController {
     }
 
     @GetMapping("/delete")
-    public Result delete(Integer id){
+    public String delete(Integer id){
         stageService.delete(id);
-        return new Result();
+        return "redirect:/admin/stage";
     }
 
 }

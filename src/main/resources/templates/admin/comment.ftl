@@ -34,7 +34,7 @@
 					<div class="container-fluid">
 
 						<div class="row">
-							<table>
+							<table class="table table-striped table-hover">
 								<tr>
 									<th>序号</th>
 									<th>发布时间</th>
@@ -43,18 +43,20 @@
 									<th>用户名称</th>
 									<th>评论标题</th>
 									<th>评论内容</th>
+									<th>评论操作</th>
 								</tr>
 								<#list commentList as comment>
 									<tr>
-										<td>comment_index</td>
-										<td>comment.publishTime</td>
-										<td>comment.modifyTime</td>
-										<td>comment.topicName</td>
-										<td>comment.userName</td>
-										<td>comment.title</td>
-										<td>comment.content</td>
-										<td><a href="#">删除</a>
-										||<a href="#">修改</a>
+										<td>${comment_index+1}</td>
+										<td>${comment.publishTime?date}</td>
+										<td>${comment.modifyTime?date}</td>
+										<td>${comment.topicName}</td>
+										<td>${comment.userName}</td>
+										<td>${comment.title}</td>
+										<td>${comment.content}</td>
+										<td>
+											<a href="/comment/delete?id=${comment.id}">删除</a>
+										   ||<a href="/admin/commentUpdate">修改</a>
 										</td>
 									</tr>
 								</#list>

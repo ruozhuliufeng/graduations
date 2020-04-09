@@ -28,6 +28,7 @@
                 <a href="javascript:void(0)"><i class="mdi mdi-file-outline"></i>兴趣管理</a>
                 <ul class="nav nav-subnav">
                     <li> <a href="/admin/hobby">兴趣列表</a> </li>
+                    <li> <a href="/admin/content">兴趣列表</a> </li>
                     <li> <a href="/admin/hobbyUpdate.ftl">修改兴趣</a> </li>
                 </ul>
             </li>
@@ -42,6 +43,13 @@
                 <ul class="nav nav-subnav">
                     <li> <a href="/admin/comment">所有评论</a> </li>
                     <li> <a href="/admin/advice">所有建议</a> </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-item-has-subnav">
+                <a href="javascript:void(0)"><i class="mdi mdi-menu"></i>推荐管理</a>
+                <ul class="nav nav-subnav">
+                    <li> <a href="#">推荐</a> </li>
+                    <li> <a href="#">数据</a> </li>
                 </ul>
             </li>
         </ul>

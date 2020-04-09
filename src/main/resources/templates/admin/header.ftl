@@ -13,14 +13,14 @@
         <ul class="topbar-right">
             <li class="dropdown dropdown-profile">
                 <a href="javascript:void(0)" data-toggle="dropdown">
-                    <img class="img-avatar img-avatar-48 m-r-10" src="images/users/avatar.jpg" alt="笔下光年"/>
-                    <span>用户名 <span class="caret"></span></span>
+                    <img class="img-avatar img-avatar-48 m-r-10" src="/admin/images/users/avatar.jpg" alt="笔下光年"/>
+                    <span>${adminUser.username} <span class="caret"></span></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li><a href="/admin/center"><i class="mdi mdi-account"></i> 个人信息</a></li>
                     <li><a href="javascript:void(0)"><i class="mdi mdi-delete"></i> 清空缓存</a></li>
                     <li class="divider"></li>
-                    <li><a href="/admin/login"><i class="mdi mdi-logout-variant"></i> 退出登录</a></li>
+                    <li><a href="/admin/loginPage"><i class="mdi mdi-logout-variant"></i> 退出登录</a></li>
                 </ul>
             </li>
             <!--切换主题配色-->

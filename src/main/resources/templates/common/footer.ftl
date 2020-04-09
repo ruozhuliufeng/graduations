@@ -8,7 +8,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="http://www.csdn.net" target="_blank" title="发现"><span style="color: black;">发现</span></a>
             &nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="/adminLogin" title="后台管理" target="_blank"><span style="color: red;">后台</span>
+            <a href="/admin/loginPage" title="后台管理" target="_blank"><span style="color: red;">后台</span>
             </a>
         </div>
 

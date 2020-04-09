@@ -41,7 +41,6 @@ public class UserController {
         User user = new User();
         user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
-        System.out.println(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
         user.setType(0);
         user.setStatus(0);
@@ -73,20 +72,16 @@ public class UserController {
         return "redirect:/admin";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //个人中心页
+    @RequestMapping("/center")
+    public String centerPage(){
+        return "/page/center";
+    }
+    //修改页
+    @RequestMapping("/centerUpdate")
+    public String centerUpdatePage(){
+        return "/page/userUpdate";
+    }
 
 
     @GetMapping("/findAll")
@@ -114,23 +109,16 @@ public class UserController {
         return userService.findById(id);
     }
 
-
-    @PostMapping("/add")
-    public Result add(@RequestBody User user){
-        userService.add(user);
-        return new Result();
-    }
-
     @PostMapping("/update")
-    public Result update(@RequestBody User user){
+    public String update(User user){
         userService.update(user);
-        return new Result();
+        return "redirect:/admin/user";
     }
 
     @GetMapping("/delete")
-    public Result delete(Integer id){
+    public String delete(Integer id){
         userService.delete(id);
-        return new Result();
+        return "redirect:/admin/user";
     }
 
 }

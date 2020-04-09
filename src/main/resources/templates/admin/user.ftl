@@ -52,13 +52,26 @@
 										<td>${user.username}</td>
 										<td>${user.email}</td>
 										<td>${user.sex}</td>
-										<td>${user.status}</td>
+										<td>
+											<#if user.status == 1>
+												已激活
+											<#else>
+												未激活
+											</#if>
+
+										</td>
 										<td>${user.hname}</td>
 										<td>${user.sname}</td>
-										<td>${user.type}</td>
 										<td>
-											<a href="#">删除</a> ||
-											<a href="#">修改</a>
+											<#if user.type == 1>
+												管理员
+											<#else>
+												普通用户
+											</#if>
+										</td>
+										<td>
+											<a href="/user/delete?id=${user.id}">删除</a> ||
+											<a href="/admin/userUpdate">修改</a>
 										</td>
 									</tr>
 								</#list>

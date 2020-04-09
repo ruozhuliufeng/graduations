@@ -1,21 +1,59 @@
 package com.cslg.graduation.controller;
 
-import com.cslg.graduation.entity.Hobby;
-import com.cslg.graduation.entity.PageResult;
+import com.cslg.graduation.entity.*;
+import com.cslg.graduation.service.ContentService;
 import com.cslg.graduation.service.HobbyService;
+import com.cslg.graduation.service.StageService;
 import com.cslg.graduation.util.Result;
 import jdk.nashorn.internal.ir.annotations.Reference;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 @RequestMapping("/hobby")
 public class HobbyController {
 
-    @Reference
+    @Autowired
     private HobbyService hobbyService;
+
+    @Autowired
+    private StageService stageService;
+    @Autowired
+    private ContentService contentService;
+
+    @RequestMapping("/learn")
+    public String learn(HttpSession httpSession){
+        User currentUser = (User) httpSession.getAttribute("currentUser");
+        Map<String,Object> searchMap = new HashMap<>(10);
+        searchMap.put("name", currentUser.getHname());
+        List<Hobby> list = hobbyService.findList(searchMap);
+        String str = list.get(0).getSid();
+        String[] strList = str.split(",");
+        List<Stage> stageList = new ArrayList<>();
+        for (int i = 0; i < strList.length; i++) {
+            Stage stage = stageService.findById(Integer.valueOf(strList[i]));
+            stageList.add(stage);
+        }
+        httpSession.setAttribute("stageList",stageList);
+        Map<String,Object> map = new HashMap<>(5);
+        map.put("sid",stageList.get(0).getId());
+        List<Content> contentList = contentService.findList(map);
+        httpSession.setAttribute("contentList",contentList);
+        return "/page/learn";
+    }
+
+
+
+
+
+
 
     @GetMapping("/findAll")
     public List<Hobby> findAll(){
@@ -56,9 +94,9 @@ public class HobbyController {
     }
 
     @GetMapping("/delete")
-    public Result delete(Integer id){
+    public String delete(Integer id){
         hobbyService.delete(id);
-        return new Result();
+        return "redirect:/admin/hobby";
     }
 
 }

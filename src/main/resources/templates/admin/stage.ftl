@@ -34,7 +34,7 @@
 					<div class="container-fluid">
 
 						<div class="row">
-							<table>
+							<table class="table table-striped table-hover">
 								<tr>
 									<th>序号</th>
 									<th>阶段序号</th>
@@ -42,13 +42,11 @@
 								</tr>
 								<#list stageList as stage>
 									<tr>
-										<td>stage_index</td>
-										<td>stage.id</td>
-										<td>stage.name</td>
+										<td>${stage_index+1}</td>
+										<td>${stage.id}</td>
+										<td>${stage.name}</td>
 										<td>
-											<a href="#">删除</a>||
-											<a href="#">修改</a>
-										
+											<a href="/stage/delete?id=${stage.id}">删除</a>||
 										</td>
 									</tr>
 								</#list>

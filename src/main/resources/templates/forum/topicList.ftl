@@ -15,7 +15,7 @@
     <script type="text/javascript">
         function deleteTopic(topicId) {
             if (confirm("您确定要删除这条数据吗？")) {
-                $.post("Topic_delete.action", {topicId: topicId}, function (result) {
+                $.post("/topic/udelete", {topicId: topicId}, function (result) {
                     if (result.success) {
                         /* var result=eval('('+result+')'); */
                         alert("数据已成功删除！");
@@ -28,49 +28,23 @@
                 return;
             }
         }
-
-        function modifyTopic(topicId, topicTop, topicGood) {
-            $("#topicId").val(topicId);
-            $("#topicTop").val(topicTop);
-            $("#topicGood").val(topicGood);
-        }
-
-        function saveTopic() {
-            var topicId = $("#topicId").val();
-            var topicTop = $("#topicTop").val();
-            var topicGood = $("#topicGood").val();
-            $.post("Topic_modify.action", {
-                topicId: topicId,
-                topicTop: topicTop,
-                topicGood: topicGood
-            }, function (result) {
-                if (result.success) {
-                    alert("数据已成功修改！");
-                    location.reload(true);
-                } else {
-                    alert("数据修改失败！");
-                }
-            }, "json");
-        }
     </script>
 </head>
 <body>
 <#include "../common/nav.ftl"/>
 <div style="width: 1200px; margin: 0 auto;">
-    <h1 align="center">欢迎进入${section.name }版面！</h1>
     <h4>版主：${section.master.nickName }</h4>
-    <h4>${section.zone.description }</h4>
 </div>
 <div style="width: 1200px; margin: 0 auto;">
     <div style="margin-bottom: 10px;">
-        <a class="" href="Topic_preSave.action?sectionId=${section.id }">
+        <a class="" href="/blog/addTopic">
             <img alt="发帖" src="images/post.jpg"></a>
         <div class="pagination alternate pull-right" align="center" style="margin: 0px;">
             <ul class="clearfix">${pageCode }
             </ul>
         </div>
     </div>
-    <table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin-top: 8;">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin-top: 8px;">
         <!-- 置顶帖子 -->
         <!-- <tr height="30">
             <td style="text-indent:5;" background="images/index/classT.jpg"><b><font color="white">■ 置顶帖子</font></b></td>
@@ -78,7 +52,7 @@
         <tr>
             <td>
                 <table class="table table-bordered" width="100%" cellspacing="0" cellpadding="0"
-                       style="margin-top: 8;">
+                       style="margin-top: 8px;">
                     <tr>
                         <th style="text-align: center;vertical-align: middle; width: 150px;">
                             状态
@@ -99,6 +73,9 @@
                             操作
                         </th>
                     </tr>
+                    <#list topicList as topic>
+
+                    </#list>
                     <c:forEach items="${zdTopicList }" var="topic">
                         <tr>
                             <td style="text-align: center;vertical-align:middle;">
