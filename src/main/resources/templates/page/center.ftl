@@ -1,26 +1,45 @@
 <html>
 <head>
     <title>个人中心</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/main.css" />
     <!-- Scripts -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
 
 </head>
 <body>
 <div class="container-fluid">
-    <#include "/templates/common/nav.ftl"/>
+    <#include "../common/nav.ftl"/>
     <br>
     <br>
     <br>
     <!-- 个人信息 -->
-    <h1>个人信息</h1>
-    <form>
-        姓名：<input type="text" name="username" />
-    </form>
-
-    <#include "/templates/common/footer.ftl"/>
+    <div style="text-align: center;"><h1>个人信息</h1></div>
+    <a class="btn btn-primary" style="float: right" href="/user/centerUpdate?id=${currentUser.id}">修改</a>
+    <table class="table table-hover">
+        <tr>
+            <td>用户名</td>
+            <td>${currentUser.username}</td>
+        </tr>
+        <tr>
+            <td>邮箱</td>
+            <td>${currentUser.email}</td>
+        </tr>
+        <tr>
+            <td>性别</td>
+            <td>${currentUser.sex}</td>
+        </tr>
+        <tr>
+            <td>兴趣</td>
+            <td>${currentUser.hname}</td>
+        </tr>
+<#--        <tr>-->
+<#--            <td>阶段</td>-->
+<#--            <td>${currentUser.sname}</td>-->
+<#--        </tr>-->
+    </table>
+    <#include "../common/footer.ftl"/>
 </div>
 
 </body>

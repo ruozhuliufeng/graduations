@@ -22,28 +22,35 @@ public class HobbyController {
 
     @Autowired
     private HobbyService hobbyService;
-
     @Autowired
     private StageService stageService;
     @Autowired
     private ContentService contentService;
 
-    @RequestMapping("/learn")
-    public String learn(HttpSession httpSession){
+    @GetMapping("/learn")
+    public String learn(Integer sid,HttpSession httpSession){
         User currentUser = (User) httpSession.getAttribute("currentUser");
         Map<String,Object> searchMap = new HashMap<>(10);
+        //设置搜索条件
         searchMap.put("name", currentUser.getHname());
         List<Hobby> list = hobbyService.findList(searchMap);
+        //获得阶段id：1,2,3
         String str = list.get(0).getSid();
+        //分割id，获得字符串数组
         String[] strList = str.split(",");
         List<Stage> stageList = new ArrayList<>();
         for (int i = 0; i < strList.length; i++) {
+            //将字符转换为字符串，获得阶段名称
             Stage stage = stageService.findById(Integer.valueOf(strList[i]));
             stageList.add(stage);
         }
         httpSession.setAttribute("stageList",stageList);
         Map<String,Object> map = new HashMap<>(5);
-        map.put("sid",stageList.get(0).getId());
+        if (sid==null){
+            map.put("sid",stageList.get(0).getId());
+        }else{
+            map.put("sid",sid);
+        }
         List<Content> contentList = contentService.findList(map);
         httpSession.setAttribute("contentList",contentList);
         return "/page/learn";

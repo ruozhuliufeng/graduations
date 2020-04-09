@@ -25,7 +25,7 @@
                     <#list stageList as stage>
                         <tr>
                             <td>
-                                <a href="/hobby/stageLearn?id=${stage.id}">${stage.name}</a>
+                                <a href="/hobby/learn?sid=${stage.id}">${stage.name}</a>
                             </td>
                         </tr>
                     </#list>

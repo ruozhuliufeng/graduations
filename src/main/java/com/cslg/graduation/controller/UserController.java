@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -74,7 +75,10 @@ public class UserController {
 
     //个人中心页
     @RequestMapping("/center")
-    public String centerPage(){
+    public String centerPage(HttpSession httpSession){
+        User currentUser = (User) httpSession.getAttribute("currentUser");
+        currentUser = userService.findById(currentUser.getId());
+        httpSession.setAttribute("currentUser",currentUser);
         return "/page/center";
     }
     //修改页
@@ -82,6 +86,13 @@ public class UserController {
     public String centerUpdatePage(){
         return "/page/userUpdate";
     }
+
+
+
+
+
+
+
 
 
     @GetMapping("/findAll")
@@ -113,6 +124,21 @@ public class UserController {
     public String update(User user){
         userService.update(user);
         return "redirect:/admin/user";
+    }
+
+    @PostMapping("/mupdate")
+    public String mupdate(UserDTO userDTO){
+        User user = userService.findById(userDTO.getId());
+        if (user==null){
+            //返回错误页面
+            return "/err";
+        }
+        user.setEmail(userDTO.getEmail());
+        user.setUsername(userDTO.getUsername());
+        user.setHname(userDTO.getHname());
+        user.setSex(userDTO.getSex());
+        userService.update(user);
+        return "redirect:/user/center";
     }
 
     @GetMapping("/delete")
