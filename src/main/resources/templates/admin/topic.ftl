@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<title>帖子管理</title>
+		<title>博客管理</title>
 		<link href="/admin/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/admin/css/materialdesignicons.min.css" rel="stylesheet">
 		<link href="/admin/css/style.min.css" rel="stylesheet">

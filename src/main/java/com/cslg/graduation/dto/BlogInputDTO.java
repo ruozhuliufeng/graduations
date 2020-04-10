@@ -2,6 +2,9 @@ package com.cslg.graduation.dto;
 
 import lombok.Data;
 
+/**
+ * @author ruozhuliufeng
+ */
 @Data
 public class BlogInputDTO {
     private String title;

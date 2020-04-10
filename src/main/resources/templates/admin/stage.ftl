@@ -34,6 +34,7 @@
 					<div class="container-fluid">
 
 						<div class="row">
+							<a class="btn btn-primary" style="float: left" href="/stage/addPage">添加</a>
 							<table class="table table-striped table-hover">
 								<tr>
 									<th>序号</th>
@@ -62,7 +63,7 @@
 		</div>
 
 		<script type="text/javascript" src="/admin/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/admin/s/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/admin/js/perfect-scrollbar.min.js"></script>
 		<script type="text/javascript" src="/admin/js/main.min.js"></script>
 

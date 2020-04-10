@@ -25,6 +25,7 @@
         <!--页面主要内容-->
         <main class="lyear-layout-content">
             <div class="container-fluid">
+                <a class="btn btn-primary" style="float: left" href="/hobby/addPage">添加</a>
                 <table class="table table-striped table-hover">
                     <tr>
                         <th>序号</th>

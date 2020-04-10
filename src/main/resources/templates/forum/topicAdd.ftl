@@ -2,37 +2,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>添加帖子</title>
-    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-    <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
-    <#--    <link href="/bootstrap/css/style.css" rel="stylesheet" />-->
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.js"></script>
-    <link rel="stylesheet" type="text/css" href="/bootstrap/css/emoticon.css"/>
-    <script src="/bootstrap/js/jquery-1.11.1.js" type="text/javascript"></script>
-    <script src="/bootstrap/js/jquery.emoticons.js" type="text/javascript"></script>
-    <script src="/bootstrap/js/ckeditor/ckeditor.js"></script>
-    <#--    <script type="text/javascript">-->
-    <#--        function checkForm(){-->
-    <#--            if('${currentUser.username}'==''){-->
-    <#--                alert("请先登陆，再发帖！");-->
-    <#--                /* var url="Report_preSave.action?role=0&reportType=1";-->
-    <#--                window.open("login.jsp?url="+url); */-->
-    <#--                return false;-->
-    <#--            }-->
-    <#--            if ($("#title").val()===""||$("#title").val()==null) {-->
-    <#--                alert("请填写帖子主题！");-->
-    <#--                return false;-->
-    <#--            }-->
-    <#--            if ($("#section").val()===0||$("#section").val()==null) {-->
-    <#--                alert("请选择板块！");-->
-    <#--                return false;-->
-    <#--            }-->
-    <#--            if (CKEDITOR.instances.Content.getData().length<10) {-->
-    <#--                alert("帖子内容最少10个字符！");-->
-    <#--                return false;-->
-    <#--            }-->
-    <#--        }-->
-    <#--    </script>-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/simditor.css"/>
+    <!-- Scripts -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/module.js"></script>
+    <script src="/js/hotkeys.js"></script>
+    <script src="/js/simditor.js"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -44,16 +22,10 @@
         <br>
         <br>
         <div style="width: 1200px; margin: 0 auto;">
-            <table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin-top: 8px;width: 1400px;"
+            <table border="0" cellspacing="0" cellpadding="0" style="margin-top: 8px;"
                    align="center">
-                <tr height="30" background="/images/index/classT.jpg">
-                    <td style="text-indent:5px;">
-                        <b><font color="white">■ 发表帖子</font></b>
-                    </td>
-                    <td></td>
-                </tr>
                 <tr>
-                    <td style="width: 220px;" valign="top">
+                    <td class="col-md-4 col-sm-4" valign="top">
                         <table style="margin-top: 10px;margin-left: 20px;" class="">
                             <tr>
                                 <td valign="top" width="99%">发帖许可：<br><br>
@@ -70,18 +42,18 @@
                             </tr>
                         </table>
                     </td>
-                    <td>
+                    <td class="col-md-8 col-sm-8">
                         <form class="form-horizontal" style="margin-top: 10px;"
-                              action="/blog/add" method="post" onsubmit="return checkForm()">
-                            <div class="control-group">
-                                <label class="control-label" for="title">【主题】</label>
-                                <div class="controls">
+                              action="/blog/add" method="post">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="title">【主题】</label>
+                                <div class="controls col-sm-10">
                                     <input type="text" id="title" name="title" style="width: 800px;">
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="section">【板块】</label>
-                                <div class="controls">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="section">【分类】</label>
+                                <div class="controls col-sm-10">
                                     <select id="section" name="cname" style="width: 400px;">
                                         <option value="0">请选择分类...</option>
                                         <#list categoryList as category>
@@ -90,20 +62,18 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="Content">【内容】</label>
-                                <div class="controls">
-							<textarea name="content" id="Content" class="ckeditor"
-                                      cols="50" style="height:200px;width: 800px;"></textarea>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="text">【内容】</label>
+                                <div class="controls col-sm-10">
+                                    <textarea name="content" id="text" autofocus>
+                                        <p>请输入博客内容</p>
+                                    </textarea>
                                 </div>
                             </div>
                             <input id="user" name="userId" value="${currentUser.id}" type="hidden"/>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <Button class="btn btn-primary " data-dismiss="modal" aria-hidden="true"
-                                            type="submit">提交
-                                    </Button>
-                                    <font id="error"></font>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div style="text-align: center;"><button type="submit" class="btn btn-primary">提交博文</button></div>
                                 </div>
                             </div>
                         </form>
@@ -111,12 +81,14 @@
                 </tr>
             </table>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
 
+        <br>
+        <br>
+        <script>
+            var editor = new Simditor({
+                textarea:$('#text')
+            })
+        </script>
         <#include "../common/footer.ftl"/>
     </div>
 </div>

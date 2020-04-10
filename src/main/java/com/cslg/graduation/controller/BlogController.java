@@ -1,21 +1,23 @@
 package com.cslg.graduation.controller;
 
 import com.cslg.graduation.dto.BlogInputDTO;
+import com.cslg.graduation.dto.BlogOutputDTO;
+import com.cslg.graduation.dto.CategoryOutputDTO;
 import com.cslg.graduation.entity.Blog;
 import com.cslg.graduation.entity.Category;
+import com.cslg.graduation.entity.Comment;
 import com.cslg.graduation.entity.PageResult;
 import com.cslg.graduation.service.BlogService;
 import com.cslg.graduation.service.CategoryService;
+import com.cslg.graduation.service.CommentService;
+import com.cslg.graduation.service.UserService;
 import com.cslg.graduation.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Controller
@@ -26,17 +28,66 @@ public class BlogController {
     private BlogService blogService;
     @Autowired
     private CategoryService categoryService;
-
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private CommentService commentService;
     //博客页
-    @RequestMapping("/")
-    public String forumPage(){
-
+    @GetMapping("/")
+    public String forumPage(Integer id,HttpSession httpSession){
+        List<Category> categoryList = categoryService.findAll();
+        httpSession.setAttribute("categoryList",categoryList);
+        List<BlogOutputDTO> blogList = new ArrayList<>();
+        Map<String,Object> map = new HashMap<>(5);
+        if (id==null){
+            map.put("cid",1);
+        }else{
+            map.put("cid",id);
+        }
+        List<Blog> list = blogService.findList(map);
+        if(list!=null && list.size()>0){
+            for (int i = 0; i < list.size(); i++) {
+                Blog blog = list.get(i);
+                BlogOutputDTO blogOutputDTO = new BlogOutputDTO();
+                blogOutputDTO.setUserName(userService.findById(blog.getUserId()).getUsername());
+                blogOutputDTO.setPublishTime(blog.getPublishTime());
+                blogOutputDTO.setModifyTime(blog.getModifyTime());
+                blogOutputDTO.setTitle(blog.getTitle());
+                blogOutputDTO.setId(blog.getId());
+                blogOutputDTO.setTop(blog.getTop());
+                blogOutputDTO.setGood(blog.getGood());
+                blogList.add(blogOutputDTO);
+            }
+        }
+        httpSession.setAttribute("blogList",blogList);
+        httpSession.setAttribute("msg","当前分类暂无博客，请查看其它分类！");
         return "/forum/main";
+
     }
     //帖子详情页
-    @RequestMapping("/detail")
-    public String detailPage(){
-
+    @GetMapping("/detail")
+    public String detailPage(Integer id,HttpSession httpSession){
+        Blog blog = blogService.findById(id);
+        BlogOutputDTO blogOutputDTO = new BlogOutputDTO();
+        //设置输出值
+        blogOutputDTO.setUserName(userService.findById(blog.getUserId()).getUsername());
+        blogOutputDTO.setEmail(userService.findById(blog.getUserId()).getEmail());
+        blogOutputDTO.setType(userService.findById(blog.getUserId()).getType());
+        blogOutputDTO.setTitle(blog.getTitle());
+        blogOutputDTO.setPublishTime(blog.getPublishTime());
+        blogOutputDTO.setModifyTime(blog.getModifyTime());
+        blogOutputDTO.setContent(blog.getContent());
+        blogOutputDTO.setUserId(blog.getUserId());
+        blogOutputDTO.setId(blog.getId());
+        httpSession.setAttribute("blog",blogOutputDTO);
+        Map<String,Object> map = new HashMap<>(5);
+        map.put("top_id",blog.getId());
+        List<Comment> commentList = commentService.findList(map);
+        if (commentList!=null && commentList.size()>0){
+            httpSession.setAttribute("commentList",commentList);
+        }else {
+            httpSession.setAttribute("msg","还没有人评论这篇博文");
+        }
         return "/forum/topicDetails";
     }
     //添加帖子页
@@ -46,7 +97,6 @@ public class BlogController {
         httpSession.setAttribute("categoryList",categoryList);
         return "/forum/topicAdd";
     }
-
     @PostMapping("/add")
     public String add(BlogInputDTO blogInputDTO){
         Date publishTime = new Date();

@@ -16,7 +16,9 @@
     <br>
 
     <div class="row">
-        <#if currentUser??>
+        <#if msg??>
+            <div style="text-align: center;"><h1>${msg}</h1></div>
+        <#elseif currentUser??>
             <div class="col-md-3">
                 <table class="table table-bordered table-striped">
                     <tr>
@@ -48,7 +50,7 @@
                             <th>
                                 <#if content.status==1>
                                     已完成
-                                    <#else>
+                                <#else>
                                     未完成
                                 </#if>
                             </th>
@@ -61,10 +63,7 @@
                     </#list>
                 </table>
             </div>
-        <#else>
-            <h1>您尚未登录！请登录后查看！</h1>
         </#if>
-
     </div>
     <#include "../common/footer.ftl"/>
 </div>

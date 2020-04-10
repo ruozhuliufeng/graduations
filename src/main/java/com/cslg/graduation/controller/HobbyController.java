@@ -30,6 +30,10 @@ public class HobbyController {
     @GetMapping("/learn")
     public String learn(Integer sid,HttpSession httpSession){
         User currentUser = (User) httpSession.getAttribute("currentUser");
+        if (currentUser==null){
+            httpSession.setAttribute("msg","尚未登录，没有兴趣信息！");
+            return "/page/learn";
+        }
         Map<String,Object> searchMap = new HashMap<>(10);
         //设置搜索条件
         searchMap.put("name", currentUser.getHname());

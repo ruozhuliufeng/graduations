@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<title>首页 - 个人成长助理平台管理系统</title>
+		<title>博客修改</title>
 		<link href="/admin/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/admin/css/materialdesignicons.min.css" rel="stylesheet">
 		<link href="/admin/css/style.min.css" rel="stylesheet">

@@ -34,6 +34,7 @@
 					<div class="container-fluid">
 
 						<div class="row">
+
 							<center>
 								<h1>欢迎来到个人成长助理管理系统</h1>
 							</center>
