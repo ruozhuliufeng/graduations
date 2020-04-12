@@ -1,5 +1,6 @@
 package com.cslg.graduation.controller;
 
+import com.cslg.graduation.dto.ContentDTO;
 import com.cslg.graduation.entity.Content;
 import com.cslg.graduation.entity.PageResult;
 import com.cslg.graduation.service.ContentService;
@@ -58,15 +59,21 @@ public class ContentController {
 
 
     @PostMapping("/add")
-    public Result add(@RequestBody Content content){
+    public String add( ContentDTO contentDTO){
+        Content content = new Content();
+        content.setName(content.getName());
+        content.setStatus(0);
+        content.setClink(contentDTO.getClink());
+        content.setNote(contentDTO.getNote());
+
         contentService.add(content);
-        return new Result();
+        return "redirect:/admin/content";
     }
 
     @PostMapping("/update")
-    public Result update(@RequestBody Content content){
+    public String update(Content content){
         contentService.update(content);
-        return new Result();
+        return "redirect:/admin/content";
     }
 
 

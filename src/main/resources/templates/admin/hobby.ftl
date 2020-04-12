@@ -25,7 +25,7 @@
         <!--页面主要内容-->
         <main class="lyear-layout-content">
             <div class="container-fluid">
-                <a class="btn btn-primary" style="float: left" href="/hobby/addPage">添加</a>
+                <a class="btn btn-primary" style="float: right" href="/admin/hobbyAdd">添加</a>
                 <table class="table table-striped table-hover">
                     <tr>
                         <th>序号</th>
@@ -39,7 +39,7 @@
                             <td>${hobby.sname}</td>
                             <td>
                                 <a href="/hobby/delete?id=${hobby.id}">删除</a> ||
-                                <a href="/hobby/hobbyUpdate">修改</a>
+                                <a href="/hobby/findById?id=${hobby.id}">修改</a>
 
                             </td>
                         </tr>

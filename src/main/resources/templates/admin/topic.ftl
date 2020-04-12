@@ -45,7 +45,7 @@
 									<th>所属分类</th>
 									<th>是否置顶</th>
 									<th>是否精华</th>
-									<th>操作</th>
+									<th>博客操作</th>
 								</tr>
 								<#list blogList as blog>
 									<tr>

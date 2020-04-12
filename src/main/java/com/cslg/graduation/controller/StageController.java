@@ -8,6 +8,7 @@ import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -40,21 +41,23 @@ public class StageController {
     }
 
     @GetMapping("/findById")
-    public Stage findById(Integer id){
-        return stageService.findById(id);
+    public String findById(Integer id, HttpSession httpSession){
+        Stage stage = stageService.findById(id);
+        httpSession.setAttribute("stage",stage);
+        return "/admin/stageUpdate";
     }
 
 
     @PostMapping("/add")
-    public Result add(@RequestBody Stage stage){
+    public String add(Stage stage){
         stageService.add(stage);
-        return new Result();
+        return "redirect:/admin/stage";
     }
 
     @PostMapping("/update")
-    public Result update(@RequestBody Stage stage){
+    public String update(Stage stage){
         stageService.update(stage);
-        return new Result();
+        return "redirect:/admin/stage";
     }
 
     @GetMapping("/delete")

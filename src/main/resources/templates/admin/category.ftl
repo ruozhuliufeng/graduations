@@ -29,7 +29,7 @@
             <div class="container-fluid">
 
                 <div class="row">
-                    <a class="btn btn-primary" style="float: left" href="/category/addPage">添加</a>
+                    <a class="btn btn-primary" style="float: right" href="/admin/categoryAdd">添加</a>
                     <table class="table table-striped table-hover">
                         <tr>
                             <th>序号</th>
@@ -44,7 +44,7 @@
                                 <td>${category.userName}</td>
                                 <td>
                                     <a href="/category/delete?id=${category.id}">删除</a> ||
-                                    <a href="/admin/categoryUpdate">修改</a>
+                                    <a href="/category/findById?id=${category.id}">修改</a>
                                 </td>
                             </tr>
                         </#list>

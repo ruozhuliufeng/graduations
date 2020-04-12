@@ -25,22 +25,33 @@
         <!--页面主要内容-->
         <main class="lyear-layout-content">
             <div class="container-fluid">
-                <a class="btn btn-primary" style="float: left" href="/content/addPage">添加</a>
+                <a class="btn btn-primary" style="float: right" href="/admin/contentAdd">添加</a>
                 <table class="table table-striped table-hover">
                     <tr>
                         <th>序号</th>
-                        <th>兴趣名称</th>
-                        <th>最高阶段</th>
+                        <th>兴趣内容名称</th>
+                        <th>兴趣内容状态</th>
+                        <th>兴趣所属阶段</th>
+                        <th>兴趣内容链接</th>
+                        <th>兴趣笔记链接</th>
                     </tr>
-                    <#list hobbyList as hobby>
+                    <#list contentList as content>
                         <tr>
-                            <td>${hobby_index+1}</td>
-                            <td>${hobby.name}</td>
-                            <td>${hobby.sname}</td>
+                            <td>${content_index+1}</td>
+                            <td>${content.name}</td>
                             <td>
-                                <a href="/hobby/delete?id=${hobby.id}">删除</a> ||
-                                <a href="/hobby/hobbyUpdate">修改</a>
-
+                                <#if content.status==1>
+                                    已完成
+                                    <#else >
+                                    未完成
+                                </#if>
+                            </td>
+                            <td>${content.sname}</td>
+                            <td>${content.clink}</td>
+                            <td>${content.note}</td>
+                            <td>
+                                <a href="/content/delete?id=${content.id}">删除</a> ||
+                                <a href="/content/findById?id=${content.id}">修改</a>
                             </td>
                         </tr>
                     </#list>

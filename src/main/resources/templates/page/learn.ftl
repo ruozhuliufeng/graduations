@@ -16,8 +16,8 @@
     <br>
 
     <div class="row">
-        <#if msg??>
-            <div style="text-align: center;"><h1>${msg}</h1></div>
+        <#if learnmsg??>
+            <div style="text-align: center;"><h1>${learnmsg}</h1></div>
         <#elseif currentUser??>
             <div class="col-md-3">
                 <table class="table table-bordered table-striped">
@@ -55,7 +55,15 @@
                                 </#if>
                             </th>
                             <th>${content.clink}</th>
-                            <th>${content.note}</th>
+                            <th>
+                                <#if content.note??>
+                                <#-- 存在博客数据 -->
+<#--                                    <a href="${content.note}">查看笔记</a>-->
+                                    笔记已保存在博客页面
+                                <#else>
+                                    <a href="/blog/addTopic?id=${content.id}">填写笔记</a>
+                                </#if>
+                            </th>
                             <th>
                                 <a href="/content/complete?id=${content.id}">点击完成</a>
                             </th>

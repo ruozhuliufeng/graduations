@@ -21,8 +21,6 @@ public class Category implements Serializable {
 
 	private String name;//分类名称
 
-	private Integer parentId;//上一级id
-
 	private Integer masterId;//版主id
 
 	

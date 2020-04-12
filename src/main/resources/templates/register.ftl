@@ -93,6 +93,13 @@
                 <input id="email" type="email" class="form-control" name="email" value="" required="">
 
             </div>
+            <div class="text-left form-group bmd-form-group">
+                <label for="sex" class="bmd-label-floating">用户性别</label>
+                <select name="sex" id="sex" class="form-control">
+                    <option>男</option>
+                    <option>女</option>
+                </select>
+            </div>
 
             <div class="text-left form-group bmd-form-group">
                 <label for="password" class="bmd-label-floating">密码</label>

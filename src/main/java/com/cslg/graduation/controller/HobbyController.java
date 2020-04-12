@@ -1,6 +1,8 @@
 package com.cslg.graduation.controller;
 
+import com.cslg.graduation.dto.HobbyDTO;
 import com.cslg.graduation.entity.*;
+import com.cslg.graduation.service.CategoryService;
 import com.cslg.graduation.service.ContentService;
 import com.cslg.graduation.service.HobbyService;
 import com.cslg.graduation.service.StageService;
@@ -26,12 +28,22 @@ public class HobbyController {
     private StageService stageService;
     @Autowired
     private ContentService contentService;
+    @Autowired
+    private CategoryService categoryService;
 
+    /**
+     * 功能描述:  跳转到兴趣学习页面
+     * @param sid 当前阶段id
+     * @param httpSession 存放值
+     * @return : 学习页面
+     * @author : ruozhuliufeng
+     * @date : 2020/4/12 18:03
+     */
     @GetMapping("/learn")
     public String learn(Integer sid,HttpSession httpSession){
         User currentUser = (User) httpSession.getAttribute("currentUser");
         if (currentUser==null){
-            httpSession.setAttribute("msg","尚未登录，没有兴趣信息！");
+            httpSession.setAttribute("learnmsg","尚未登录，没有兴趣信息！");
             return "/page/learn";
         }
         Map<String,Object> searchMap = new HashMap<>(10);
@@ -61,15 +73,74 @@ public class HobbyController {
     }
 
 
-
-
-
-
-
-    @GetMapping("/findAll")
-    public List<Hobby> findAll(){
-        return hobbyService.findAll();
+    /**
+     * 功能描述: 兴趣删除
+     * @param id 待删除的id
+     * @return : 返回后台兴趣列表
+     * @author : ruozhuliufeng
+     * @date : 2020/4/12 18:05
+     */
+    @GetMapping("/delete")
+    public String delete(Integer id){
+        hobbyService.delete(id);
+        return "redirect:/admin/hobby";
     }
+    /**
+     * 功能描述: 修改博客
+     * @param id 待修改的博客id
+     * @param httpSession 存放查找到的博客
+     * @return : 返回页面地址
+     * @author : ruozhuliufeng
+     * @date : 2020/4/12 18:05
+     */
+    @GetMapping("/findById")
+    public String findById(Integer id,HttpSession httpSession){
+        Hobby hobby = hobbyService.findById(id);
+        httpSession.setAttribute("hobby",hobby);
+        List<Category> categoryList = categoryService.findAll();
+        httpSession.setAttribute("categoryList",categoryList);
+        return "/admin/hobbyUpdate";
+    }
+
+
+    /**
+     * 功能描述: 添加兴趣
+     * @param hobbyDTO 添加兴趣数据
+     * @return : 返回后台兴趣列表
+     * @author : ruozhuliufeng
+     * @date : 2020/4/12 18:06
+     */
+    @PostMapping("/add")
+    public String add(HobbyDTO hobbyDTO){
+        Hobby hobby = new Hobby();
+        hobby.setName(hobbyDTO.getName());
+        hobby.setSid(hobbyDTO.getSid());
+        Map<String,Object> map = new HashMap<>();
+        map.put("name",hobbyDTO.getCname());
+        hobby.setCid(categoryService.findList(map).get(0).getId());
+        hobbyService.add(hobby);
+        return "redirect:/admin/hobby";
+    }
+
+    /**
+     * 功能描述: 修改兴趣
+     * @param hobbyDTO 待修改的兴趣数据
+     * @return : 返回后台兴趣列表
+     * @author : ruozhuliufeng
+     * @date : 2020/4/12 18:07
+     */
+    @PostMapping("/update")
+    public String update(HobbyDTO hobbyDTO){
+        Hobby hobby = new Hobby();
+        hobby.setName(hobbyDTO.getName());
+        hobby.setSid(hobbyDTO.getSid());
+        Map<String,Object> map = new HashMap<>();
+        map.put("name",hobbyDTO.getCname());
+        hobby.setCid(categoryService.findList(map).get(0).getId());
+        hobbyService.add(hobby);
+        return "redirect:/admin/hobby";
+    }
+
 
     @GetMapping("/findPage")
     public PageResult<Hobby> findPage(int page, int size){
@@ -84,30 +155,6 @@ public class HobbyController {
     @PostMapping("/findPage")
     public PageResult<Hobby> findPage(@RequestBody Map<String, Object> searchMap, int page, int size){
         return  hobbyService.findPage(searchMap,page,size);
-    }
-
-    @GetMapping("/findById")
-    public Hobby findById(Integer id){
-        return hobbyService.findById(id);
-    }
-
-
-    @PostMapping("/add")
-    public Result add(@RequestBody Hobby hobby){
-        hobbyService.add(hobby);
-        return new Result();
-    }
-
-    @PostMapping("/update")
-    public Result update(@RequestBody Hobby hobby){
-        hobbyService.update(hobby);
-        return new Result();
-    }
-
-    @GetMapping("/delete")
-    public String delete(Integer id){
-        hobbyService.delete(id);
-        return "redirect:/admin/hobby";
     }
 
 }

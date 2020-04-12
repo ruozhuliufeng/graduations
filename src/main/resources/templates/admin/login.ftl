@@ -51,9 +51,7 @@
   <div class="lyear-login">
     <div class="login-center">
       <div class="login-header text-center">
-        <a href="/admin/index">
           <img alt="light year admin" src="/admin/images/logo-sidebar.png">
-        </a>
       </div>
       <form action="/admin/login" method="post">
         <div class="form-group has-feedback feedback-left">
@@ -67,6 +65,12 @@
         <div class="form-group">
           <input class="btn btn-block btn-primary" type="submit"/>
         </div>
+        <#if errmsg??>
+          <div class="form-group">
+            <div style="text-align: center;color: red">${errmsg}</div>
+          </div>
+        </#if>
+
       </form>
       <hr>
       <footer class="col-sm-12 text-center">

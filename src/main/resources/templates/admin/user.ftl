@@ -71,7 +71,7 @@
 										</td>
 										<td>
 											<a href="/user/delete?id=${user.id}">删除</a> ||
-											<a href="/admin/userUpdate">修改</a>
+											<a href="/user/findById?id=${user.id}">修改</a>
 										</td>
 									</tr>
 								</#list>

@@ -11,4 +11,5 @@ public class BlogInputDTO {
     private String content;
     private String cname;
     private Integer userId;
+    private Integer hid;
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cslg.graduation.mapper.UserActiveMapper">
+    <!-- 所有的用户行为表的字段 -->
+<!--    <sql id="all_user_active_cloumns">-->
+<!--        user_id,blog_id,hits-->
+<!--    </sql>-->
+    <!-- 查询出所有的用户行为 -->
+    <select id="listAllUserActive" resultType="com.cslg.graduation.dto.UserActiveDTO" >
+        SELECT user_id userId, blog_id blogId, hits
+        FROM active
+    </select>
+
+    <!-- 根据用户已有的行为信息获取它对某篇博客的点击量 -->
+    <select id="getHistsByUserActiveInfo" parameterType="com.cslg.graduation.dto.UserActiveDTO" resultType="java.lang.Integer">
+        SELECT hits FROM active
+        WHERE user_id = #{userId} AND blog_id = #{blogId}
+    </select>
+
+    <!-- 统计某个用户的行为记录的条数 -->
+    <select id="countUserActive" parameterType="com.cslg.graduation.dto.UserActiveDTO" resultType="integer">
+        SELECT COUNT(*) FROM active
+        WHERE user_id = #{userId} AND blog_id = #{blogId}
+    </select>
+
+    <!-- 向用户行为表中添加一条用户的行为记录 -->
+    <insert id="saveUserActive" parameterType="com.cslg.graduation.dto.UserActiveDTO">
+        INSERT INTO active(user_id, blog_id, hits) VALUES (#{userId},#{blogId},#{hits})
+    </insert>
+
+    <!-- 更新用户对某篇博客的点击量 -->
+    <update id="updateUserActive" parameterType="com.cslg.graduation.dto.UserActiveDTO">
+        UPDATE active SET hits=#{hits}
+        WHERE user_id = #{userId} AND blog_id = #{blogId}
+    </update>
+
+</mapper>

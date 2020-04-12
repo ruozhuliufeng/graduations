@@ -17,4 +17,5 @@ public class UserDTO {
     private String email;
     private String sex;
     private String hname;
+    private String tname;//级别
 }

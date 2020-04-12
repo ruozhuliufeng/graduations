@@ -19,4 +19,5 @@ spring:
     cache: false
     # 是否优先从文件系统加载template，以支持热加载，默认为true
     prefer-file-system-access: true
-
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

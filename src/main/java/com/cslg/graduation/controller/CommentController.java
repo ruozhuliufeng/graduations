@@ -1,13 +1,16 @@
 package com.cslg.graduation.controller;
 
+import com.cslg.graduation.dto.CommentInputDTO;
 import com.cslg.graduation.entity.Comment;
 import com.cslg.graduation.entity.PageResult;
 import com.cslg.graduation.service.CommentService;
 import com.cslg.graduation.util.Result;
 import jdk.nashorn.internal.ir.annotations.Reference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +19,7 @@ import java.util.Map;
 @RequestMapping("/comment")
 public class CommentController {
 
-    @Reference
+    @Autowired
     private CommentService commentService;
 
     @GetMapping("/findAll")
@@ -46,9 +49,17 @@ public class CommentController {
 
 
     @PostMapping("/add")
-    public Result add(@RequestBody Comment comment){
+    public String add(CommentInputDTO commentInputDTO){
+        Comment comment = new Comment();
+        Date date = new Date();
+        comment.setPublishTime(date);
+        comment.setModifyTime(date);
+        comment.setContent(commentInputDTO.getContent());
+        comment.setTitle(commentInputDTO.getTitle());
+        comment.setTopicId(commentInputDTO.getTopicId());
+        comment.setUserId(commentInputDTO.getUserId());
         commentService.add(comment);
-        return new Result();
+        return "redirect:/blog/";
     }
 
     @PostMapping("/update")

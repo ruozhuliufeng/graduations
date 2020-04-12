@@ -36,6 +36,8 @@ public class AdminController {
     private HobbyService hobbyService;
     @Autowired
     private StageService stageService;
+    @Autowired
+    private ContentService contentService;
     //后台登录页
     @RequestMapping("/loginPage")
     public String loginPage(){
@@ -45,10 +47,11 @@ public class AdminController {
     @RequestMapping("/login")
     public String login(UserDTO userDTO,HttpSession httpSession){
         User adminUser = userService.login(userDTO);
-        if (adminUser!=null){
+        if (adminUser.getType()==1){
             httpSession.setAttribute("adminUser",adminUser);
             return "redirect:/admin/indexPage";
         }
+        httpSession.setAttribute("errmsg","用户信息有误！");
         return "/admin/login";
 
     }
@@ -112,7 +115,6 @@ public class AdminController {
         httpSession.setAttribute("blogList",blogList);
         return "/admin/topic";
     }
-    //修改帖子
     //兴趣管理
     @RequestMapping("/hobby")
     public String hobby(HttpSession httpSession){
@@ -127,6 +129,13 @@ public class AdminController {
         }
         httpSession.setAttribute("hobbyList",hobbyList);
         return "/admin/hobby";
+    }
+    //添加兴趣
+    @RequestMapping("/hobbyAdd")
+    public String hobbyAdd(HttpSession httpSession){
+        List<Category> categoryList = categoryService.findAll();
+        httpSession.setAttribute("categoryList",categoryList);
+        return "/admin/hobbyAdd";
     }
     //修改兴趣
     //分类管理
@@ -143,12 +152,34 @@ public class AdminController {
         httpSession.setAttribute("categoryList",categoryList);
         return "/admin/category";
     }
+    //添加分类
+    @RequestMapping("/categoryAdd")
+    public String categoryAdd(HttpSession httpSession){
+        List<User> userList = userService.findAll();
+        httpSession.setAttribute("userList",userList);
+        return "/admin/categoryAdd";
+    }
+    //修改分类
     //内容管理
     @RequestMapping("/content")
     public String content(HttpSession httpSession){
-
+        List<Content> contents = contentService.findAll();
+        List<ContentDTO> contentList = new ArrayList<>();
+        for (Content content:contents) {
+            ContentDTO contentDTO = new ContentDTO(content.getId(),content.getName(),content.getStatus(),stageService.findById(content.getId()).getName(),content.getClink(),content.getNote());
+            contentList.add(contentDTO);
+        }
+        httpSession.setAttribute("contentList",contentList);
         return "/admin/content";
     }
+    //内容添加
+    @RequestMapping("/contentAdd")
+    public String contentAdd(HttpSession httpSession){
+        List<Stage> stageList = stageService.findAll();
+        httpSession.setAttribute("stageList",stageList);
+        return "/admin/contentAdd";
+    }
+    //内容修改
     //阶段管理
     @RequestMapping("/stage")
     public String stage(HttpSession httpSession){
@@ -156,5 +187,9 @@ public class AdminController {
         httpSession.setAttribute("stageList",stageList);
         return "/admin/stage";
     }
-
+    //阶段添加
+    @RequestMapping("/stageAdd")
+    public String stageAdd(){
+        return "/admin/stageAdd";
+    }
 }

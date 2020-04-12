@@ -56,7 +56,6 @@
 										<td>${comment.content}</td>
 										<td>
 											<a href="/comment/delete?id=${comment.id}">删除</a>
-										   ||<a href="/admin/commentUpdate">修改</a>
 										</td>
 									</tr>
 								</#list>

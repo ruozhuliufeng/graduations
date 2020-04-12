@@ -43,6 +43,7 @@ public class UserController {
         user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
         user.setEmail(userDTO.getEmail());
+        user.setSex(userDTO.getSex());
         user.setType(0);
         user.setStatus(0);
         userService.add(user);
@@ -87,45 +88,41 @@ public class UserController {
         return "/page/userUpdate";
     }
 
-
-
-
-
-
-
-
-
-    @GetMapping("/findAll")
-    public List<User> findAll(){
-        return userService.findAll();
-    }
-
     @GetMapping("/findPage")
     public PageResult<User> findPage(int page, int size){
         return userService.findPage(page, size);
     }
 
-    @PostMapping("/findList")
-    public List<User> findList(@RequestBody Map<String, Object> searchMap){
-        return userService.findList(searchMap);
-    }
-
-    @PostMapping("/findPage")
-    public PageResult<User> findPage(@RequestBody Map<String, Object> searchMap, int page, int size){
-        return  userService.findPage(searchMap,page,size);
-    }
-
     @GetMapping("/findById")
-    public User findById(Integer id){
-        return userService.findById(id);
+    public String findById(Integer id,HttpSession httpSession){
+        User user = userService.findById(id);
+        httpSession.setAttribute("user",user);
+        return "/admin/userUpdate";
     }
 
     @PostMapping("/update")
-    public String update(User user){
+    public String update(UserDTO userDTO){
+        User user = userService.findById(userDTO.getId());
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
+        int type;
+        if ("管理员".equals(userDTO.getTname())){
+            type=1;
+        }else {
+            type=0;
+        }
+        user.setType(type);
+        user.setUsername(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
         userService.update(user);
         return "redirect:/admin/user";
     }
 
+    /**
+     * 个人修改
+     * @param userDTO
+     * @return
+     */
     @PostMapping("/mupdate")
     public String mupdate(UserDTO userDTO){
         User user = userService.findById(userDTO.getId());
@@ -136,6 +133,7 @@ public class UserController {
         user.setEmail(userDTO.getEmail());
         user.setUsername(userDTO.getUsername());
         user.setHname(userDTO.getHname());
+        user.setSname("第一阶段");
         user.setSex(userDTO.getSex());
         userService.update(user);
         return "redirect:/user/center";

@@ -60,13 +60,25 @@
                         </tr>
                     </#list>
                 <#else>
-                    <h1>${msg}</h1>
+                    <h1>${categorymsg}</h1>
                 </#if>
 
             </table>
         </div>
         <div class="col-md-4">
-            数据过少，暂无推荐博客
+            <#if currentUser??>
+                <div style="height: 20px">
+                    <a class="btn btn-primary" style="float: right" href="/blog/addTopic">新建博文</a>
+                </div>
+                <div style="margin-top: 20px">
+                    数据过少，暂无推荐博客
+                </div>
+            <#else>
+                <div>
+                    尚未登录，无法享受个性化服务！
+                </div>
+            </#if>
+
         </div>
     </div>
 

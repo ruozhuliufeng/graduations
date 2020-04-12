@@ -70,7 +70,8 @@
                                     </textarea>
                                 </div>
                             </div>
-                            <input id="user" name="userId" value="${currentUser.id}" type="hidden"/>
+                            <input  name="userId" value="${currentUser.id}" type="hidden"/>
+                            <input  name="hid" value="${hid}" type="hidden"/>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <div style="text-align: center;"><button type="submit" class="btn btn-primary">提交博文</button></div>

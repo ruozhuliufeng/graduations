@@ -75,8 +75,9 @@
                     <header>
                         <h3>您选择的兴趣是<br/></h3>
                     </header>
-                    <strong>${currentUser.hname}</strong>
-
+                    <strong>
+                        ${currentUser.hname}
+                    </strong>
                 <#else>
                     <header>
                         <h3>您尚未登录，无法查看相关信息！</h3>

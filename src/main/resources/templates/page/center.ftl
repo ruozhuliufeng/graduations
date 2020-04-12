@@ -32,7 +32,14 @@
         </tr>
         <tr>
             <td>兴趣</td>
-            <td>${currentUser.hname}</td>
+            <td>
+                <#if currentUser.hname??>
+                    ${currentUser.hname}
+                    <#else >
+                    <a href="/user/centerUpdate" class="btn btn-primary">未选择兴趣，请去个人中心修改</a>
+                </#if>
+
+            </td>
         </tr>
 <#--        <tr>-->
 <#--            <td>阶段</td>-->
