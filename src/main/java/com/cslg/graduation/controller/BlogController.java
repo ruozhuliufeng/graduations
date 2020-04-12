@@ -62,7 +62,7 @@ public class BlogController {
                 blogList.add(blogOutputDTO);
             }
         } else {
-            httpSession.setAttribute("categoryerr", "当前分类下没有博客");
+            httpSession.setAttribute("categorymsg", "当前分类下没有博客");
         }
         httpSession.setAttribute("blogList", blogList);
         return "/forum/main";
@@ -82,7 +82,11 @@ public class BlogController {
         Blog blog = blogService.findById(id);
         //点击量+1
         Integer hits = blog.getHits();
-        hits++;
+        if (hits==null){
+            hits = 1 ;
+        }else {
+            hits++;
+        }
         blog.setHits(hits);
         blogService.update(blog);
 
@@ -100,6 +104,7 @@ public class BlogController {
         httpSession.setAttribute("blog", blogOutputDTO);
         Map<String, Object> map = new HashMap<>(5);
         map.put("top_id", blog.getId());
+        //当前博客的评论
         List<Comment> comments = commentService.findList(map);
         List<CommentOutPutDTO> commentList = new ArrayList<>();
         if (comments != null && comments.size() > 0) {
@@ -113,6 +118,8 @@ public class BlogController {
             }
             httpSession.setAttribute("commentList", commentList);
         }
+
+
         return "/forum/topicDetails";
     }
 

@@ -34,4 +34,17 @@ public class User implements Serializable {
 
 	private Integer type;//用户类型：0 普通用户 1 管理员
 
+	public User(String username, String password, String email, String sex, Integer status, String hname, String sname, Integer type) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.sex = sex;
+		this.status = status;
+		this.hname = hname;
+		this.sname = sname;
+		this.type = type;
+	}
+
+	public User() {
+	}
 }

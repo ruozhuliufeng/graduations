@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * 建议处理Controller
  * @author ruozhuliufeng
@@ -18,14 +20,10 @@ public class AdviceController {
     @Autowired
     private AdviceService adviceService;
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public Result add(@RequestParam String name,@RequestParam String email,@RequestParam String message){
-        Advice advice = new Advice();
-        advice.setEmail(email);
-        advice.setName(name);
-        advice.setAdvice(message);
+    @PostMapping("/add")
+    public String add(Advice advice){
         adviceService.add(advice);
-        return new Result();
+        return "redirect:/";
     }
     @DeleteMapping("/delete")
     public String delete(Integer id){

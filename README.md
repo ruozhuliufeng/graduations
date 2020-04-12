@@ -32,3 +32,5 @@ springboot+freemarker 毕业设计
 - /admin/user : /admin/user.ftl :用户管理(修改权限、删除)
 - /admin/userUpdate : /admin/userUpdate.ftl ：用户修改
 
+## 待完成的功能
+- 分页模块

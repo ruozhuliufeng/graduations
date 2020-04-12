@@ -11,6 +11,7 @@
     <script src="js/skel.min.js"></script>
     <script src="js/util.js"></script>
     <script src="js/main.js"></script>
+
 </head>
 <body>
 <!-- Header -->
@@ -132,7 +133,7 @@
                 <textarea name="message" id="message" rows="6" placeholder="对我们的评价或者改进"></textarea>
             </div>
             <ul class="actions">
-                <li><input value="提交评论" class="button alt" type="submit"></li>
+                <li><input value="提交评论" onclick="javascript:advice()" class="button alt" type="submit"></li>
             </ul>
         </form>
 
@@ -146,5 +147,10 @@
         </div>
     </div>
 </footer>
+<script>
+    function advice() {
+        var x = window.prompt("您的建议我们已经收到！已经联系管理员寻找相关资源，请输入邮箱，更新后第一时间通知您！")
+    }
+</script>
 </body>
 </html>

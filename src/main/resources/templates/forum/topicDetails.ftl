@@ -39,11 +39,11 @@
                         <td>评论内容</td>
                         <td>评论用户</td>
                     </tr>
-                    <#list contentList as content>
+                    <#list commentList as comment>
                         <tr>
-                            <td>${content.title}</td>
-                            <td>${content.content}</td>
-                            <td>${content.userName}</td>
+                            <td>${comment.title}</td>
+                            <td>${comment.content}</td>
+                            <td>${comment.userName}</td>
                         </tr>
                     </#list>
                 </table>
@@ -66,7 +66,7 @@
                 <p class="text-right">修改时间：${blog.modifyTime?date}<br></p>
             </div>
             <br>
-            <div style="width: 100% ; height:600px">
+            <div style="width: 100% ">
                 <#-- 博客内容 -->
                 ${blog.content}
             </div>
@@ -85,8 +85,8 @@
                         <div class="form-group">
                             <label for="content" class="col-sm-2 control-label">评论内容</label>
                             <div class="col-sm-10">
-                                <textarea name="content" id="content" cols="50" style="height:200px;width: 100%;">
-                                    请输入评论内容
+                                <textarea name="content" id="content" cols="50" style="height:200px;width: 100%;" placeholder="请输入评论内容">
+
                                 </textarea>
                             </div>
                         </div>

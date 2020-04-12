@@ -1,6 +1,6 @@
 <!-- logo -->
 <div id="logo" class="sidebar-header">
-    <a href="/admin/index">
+    <a href="/admin/indexPage">
 
         <img src="images/logo-sidebar.png" title="LightYear" alt="LightYear"/>
     </a>
@@ -9,7 +9,7 @@
 
     <nav class="sidebar-main">
         <ul class="nav nav-drawer">
-            <li class="nav-item active"><a href="/admin/index"><i class="mdi mdi-home"></i> 后台首页</a></li>
+            <li class="nav-item active"><a href="/admin/indexPage"><i class="mdi mdi-home"></i> 后台首页</a></li>
             <li class="nav-item nav-item-has-subnav">
                 <a href="javascript:void(0)"><i class="mdi mdi-palette"></i>分类管理</a>
                 <ul class="nav nav-subnav">

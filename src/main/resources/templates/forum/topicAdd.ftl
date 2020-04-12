@@ -66,7 +66,7 @@
                                 <label class="control-label col-sm-2" for="text">【内容】</label>
                                 <div class="controls col-sm-10">
                                     <textarea name="content" id="text" autofocus>
-                                        <p>请输入博客内容</p>
+                                        请输入博客内容
                                     </textarea>
                                 </div>
                             </div>

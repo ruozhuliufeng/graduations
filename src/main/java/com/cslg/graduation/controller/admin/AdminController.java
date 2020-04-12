@@ -52,7 +52,7 @@ public class AdminController {
             return "redirect:/admin/indexPage";
         }
         httpSession.setAttribute("errmsg","用户信息有误！");
-        return "/admin/login";
+        return "redirect:/admin/loginPage";
 
     }
     //后台主页
