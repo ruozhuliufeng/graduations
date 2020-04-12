@@ -32,5 +32,25 @@ springboot+freemarker 毕业设计
 - /admin/user : /admin/user.ftl :用户管理(修改权限、删除)
 - /admin/userUpdate : /admin/userUpdate.ftl ：用户修改
 
+## 推荐算法相关
+- com.cslg.graduation.dto.UserActiveDTO: 用户与博客点击量
+- com.cslg.graduation.dto.UserSimilarityDTO: 用户与用户之间的相似度
+- com.cslg.graduation.mapper.UserActiveMapper: 用户与博客点击量处理的mapper
+- com.cslg.graduation.mapper.UserSimilarityMapper: 用户与用户之间的相似度的处理
+- com.cslg.graduation.service.UserActiveService: 用户与博客点击量处理的Service
+- com.cslg.graduation.service.impl.UserActiveServiceImpl: 用户与博客点击量处理的Service具体实现类
+- com.cslg.graduation.service.UserSimilarityService: 用户与用户之间的相似度的Service
+- com.cslg.graduation.service.impl.UserSimilarityServiceImpl: 用户与用户之间的相似度的Service具体实现类
+- com.cslg.graduation.util.RecommmentUtils: 推荐模块工具类
+
 ## 待完成的功能
 - 分页模块
+- 新用户的推荐问题
+- 用户与用户的相似度
+    - 监听器，每天定时计算相似度
+- 用户与博客的点击量处理
+## 存在的问题及解决
+- 工具类中计算相似度，存入数据库库中为1
+  - 解决：设置小数点后显示10位
+- 自定义mapper方法时无法查询数据库或查询出来的值为null
+  - 解决：为查询出来的列定义别名，和需要返回的DTO名称一致

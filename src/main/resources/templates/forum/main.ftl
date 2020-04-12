@@ -71,7 +71,43 @@
                     <a class="btn btn-primary" style="float: right" href="/blog/addTopic">新建博文</a>
                 </div>
                 <div style="margin-top: 20px">
-                    数据过少，暂无推荐博客
+                    <table class="table table-striped table-hover">
+<#--                        <tr>-->
+<#--                            <th colspan="2">点击量最高的博客</th>-->
+<#--                        </tr>-->
+<#--                        <tr>-->
+<#--                            <td>序号</td>-->
+<#--                            <td>标题</td>-->
+<#--                        </tr>-->
+<#--                        <tr>-->
+<#--                            <td>1</td>-->
+<#--                            <td><a href="/blog/detail?id=${maxHitsBlog.id}">${maxHitsBlog.title}</a></td>-->
+<#--                        </tr>-->
+                        <tr>
+                            <th colspan="2">与您兴趣相同的用户阅读的博客</th>
+                        </tr>
+                        <tr>
+                            <td>序号</td>
+                            <td>标题</td>
+                        </tr>
+                        <#list recommendBlogs as recommendBlog>
+                            <#if recommendBlog??>>
+                            <tr>
+                                <td>${recommendBlog_index+1}</td>
+                                <td>
+                                    <a href="/blog/detail?id=${recommendBlog.id}">
+                                        ${recommendBlog.title}
+                                    </a>
+                                </td>
+                            </tr>
+                            </#if>
+                            <#else>
+                            <tr>
+                                <td>1</td>
+                                <td>暂未有推荐博客，请多多阅读</td>
+                            </tr>
+                        </#list>
+                    </table>
                 </div>
             <#else>
                 <div>

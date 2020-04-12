@@ -240,14 +240,14 @@ public class RecommentUtils {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 13:32
      */
-    public static Blog findMaxHitsBlog(List<? extends Blog> blogList){
+    public static Blog findMaxHitsBlog(List<Blog> blogList){
         if (blogList==null || blogList.size()==0){
             return null;
         }
         //记录当前最大的点击量
-        Integer maxHits = null;
+        Integer maxHits = 1;
         //记录当前点击量最大的商品
-        Blog blog = null;
+        Blog blog = new Blog();
         for (Blog temp:blogList){
             if (temp.getHits()>=maxHits){
                 maxHits = temp.getHits();

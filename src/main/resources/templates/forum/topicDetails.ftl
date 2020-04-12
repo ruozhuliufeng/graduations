@@ -79,7 +79,7 @@
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">评论标题</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="title" placeholder="请输入评论标题">
+                                <input type="text" class="form-control" id="title" name="title" placeholder="请输入评论标题">
                             </div>
                         </div>
                         <div class="form-group">

@@ -17,7 +17,7 @@
     <!-- 更新用户相似度数据 -->
     <update id="updateUserSimilarity" parameterType="com.cslg.graduation.dto.UserSimilarityDTO">
         UPDATE similary
-        SET similary = #{similarity}
+        SET similarity = #{similarity}
         WHERE user_id = #{userId} AND user_ref_id = #{userRefId}
     </update>
 
@@ -30,7 +30,7 @@
 
     <!-- 查询某个用户与其他用户之间的相似度列表 -->
     <select id="listUserSimilarityByUId" parameterType="integer" resultType="com.cslg.graduation.dto.UserSimilarityDTO">
-        SELECT user_id,user_ref_id,similarity
+        SELECT user_id userId,user_ref_id userRefId,similarity
         FROM similary
         WHERE user_id = #{userId} OR user_ref_id=#{userId}
 
