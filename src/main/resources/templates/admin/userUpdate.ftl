@@ -57,7 +57,18 @@
 										</select>
 									</div>
 								</div>
-
+								<#--
+								 <div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label">用户阶段</label>
+									<div class="col-sm-10">
+										<select name="sname">
+										<#if stageList??>
+											<option>${stageList.name}</option>
+										</#if>
+										</select>
+									</div>
+								</div>
+								 -->
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-sm-10">
 										<button type="submit" class="btn btn-default">修改</button>

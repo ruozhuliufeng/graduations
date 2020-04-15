@@ -107,7 +107,7 @@ public class RecommentUtils {
                 while(it1.hasNext() && it2.hasNext()){
                     Integer it1Id = it1.next();
                     Integer it2Id = it2.next();
-                    //获取二级类目对应的点击次数
+                    //获取博客对应的点击次数
                     Integer hits1 = userBlogMap.get(it1Id);
                     Integer hits2 = userRefBlogMap.get(it2Id);
                     //累加分子
@@ -133,7 +133,7 @@ public class RecommentUtils {
     }
 
     /**
-     * 功能描述: 找出与userId浏览行为最相似的topN个用哦股
+     * 功能描述: 找出与userId浏览行为最相似的topN个用户
      * @param userId 需要参考的用户id
      * @param userSimilarityList 参考的用户行为列表
      * @param topN 与userId相似用户的数量

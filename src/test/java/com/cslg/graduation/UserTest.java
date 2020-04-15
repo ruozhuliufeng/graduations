@@ -135,4 +135,12 @@ public class UserTest {
             }
         }
     }
+
+    /**
+     * 功能描述: 生成用户与兴趣之间的点击量
+     * @author : ruozhuliufeng
+     * @date : 2020/4/15 9:28
+     */
+    @Test
+    public void genFocusTest(){}
 }

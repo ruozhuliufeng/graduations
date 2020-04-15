@@ -75,12 +75,16 @@ public class BlogController {
         //推荐列表
         //得到当前用户
         User currentUser = (User) httpSession.getAttribute("currentUser");
-        //获得推荐前十的博客
-        List<Blog> recommendBlogs = recommendBlogs(currentUser.getId(),10);
-        //获得点击量最高的博客
+        if(currentUser!=null) {//用户不为空
+            //获得推荐前十的博客
+            List<Blog> recommendBlogs = recommendBlogs(currentUser.getId(), 10);
+            //获得点击量最高的博客
 //        Blog maxHitsBlog = recommendBlog(currentUser.getId(),10);
-        httpSession.setAttribute("recommendBlogs",recommendBlogs);
+            httpSession.setAttribute("recommendBlogs", recommendBlogs);
 //        httpSession.setAttribute("maxHitsBlog",maxHitsBlog);
+        }
+        Hobby recommendHobby = new Hobby();
+        httpSession.setAttribute("recommendHobby",recommendHobby);
         return "/forum/main";
 
     }
@@ -105,7 +109,8 @@ public class BlogController {
         }
         blog.setHits(hits);
         blogService.update(blog);
-
+        //从session中获取用户，从用户-博客点击量表中获取用户对当前博客的点击量，并更新保存
+        // TODO
         BlogOutputDTO blogOutputDTO = new BlogOutputDTO();
         //设置输出值
         blogOutputDTO.setUserName(userService.findById(blog.getUserId()).getUsername());

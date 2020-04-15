@@ -16,11 +16,12 @@
     <!-- 个人信息 -->
     <div style="text-align: center;"><h1>个人信息修改</h1></div>
     <form class="form-horizontal" action="/user/mupdate" method="post">
-        <input type="hidden" name="id" value="${currentUser.id}" />
+        <input type="hidden" name="id" value="${currentUser.id}"/>
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">用户名称</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputEmail3" name="username" value="${currentUser.username}">
+                <input type="text" class="form-control" id="inputEmail3" name="username"
+                       value="${currentUser.username}">
             </div>
         </div>
         <div class="form-group">
@@ -37,12 +38,19 @@
         </div>
         <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">用户兴趣</label>
-            <div class="col-sm-10">
+            <div class="col-sm-4">
                 <select class="form-control" name="hname">
                     <#list hobbyList as hobby>
                         <option>${hobby.name}</option>
                     </#list>
                 </select>
+            </div>
+            <div class="col-sm-6">
+                <#if recommendHobby.name??>
+                    根据您浏览过的博客记录，我们为您推荐的兴趣是：${recommendHobby.name}
+                <#else>
+                    若您暂时不知道选择哪一个兴趣，阅读博客，我们会为您推荐相关兴趣
+                </#if>
             </div>
         </div>
         <div class="form-group">
