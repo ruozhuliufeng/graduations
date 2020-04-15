@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cslg.graduation.mapper.AttentionMapper">
+    <!-- 所有用户相似度表的字段-->
+    <!--    <sql id="all_user_similarity_colums">-->
+    <!--        user_id,user_ref_id,similarity-->
+    <!--    </sql>-->
+
+    <!-- 判断两个用户之间的相似度是否已经存在 -->
+    <select id="countAttention" parameterType="com.cslg.graduation.entity.Attention" resultType="integer">
+        SELECT COUNT(*) FROM attention
+        WHERE user_id=#{userId} AND user_ref_id = #{userRefId}
+           OR user_ref_id=#{userId} AND user_id = #{userRefId}
+    </select>
+
+    <!-- 查询某个用户与其他用户之间的相似度列表 -->
+    <select id="listAttentionByUId" parameterType="integer" resultType="com.cslg.graduation.entity.Attention">
+        SELECT user_id userId,user_ref_id userRefId,attention
+        FROM attention
+        WHERE user_id = #{userId} OR user_ref_id=#{userId}
+
+    </select>
+</mapper>

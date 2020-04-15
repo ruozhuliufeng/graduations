@@ -27,6 +27,6 @@ public class Content implements Serializable {
 
 	private String clink;//分享文件链接
 
-	private String note;//笔记，指向本人帖子
+	private String note;//笔记，指向本人博客
 	
 }

@@ -36,7 +36,7 @@ public class CategoryController {
         Category category = categoryService.findById(id);
         CategoryOutputDTO categoryOutputDTO = new CategoryOutputDTO();
         categoryOutputDTO.setName(category.getName());
-        categoryOutputDTO.setUserName(userService.findById(category.getMasterId()).getUsername());
+        categoryOutputDTO.setUsername(userService.findById(category.getMasterId()).getUsername());
         httpSession.setAttribute("category", categoryOutputDTO);
         List<User> userList = userService.findAll();
         httpSession.setAttribute("userList", userList);
@@ -48,7 +48,7 @@ public class CategoryController {
         Category category = new Category();
         category.setName(categoryOutputDTO.getName());
         Map<String, Object> map = new HashMap<>();
-        map.put("username", categoryOutputDTO.getUserName());
+        map.put("username", categoryOutputDTO.getUsername());
         category.setMasterId(userService.findList(map).get(0).getId());
         categoryService.add(category);
         return "redirect:/admin/category";
@@ -59,7 +59,8 @@ public class CategoryController {
         Category category = new Category();
         category.setName(categoryOutputDTO.getName());
         Map<String, Object> map = new HashMap<>();
-        map.put("username", categoryOutputDTO.getUserName());
+        map.put("username", categoryOutputDTO.getUsername());
+        System.out.println(categoryOutputDTO.getUsername());
         category.setMasterId(userService.findList(map).get(0).getId());
         categoryService.update(category);
         return "redirect:/admin/category";

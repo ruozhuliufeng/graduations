@@ -22,24 +22,21 @@
             <#include "header.ftl">
         </header>
         <!--End 头部信息-->
-
         <!--页面主要内容-->
         <main class="lyear-layout-content">
-
             <div class="container-fluid">
-
                 <div class="row">
                     <form class="form-horizontal" action="/category/add" method="post">
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">分类名称</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" placeholder="分类名称">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="分类名称">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="userName" class="col-sm-2 control-label">分类版主</label>
                             <div class="col-sm-10">
-                                <select name="userName">
+                                <select name="username">
                                     <#list userList as user>
                                         <option>${user.username}</option>
                                     </#list>

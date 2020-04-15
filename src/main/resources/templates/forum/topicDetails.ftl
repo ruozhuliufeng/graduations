@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>帖子详情</title>
+    <title>博客详情</title>
 
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/main.css"/>

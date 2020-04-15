@@ -105,7 +105,12 @@
                     </#list>
                 </table>
                 <footer>
-                    <a href="/user/center" class="button">前往选择</a>
+                    <#if currentUser??>
+                        <a href="/user/center" class="button">前往选择</a>
+                        <#else >
+                        <a href="/login" class="button">登录选择</a>
+                    </#if>
+
                 </footer>
             </article>
         </div>

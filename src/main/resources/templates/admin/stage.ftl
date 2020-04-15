@@ -48,7 +48,7 @@
 										<td>${stage.id}</td>
 										<td>${stage.name}</td>
 										<td>
-											<a href="/stage/delete?id=${stage.id}">删除</a>||
+											<a href="/stage/delete?id=${stage.id}">删除</a>
 										</td>
 									</tr>
 								</#list>

@@ -126,7 +126,7 @@ public class CommentServiceImpl implements CommentService {
             if(searchMap.get("id")!=null ){
                 criteria.andEqualTo("id",searchMap.get("id"));
             }
-            // 帖子id
+            // 博客id
             if(searchMap.get("topicId")!=null ){
                 criteria.andEqualTo("topicId",searchMap.get("topicId"));
             }

@@ -31,9 +31,12 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">用户性格</label>
+            <label for="inputPassword3" class="col-sm-2 control-label">用户性别</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputPassword3" name="sex" value="${currentUser.sex}">
+                <select class="form-control" name="sex">
+                    <option>男</option>
+                    <option>女</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -46,7 +49,7 @@
                 </select>
             </div>
             <div class="col-sm-6">
-                <#if recommendHobby.name??>
+                <#if recommendHobby??>
                     根据您浏览过的博客记录，我们为您推荐的兴趣是：${recommendHobby.name}
                 <#else>
                     若您暂时不知道选择哪一个兴趣，阅读博客，我们会为您推荐相关兴趣

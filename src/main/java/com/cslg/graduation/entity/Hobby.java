@@ -25,6 +25,6 @@ public class Hobby implements Serializable {
 
 	private Integer cid;//所属分类
 
-
+	private Integer hits;//点击量
 	
 }

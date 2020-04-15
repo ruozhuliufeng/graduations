@@ -2,14 +2,19 @@ package com.cslg.graduation.controller;
 
 import com.cslg.graduation.dto.ContentDTO;
 import com.cslg.graduation.entity.Content;
+import com.cslg.graduation.entity.Hobby;
 import com.cslg.graduation.entity.PageResult;
+import com.cslg.graduation.entity.Stage;
 import com.cslg.graduation.service.ContentService;
+import com.cslg.graduation.service.HobbyService;
+import com.cslg.graduation.service.StageService;
 import com.cslg.graduation.util.Result;
 import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +26,10 @@ public class ContentController {
     @Autowired
     private ContentService contentService;
 
+    @Autowired
+    private StageService stageService;
+    @Autowired
+    private HobbyService hobbyService;
 
     //点击完成任务
     @GetMapping("/complete")
@@ -61,11 +70,10 @@ public class ContentController {
     @PostMapping("/add")
     public String add( ContentDTO contentDTO){
         Content content = new Content();
-        content.setName(content.getName());
+        content.setName(contentDTO.getName());
         content.setStatus(0);
+        content.setSid(getSidFromStage(contentDTO.getName(),contentDTO.getSname()));
         content.setClink(contentDTO.getClink());
-        content.setNote(contentDTO.getNote());
-
         contentService.add(content);
         return "redirect:/admin/content";
     }
@@ -83,4 +91,26 @@ public class ContentController {
         return "redirect:/admin/content";
     }
 
+    /**
+     * 功能描述: 获取阶段id
+     * @param hname 兴趣名称
+     * @param sname 阶段名称
+     * @return : java.lang.Integer
+     * @author : ruozhuliufeng
+     * @date : 2020/4/15 17:18
+     */
+    public Integer getSidFromStage(String hname,String sname){
+        Integer sid = null;
+        Map<String,Object> map = new HashMap<>();
+        map.put("name",hname);
+        Hobby hobby = hobbyService.findList(map).get(0);
+        String[] strs = hobby.getSid().split(",");
+        for (int i = 0; i < strs.length; i++) {
+            Stage stage = stageService.findById(Integer.valueOf(strs[i]));
+            if (sname.equals(stage.getName())){
+                return Integer.valueOf(strs[i]);
+            }
+        }
+        return null;
+    }
 }

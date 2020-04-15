@@ -64,46 +64,49 @@ public class HobbyController {
         Map<String, Object> map = new HashMap<>(5);
         //获得兴趣内容列表
         List<Content> contentList = new ArrayList<>();
-        if (sid == null) {
-            map.put("sid", stageList.get(0).getId());
-        } else {
-            //需要判断当前sid是否大于所处阶段的sid，
-            Map<String, Object> search = new HashMap<>();
-            search.put("sname", currentUser.getSname());
-            List<Stage> listStage = stageService.findList(search);
-            Integer sidd = listStage.get(0).getId();
-            //设置内容完成状态
-            /**
-             * 将当前阶段的所有内容设置为未完成
-             * 将低于当前阶段的所有内容设置为已完成
-             * 不显示高于当前阶段的所有内容
-             * 查找用户的所有博客，若用户对应的博客内容id中包含所学内容，将该内容设为已完成
-             */
-            if (sid < sidd) {//当前阶段低于所处阶段，所有内容设置为已完成
-                map.put("sid", sid);
-                contentList = contentService.findList(map);
-                for (Content content : contentList) {
-                    content.setStatus(1);
-                }
-            } else if (sid.equals(sidd)) {
-                //所选阶段就是当前阶段
-                map.put("sid", sid);
-                contentList = contentService.findList(map);
-                //这就是第一阶段，获取用户的所有博客，比对博客的hid与阶段内容是否对应，对应，则将该内容设为已完成
-                Map<String, Object> blogSearch = new HashMap<>();
-                blogSearch.put("user_id", currentUser.getId());
-                List<Blog> searchBlogList = blogService.findList(blogSearch);
-                for (Content content : contentList) {
-                    for (Blog blog : searchBlogList) {
-                        if (blog.getHid().equals(content.getId())) {
-                            content.setStatus(1);
-                        } else {
-                            content.setStatus(0);
-                        }
+        //需要判断当前sid是否大于所选阶段的sid，
+        if(sid==null){
+            sid = stageList.get(0).getId();
+        }
+        Integer currentSid = getCurrentSid(currentUser,stageList);
+
+        //设置内容完成状态
+        /**
+         * 将当前阶段的所有内容设置为未完成
+         * 将低于当前阶段的所有内容设置为已完成
+         * 不显示高于当前阶段的所有内容
+         * 查找用户的所有博客，若用户对应的博客内容id中包含所学内容，将该内容设为已完成
+         */
+        if (sid < currentSid) {//当前阶段低于所处阶段，所有内容设置为已完成
+            map.put("sid", sid);
+            contentList = contentService.findList(map);
+            for (Content content : contentList) {
+                content.setStatus(1);
+            }
+        } else if (sid.equals(currentSid)) {
+            //所选阶段就是当前阶段
+            map.put("sid", sid);
+            //当前阶段的所有兴趣内容
+            contentList = contentService.findList(map);
+            //这就是第一阶段，获取用户的所有博客，比对博客的hid与阶段内容是否对应，对应，则将该内容设为已完成
+            Map<String, Object> blogSearch = new HashMap<>();
+            blogSearch.put("user_id", currentUser.getId());
+            //获得当前用户的所有博客
+            List<Blog> searchBlogList = blogService.findList(blogSearch);
+            for (Content content : contentList) {
+                for (Blog blog : searchBlogList) {
+                    //如果博客的兴趣内容hid和兴趣内容id相对应，设为已完成，不然设为未完成
+                    if (blog.getHid().equals(content.getId())) {
+                        content.setStatus(1);
+                    } else {
+                        content.setStatus(0);
                     }
                 }
             }
         }
+//        if (contentList == null){
+//            httpSession.setAttribute("outhErr","所选阶段已超过当前阶段，请认真完成笔记，并联系管理员开启下一阶段!");
+//        }
         httpSession.setAttribute("contentList", contentList);
         return "/page/learn";
     }
@@ -182,6 +185,17 @@ public class HobbyController {
         return "redirect:/admin/hobby";
     }
 
+
+    public Integer getCurrentSid(User user,List<Stage> stageList){
+        for(Stage stage:stageList){
+            Integer currentSid = null;
+            if (stage.getName().equals(user.getSname())){
+                currentSid =  stage.getId();
+            }
+            return currentSid;
+        }
+        return null;
+    }
 
     @GetMapping("/findPage")
     public PageResult<Hobby> findPage(int page, int size) {

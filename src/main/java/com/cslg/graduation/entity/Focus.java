@@ -1,5 +1,6 @@
 package com.cslg.graduation.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -10,6 +11,7 @@ import lombok.Data;
  * @date 2020/4/15 10:19
  */
 @Data
+@AllArgsConstructor
 public class Focus {
     private Integer userId;
     private Integer hobbyId;

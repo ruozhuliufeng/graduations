@@ -33,7 +33,7 @@
                         <th>兴趣内容状态</th>
                         <th>兴趣所属阶段</th>
                         <th>兴趣内容链接</th>
-                        <th>兴趣笔记链接</th>
+                        <th>操作</th>
                     </tr>
                     <#list contentList as content>
                         <tr>
@@ -48,7 +48,6 @@
                             </td>
                             <td>${content.sname}</td>
                             <td>${content.clink}</td>
-                            <td>${content.note}</td>
                             <td>
                                 <a href="/content/delete?id=${content.id}">删除</a> ||
                                 <a href="/content/findById?id=${content.id}">修改</a>

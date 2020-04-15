@@ -41,7 +41,7 @@
                             <tr>
                                 <td>${category_index+1}</td>
                                 <td>${category.name}</td>
-                                <td>${category.userName}</td>
+                                <td>${category.username}</td>
                                 <td>
                                     <a href="/category/delete?id=${category.id}">删除</a> ||
                                     <a href="/category/findById?id=${category.id}">修改</a>

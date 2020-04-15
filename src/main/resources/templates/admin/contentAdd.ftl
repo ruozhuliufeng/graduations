@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">兴趣内容名称</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" placeholder="兴趣内容名称">
+                                <input type="text" class="form-control" name="name" placeholder="兴趣内容名称">
                             </div>
                         </div>
                         <div class="form-group">
@@ -50,12 +50,6 @@
                             <label for="clink" class="col-sm-2 control-label">兴趣内容链接</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="clink" name="clink" placeholder="兴趣内容链接">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="clink" class="col-sm-2 control-label">兴趣内容笔记</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="clink" name="note" placeholder="兴趣内容链接">
                             </div>
                         </div>
                         <div class="form-group">

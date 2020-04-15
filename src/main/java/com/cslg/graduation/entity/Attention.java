@@ -10,8 +10,12 @@ import lombok.Data;
  * @date 2020/4/15 10:20
  */
 @Data
-public class attention {
+public class Attention {
     private Integer userId;
     private Integer userRefId;
     private Double attention;
+
+    public int compareTo(Attention o) {
+        return o.getAttention().compareTo(this.getAttention());
+    }
 }

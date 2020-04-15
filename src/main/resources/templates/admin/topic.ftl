@@ -39,8 +39,7 @@
 									<th>序号</th>
 									<th>发布时间</th>
 									<th>修改时间</th>
-									<th>帖子标题</th>
-									<th>帖子内容</th>
+									<th>博客标题</th>
 									<th>用户名称</th>
 									<th>所属分类</th>
 									<th>是否置顶</th>
@@ -53,14 +52,12 @@
 										<td>${blog.publishTime?date}</td>
 										<td>${blog.modifyTime?date}</td>
 										<td>${blog.title}</td>
-										<td>${blog.content}</td>
 										<td>${blog.categoryName}</td>
 										<td>${blog.userName}</td>
 										<td>${blog.good}</td>
 										<td>${blog.top}</td>
 										<td>
-											<a href="/blog/delete?id=${blog.id}">删除</a> ||
-											<a href="/admin/topicUpdate">修改</a>
+											<a href="/blog/delete?id=${blog.id}">删除</a>
 										</td>
 									</tr>
 								</#list>

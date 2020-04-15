@@ -41,7 +41,7 @@
                 <th>学习笔记</th>
                 <th>相关操作</th>
             </tr>
-        <#elseif contentList??>
+        <#--        <#elseif contentList??>-->
             <#list contentList as content>
                 <tr>
                     <th>${content_index+1}</th>
@@ -57,7 +57,7 @@
                     <th>
                         <#if content.note??>
                         <#-- 存在博客数据 -->
-                        <#--                                    <a href="${content.note}">查看笔记</a>-->
+                        <#-- <a href="${content.note}">查看笔记</a>-->
                             笔记已保存在博客页面
                         <#else>
                             <a href="/blog/addTopic?id=${content.id}">填写笔记</a>
@@ -67,8 +67,13 @@
                         <a href="/content/complete?id=${content.id}">点击完成</a>
                     </th>
                 </tr>
+
             </#list>
-            <#-- 当前阶段超过你所处的阶段，请认真完成笔记，管理员审核通过后会修改相应阶段 -->
+        <#-- 当前阶段超过你所处的阶段，请认真完成笔记，管理员审核通过后会修改相应阶段 -->
+<#--        <#elseif outhErr??>-->
+<#--            <div style="text-align: center;">-->
+<#--                <h2>${outhErr}</h2>-->
+<#--            </div>-->
             </table>
             </div>
         <#elseif learnmsg??>

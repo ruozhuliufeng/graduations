@@ -33,22 +33,22 @@
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">分类名称</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" value="${category.name}">
+                                <input type="text" class="form-control" id="name" name="name" value="${category.name}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="userName" class="col-sm-2 control-label">分类版主</label>
                             <div class="col-sm-10">
-                                <select name="userName">
+                                <select name="username" class="form-control">
                                     <#list userList as user>
-                                        <option value="${category.userName}">${user.username}</option>
+                                        <option>${user.username}</option>
                                     </#list>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">添加分类</button>
+                                <button type="submit" class="btn btn-default">修改分类</button>
                             </div>
                         </div>
                     </form>

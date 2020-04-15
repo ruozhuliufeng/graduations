@@ -23,7 +23,7 @@ public class Comment implements Serializable {
 
 	private java.util.Date modifyTime;//修改时间
 
-	private Integer topicId;//帖子id
+	private Integer topicId;//博客id
 
 	private Integer userId;//用户id
 

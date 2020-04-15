@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>添加帖子</title>
+    <title>添加博客</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/main.css"/>
     <link rel="stylesheet" href="/css/simditor.css"/>

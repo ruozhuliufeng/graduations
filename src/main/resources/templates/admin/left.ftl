@@ -18,9 +18,9 @@
                 </ul>
             </li>
             <li class="nav-item nav-item-has-subnav">
-                <a href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i>帖子管理</a>
+                <a href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i>博客管理</a>
                 <ul class="nav nav-subnav">
-                    <li><a href="/admin/topic">帖子列表</a></li>
+                    <li><a href="/admin/topic">博客列表</a></li>
                 </ul>
             </li>
             <li class="nav-item nav-item-has-subnav">
@@ -40,13 +40,6 @@
                 <ul class="nav nav-subnav">
                     <li><a href="/admin/comment">所有评论</a></li>
                     <li><a href="/admin/advice">所有建议</a></li>
-                </ul>
-            </li>
-            <li class="nav-item nav-item-has-subnav">
-                <a href="javascript:void(0)"><i class="mdi mdi-menu"></i>推荐管理</a>
-                <ul class="nav nav-subnav">
-                    <li><a href="#">推荐</a></li>
-                    <li><a href="#">数据</a></li>
                 </ul>
             </li>
         </ul>

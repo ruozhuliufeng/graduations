@@ -73,10 +73,16 @@ public class AdminController {
         return "/admin/user";
     }
     //用户修改
-    @RequestMapping("/userUpdate")
-    public String userUpdate(Integer id,HttpSession httpSession){
-        return "/admin/userUpdate";
-    }
+//    @RequestMapping("/userUpdate")
+//    public String userUpdate(Integer id,HttpSession httpSession){
+//        User user = userService.findById(id);
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("name",user.getSname());
+//        List<Stage> stageList = stageService.findList(map);
+//        httpSession.setAttribute("user",user);
+//        httpSession.setAttribute("stageList",stageList);
+//        return "/admin/userUpdate";
+//    }
     //建议管理
     @RequestMapping("/advice")
     public String advice(HttpSession httpSession){
@@ -100,7 +106,7 @@ public class AdminController {
         httpSession.setAttribute("commentList",commentList);
         return "/admin/comment";
     }
-    //帖子管理
+    //博客管理
     @RequestMapping("/topic")
     public String topic(HttpSession httpSession){
         List<Blog> blogs = blogService.findAll();
