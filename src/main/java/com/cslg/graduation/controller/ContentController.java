@@ -8,8 +8,6 @@ import com.cslg.graduation.entity.Stage;
 import com.cslg.graduation.service.ContentService;
 import com.cslg.graduation.service.HobbyService;
 import com.cslg.graduation.service.StageService;
-import com.cslg.graduation.util.Result;
-import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

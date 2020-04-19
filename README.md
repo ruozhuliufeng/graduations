@@ -35,12 +35,12 @@ springboot+freemarker 毕业设计
 ## 推荐算法相关
 - com.cslg.graduation.dto.UserActiveDTO: 用户与博客点击量
 - com.cslg.graduation.dto.UserSimilarityDTO: 用户与用户之间的相似度
-- com.cslg.graduation.mapper.UserActiveMapper: 用户与博客点击量处理的mapper
-- com.cslg.graduation.mapper.UserSimilarityMapper: 用户与用户之间的相似度的处理
-- com.cslg.graduation.service.UserActiveService: 用户与博客点击量处理的Service
-- com.cslg.graduation.service.impl.UserActiveServiceImpl: 用户与博客点击量处理的Service具体实现类
-- com.cslg.graduation.service.UserSimilarityService: 用户与用户之间的相似度的Service
-- com.cslg.graduation.service.impl.UserSimilarityServiceImpl: 用户与用户之间的相似度的Service具体实现类
+- com.cslg.graduation.mapper.ActiveMapper: 用户与博客点击量处理的mapper
+- com.cslg.graduation.mapper.SimilarityMapper: 用户与用户之间的相似度的处理
+- com.cslg.graduation.service.ActiveService: 用户与博客点击量处理的Service
+- ActiveServiceImpl: 用户与博客点击量处理的Service具体实现类
+- com.cslg.graduation.service.SimilarityService: 用户与用户之间的相似度的Service
+- SimilarityServiceImpl: 用户与用户之间的相似度的Service具体实现类
 - com.cslg.graduation.util.RecommmentUtils: 推荐模块工具类
 
 ## 待完成的功能

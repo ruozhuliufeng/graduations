@@ -1,7 +1,8 @@
 package com.cslg.graduation;
 
 import com.cslg.graduation.dto.UserActiveDTO;
-import com.cslg.graduation.service.UserActiveService;
+import com.cslg.graduation.entity.Active;
+import com.cslg.graduation.service.ActiveService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,7 @@ import java.util.List;
 public class UserActiveServiceTest {
 
     @Autowired
-    private UserActiveService activeService;
+    private ActiveService activeService;
 
     /**
      * 功能描述: 测试查询所有的用户行为
@@ -27,7 +28,7 @@ public class UserActiveServiceTest {
      */
     @Test
     public void testListAllUserActive(){
-        List<UserActiveDTO> list = activeService.listAllUserActive();
+        List<Active> list = activeService.listAllUserActive();
         System.out.println(list.size());
     }
 
@@ -38,7 +39,7 @@ public class UserActiveServiceTest {
      */
     @Test
     public void testSaveUserActive(){
-        UserActiveDTO userActiveDTO = new UserActiveDTO();
+        Active userActiveDTO = new Active();
         userActiveDTO.setUserId(1);
         userActiveDTO.setBlogId(2);
         userActiveDTO.setHits(6000);

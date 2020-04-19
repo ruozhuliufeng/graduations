@@ -2,34 +2,34 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cslg.graduation.mapper.UserSimilarityMapper">
+<mapper namespace="com.cslg.graduation.mapper.SimilarityMapper">
     <!-- 所有用户相似度表的字段-->
 <!--    <sql id="all_user_similarity_colums">-->
 <!--        user_id,user_ref_id,similarity-->
 <!--    </sql>-->
 
     <!-- 添加用户相似度 -->
-    <insert id="saveUserSimilarity" parameterType="com.cslg.graduation.dto.UserSimilarityDTO">
+    <insert id="saveUserSimilarity" parameterType="com.cslg.graduation.entity.Similarity">
         INSERT INTO similary(user_id,user_ref_id,similarity)
         VALUES (#{userId},#{userRefId},#{similarity})
     </insert>
 
     <!-- 更新用户相似度数据 -->
-    <update id="updateUserSimilarity" parameterType="com.cslg.graduation.dto.UserSimilarityDTO">
+    <update id="updateUserSimilarity" parameterType="com.cslg.graduation.entity.Similarity">
         UPDATE similary
         SET similarity = #{similarity}
         WHERE user_id = #{userId} AND user_ref_id = #{userRefId}
     </update>
 
     <!-- 判断两个用户之间的相似度是否已经存在 -->
-    <select id="countUserSimilarity" parameterType="com.cslg.graduation.dto.UserSimilarityDTO" resultType="integer">
+    <select id="countUserSimilarity" parameterType="com.cslg.graduation.entity.Similarity" resultType="integer">
         SELECT COUNT(*) FROM similary
         WHERE user_id=#{userId} AND user_ref_id = #{userRefId}
         OR user_ref_id=#{userId} AND user_id = #{userRefId}
     </select>
 
     <!-- 查询某个用户与其他用户之间的相似度列表 -->
-    <select id="listUserSimilarityByUId" parameterType="integer" resultType="com.cslg.graduation.dto.UserSimilarityDTO">
+    <select id="listUserSimilarityByUId" parameterType="integer" resultType="com.cslg.graduation.entity.Similarity">
         SELECT user_id userId,user_ref_id userRefId,similarity
         FROM similary
         WHERE user_id = #{userId} OR user_ref_id=#{userId}

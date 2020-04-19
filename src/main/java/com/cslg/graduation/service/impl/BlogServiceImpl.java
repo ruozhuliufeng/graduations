@@ -104,6 +104,11 @@ public class BlogServiceImpl implements BlogService {
         blogMapper.deleteByPrimaryKey(id);
     }
 
+    @Override
+    public List<Blog> findMaxBlogs() {
+        return blogMapper.findMaxBlogs();
+    }
+
     /**
      * 构建查询条件
      * @param searchMap

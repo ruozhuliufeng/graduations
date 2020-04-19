@@ -1,6 +1,8 @@
 package com.cslg.graduation;
 
+import com.cslg.graduation.service.ActiveService;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
@@ -18,6 +20,9 @@ import java.util.stream.Collectors;
 @SpringBootTest
 public class listTest {
 
+    @Autowired
+    private ActiveService activeService;
+
     @Test
     public void testListDict(){
         List list = new ArrayList();
@@ -30,5 +35,11 @@ public class listTest {
         System.out.println(list);
         List newList = Collections.singletonList(list.stream().distinct().collect(Collectors.toList()));
         System.out.println("java8新特性stream去重:"+newList);
+    }
+
+    @Test
+    public void testList(){
+        boolean flag = activeService.findNewsUser(5);
+        System.out.println(flag);
     }
 }

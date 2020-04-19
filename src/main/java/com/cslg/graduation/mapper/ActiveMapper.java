@@ -1,8 +1,6 @@
 package com.cslg.graduation.mapper;
 
-import com.cslg.graduation.dto.UserActiveDTO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Update;
+import com.cslg.graduation.entity.Active;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.List;
  * @version 1.0
  * @date 2020/4/12 9:27
  */
-public interface UserActiveMapper extends Mapper<UserActiveDTO> {
+public interface ActiveMapper extends Mapper<Active> {
 
     /**
      * 功能描述: 查询出所有的用户行为
@@ -21,7 +19,7 @@ public interface UserActiveMapper extends Mapper<UserActiveDTO> {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 10:03
      */
-    List<UserActiveDTO> listAllUserActive();
+    List<Active> listAllUserActive();
 
     /**
      * 功能描述:
@@ -31,7 +29,7 @@ public interface UserActiveMapper extends Mapper<UserActiveDTO> {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 10:04
      */
-    int getHistsByUserActiveInfo(UserActiveDTO userActiveDTO);
+    int getHistsByUserActiveInfo(Active active);
 
     /**
      * 功能描述:
@@ -41,7 +39,7 @@ public interface UserActiveMapper extends Mapper<UserActiveDTO> {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 10:05
      */
-    int countUserActive(UserActiveDTO userActiveDTO);
+    int countUserActive(Active active);
 
     /**
      * 功能描述:
@@ -51,7 +49,7 @@ public interface UserActiveMapper extends Mapper<UserActiveDTO> {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 10:07
      */
-    int saveUserActive(UserActiveDTO userActive);
+    int saveUserActive(Active active);
 
     /**
      * 功能描述:d
@@ -61,5 +59,7 @@ public interface UserActiveMapper extends Mapper<UserActiveDTO> {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 10:08
      */
-    int updateUserActive(UserActiveDTO userActive);
+    int updateUserActive(Active active);
+
+    List<Active> findNewUser(Integer userId);
 }

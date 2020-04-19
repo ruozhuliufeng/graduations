@@ -1,7 +1,6 @@
 package com.cslg.graduation.service;
 
-import com.cslg.graduation.dto.UserSimilarityDTO;
-import tk.mybatis.mapper.common.Mapper;
+import com.cslg.graduation.entity.Similarity;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ import java.util.List;
  * @author : ruozhuliufeng
  * @date : 2020/4/12 11:26
  */
-public interface UserSimilarityService {
+public interface SimilarityService {
 
     /**
      * 功能描述: 新增用户相似度数据
@@ -19,7 +18,7 @@ public interface UserSimilarityService {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 11:27
      */
-    boolean saveUserSimilarity(UserSimilarityDTO userSimilarityDTO);
+    boolean saveUserSimilarity(Similarity similarity);
 
     /**
      * 功能描述: 更新用户相似度数据
@@ -28,7 +27,7 @@ public interface UserSimilarityService {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 11:29
      */
-    boolean updateUserSimilarity(UserSimilarityDTO userSimilarityDTO);
+    boolean updateUserSimilarity(Similarity similarity);
 
     /**
      * 功能描述: 判断两个用户之间的相似度是否已经存在
@@ -37,7 +36,7 @@ public interface UserSimilarityService {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 11:29
      */
-    boolean isExistUserSimilarity(UserSimilarityDTO userSimilarityDTO);
+    boolean isExistUserSimilarity(Similarity similarity);
 
     /**
      * 功能描述: 查询某个用户与其他用户之间的相似度列表
@@ -46,5 +45,5 @@ public interface UserSimilarityService {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 11:31
      */
-    List<UserSimilarityDTO> listUserSimilarityByUId(Integer userId);
+    List<Similarity> listUserSimilarityByUId(Integer userId);
 }

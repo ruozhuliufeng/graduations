@@ -70,10 +70,7 @@
 
             </#list>
         <#-- 当前阶段超过你所处的阶段，请认真完成笔记，管理员审核通过后会修改相应阶段 -->
-<#--        <#elseif outhErr??>-->
-<#--            <div style="text-align: center;">-->
-<#--                <h2>${outhErr}</h2>-->
-<#--            </div>-->
+<#--     -->
             </table>
             </div>
         <#elseif learnmsg??>

@@ -35,4 +35,5 @@ public interface BlogService {
 
     void delete(Integer id);
 
+    List<Blog> findMaxBlogs();
 }

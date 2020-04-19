@@ -76,6 +76,7 @@
                     <header>
                         <h3>您选择的兴趣是<br/></h3>
                     </header>
+<#--                    <#elseif currentUser.hname??>-->
                     <strong>
                         ${currentUser.hname}
                     </strong>

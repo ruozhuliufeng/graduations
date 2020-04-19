@@ -1,6 +1,7 @@
 package com.cslg.graduation.mapper;
 
 import com.cslg.graduation.dto.UserSimilarityDTO;
+import com.cslg.graduation.entity.Similarity;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * @version 1.0
  * @date 2020/4/12 9:54
  */
-public interface UserSimilarityMapper extends Mapper<UserSimilarityDTO> {
+public interface SimilarityMapper extends Mapper<Similarity> {
 
     /**
      * 功能描述: 新增用户相似度数据
@@ -20,7 +21,7 @@ public interface UserSimilarityMapper extends Mapper<UserSimilarityDTO> {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 10:10
      */
-    int saveUserSimilarity(UserSimilarityDTO userSimilarityDTO);
+    int saveUserSimilarity(Similarity similarity);
 
     /**
      * 功能描述:  更新用户相似度数据
@@ -29,7 +30,7 @@ public interface UserSimilarityMapper extends Mapper<UserSimilarityDTO> {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 10:13
      */
-    int updateUserSimilarity(UserSimilarityDTO userSimilarityDTO);
+    int updateUserSimilarity(Similarity similarity);
 
     /**
      * 功能描述:  判断两个用户之间的相似度是否已经存在
@@ -38,7 +39,7 @@ public interface UserSimilarityMapper extends Mapper<UserSimilarityDTO> {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 10:14
      */
-    int countUserSimilarity(UserSimilarityDTO userSimilarityDTO);
+    int countUserSimilarity(Similarity similarity);
 
     /**
      * 功能描述: 查询某个用户与其他用户之间的相似度列表
@@ -47,5 +48,5 @@ public interface UserSimilarityMapper extends Mapper<UserSimilarityDTO> {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 10:16
      */
-    List<UserSimilarityDTO> listUserSimilarityByUId(Integer userId);
+    List<Similarity> listUserSimilarityByUId(Integer userId);
 }

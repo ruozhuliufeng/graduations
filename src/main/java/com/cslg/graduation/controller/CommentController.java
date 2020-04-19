@@ -4,8 +4,6 @@ import com.cslg.graduation.dto.CommentInputDTO;
 import com.cslg.graduation.entity.Comment;
 import com.cslg.graduation.entity.PageResult;
 import com.cslg.graduation.service.CommentService;
-import com.cslg.graduation.util.Result;
-import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -61,12 +59,11 @@ public class CommentController {
         commentService.add(comment);
         return "redirect:/blog/";
     }
-
-    @PostMapping("/update")
-    public Result update(@RequestBody Comment comment){
-        commentService.update(comment);
-        return new Result();
-    }
+//    @PostMapping("/update")
+//    public Result update(@RequestBody Comment comment){
+//        commentService.update(comment);
+//        return new Result();
+//    }
 
     @GetMapping("/delete")
     public String delete(Integer id){

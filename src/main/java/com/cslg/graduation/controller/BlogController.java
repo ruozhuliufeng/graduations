@@ -4,13 +4,13 @@ import com.cslg.graduation.dto.*;
 import com.cslg.graduation.entity.*;
 import com.cslg.graduation.service.*;
 import com.cslg.graduation.util.RecommentUtils;
-import com.cslg.graduation.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
+import java.util.prefs.PreferenceChangeEvent;
 import java.util.stream.Collectors;
 
 
@@ -27,9 +27,10 @@ public class BlogController {
     @Autowired
     private CommentService commentService;
     @Autowired
-    private UserActiveService userActiveService;
+    private ActiveService activeService;
     @Autowired
-    private UserSimilarityService userSimilarityService;
+    private SimilarityService similarityService;
+
 
 
     /**
@@ -75,13 +76,21 @@ public class BlogController {
         //推荐列表
         //得到当前用户
         User currentUser = (User) httpSession.getAttribute("currentUser");
+
         if(currentUser!=null) {//用户不为空
-            //获得推荐前十的博客
-            List<Blog> recommendBlogs = recommendBlogs(currentUser.getId(), 10);
-            //获得点击量最高的博客
+            //判断当前用户是否为新用户
+            boolean flag = activeService.findNewsUser(currentUser.getId());
+            if (flag){//新用户
+                List<Blog> recommendBlogs = blogService.findMaxBlogs();
+                httpSession.setAttribute("recommendBlogs", recommendBlogs);
+            }else{
+                //获得推荐前十的博客
+                List<Blog> recommendBlogs = recommendBlogs(currentUser.getId(), 10);
+                //获得点击量最高的博客
 //        Blog maxHitsBlog = recommendBlog(currentUser.getId(),10);
-            httpSession.setAttribute("recommendBlogs", recommendBlogs);
+                httpSession.setAttribute("recommendBlogs", recommendBlogs);
 //        httpSession.setAttribute("maxHitsBlog",maxHitsBlog);
+            }
         }
         Hobby recommendHobby = new Hobby();
         httpSession.setAttribute("recommendHobby",recommendHobby);
@@ -221,16 +230,15 @@ public class BlogController {
     public List<Blog> recommendBlogs(Integer userId,Integer topN){
         List<Blog> blogList = new ArrayList<>();
         // 1.查询出某个用户与其他用户的相似度列表
-        List<UserSimilarityDTO> userSimilarityList = userSimilarityService.listUserSimilarityByUId(userId);
+        List<Similarity> similarityList = similarityService.listUserSimilarityByUId(userId);
         // 2.获得所有的用户的浏览记录
-        List<UserActiveDTO> userActiveList = userActiveService.listAllUserActive();
-
+        List<Active> activeList = activeService.listAllUserActive();
         // 3.找出与id为userId的用户浏览行为最相似的前topN个用户
-        List<Integer> userIds = RecommentUtils.getSimilarityBetweenUsers(userId,userSimilarityList,topN);
+        List<Integer> userIds = RecommentUtils.getSimilarityBetweenUsers(userId,similarityList,topN);
         //去除自己
         userIds.remove(0);
         // 4.获得应该推荐给userId号用户的博客列表
-        List<Integer> list = RecommentUtils.getRecommendateBlog(userId,userIds,userActiveList);
+        List<Integer> list = RecommentUtils.getRecommendateBlog(userId,userIds,activeList);
         // 列表去重
         List<Integer> recommendateBlog = list.stream().distinct().collect(Collectors.toList());
         for (Integer blogId:recommendateBlog){
@@ -252,36 +260,15 @@ public class BlogController {
         return RecommentUtils.findMaxHitsBlog(recommendBlogs(userId,topN));
     }
 
+    /**
+     * 功能描述: 点击量最高的博客
+     * @return : 博客
+     * @author : ruozhuliufeng
+     * @date : 2020/4/19 1:35
+     */
+    public Blog maxHitsBlog(){
 
-
-
-
-
-    @GetMapping("/findPage")
-    public PageResult<Blog> findPage(int page, int size) {
-        return blogService.findPage(page, size);
-    }
-
-    @PostMapping("/findList")
-    public List<Blog> findList(@RequestBody Map<String, Object> searchMap) {
-        return blogService.findList(searchMap);
-    }
-
-    @PostMapping("/findPage")
-    public PageResult<Blog> findPage(@RequestBody Map<String, Object> searchMap, int page, int size) {
-        return blogService.findPage(searchMap, page, size);
-    }
-
-    @GetMapping("/findById")
-    public Blog findById(Integer id) {
-        return blogService.findById(id);
-    }
-
-
-    @PostMapping("/update")
-    public Result update(@RequestBody Blog blog) {
-        blogService.update(blog);
-        return new Result();
+        return null;
     }
 
 }

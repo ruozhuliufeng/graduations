@@ -7,6 +7,8 @@ import lombok.Data;
  */
 @Data
 public class BlogInputDTO {
+    //分页参数
+
     private String title;
     private String content;
     private String cname;

@@ -15,13 +15,8 @@ import java.util.Map;
      List<Hobby> findAll();
 
 
-     PageResult<Hobby> findPage(int page, int size);
-
-
      List<Hobby> findList(Map<String, Object> searchMap);
 
-
-     PageResult<Hobby> findPage(Map<String, Object> searchMap, int page, int size);
 
 
      Hobby findById(Integer id);
@@ -34,4 +29,5 @@ import java.util.Map;
 
      void delete(Integer id);
 
+     Hobby findMaxHobby();
 }

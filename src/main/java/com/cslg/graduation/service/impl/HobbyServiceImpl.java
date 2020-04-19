@@ -28,18 +28,6 @@ public class HobbyServiceImpl implements HobbyService {
         return hobbyMapper.selectAll();
     }
 
-    /**
-     * 分页查询
-     * @param page 页码
-     * @param size 每页记录数
-     * @return 分页结果
-     */
-    @Override
-    public PageResult<Hobby> findPage(int page, int size) {
-        PageHelper.startPage(page,size);
-        Page<Hobby> hobbys = (Page<Hobby>) hobbyMapper.selectAll();
-        return new PageResult<Hobby>(hobbys.getTotal(),hobbys.getResult());
-    }
 
     /**
      * 条件查询
@@ -50,21 +38,6 @@ public class HobbyServiceImpl implements HobbyService {
     public List<Hobby> findList(Map<String, Object> searchMap) {
         Example example = createExample(searchMap);
         return hobbyMapper.selectByExample(example);
-    }
-
-    /**
-     * 分页+条件查询
-     * @param searchMap
-     * @param page
-     * @param size
-     * @return
-     */
-    @Override
-    public PageResult<Hobby> findPage(Map<String, Object> searchMap, int page, int size) {
-        PageHelper.startPage(page,size);
-        Example example = createExample(searchMap);
-        Page<Hobby> hobbys = (Page<Hobby>) hobbyMapper.selectByExample(example);
-        return new PageResult<Hobby>(hobbys.getTotal(),hobbys.getResult());
     }
 
     /**
@@ -102,6 +75,11 @@ public class HobbyServiceImpl implements HobbyService {
     @Override
     public void delete(Integer id) {
         hobbyMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public Hobby findMaxHobby() {
+        return hobbyMapper.findMaxhobby();
     }
 
     /**

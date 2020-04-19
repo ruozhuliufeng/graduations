@@ -2,11 +2,12 @@ package com.cslg.graduation;
 
 import com.cslg.graduation.dto.UserActiveDTO;
 import com.cslg.graduation.dto.UserSimilarityDTO;
+import com.cslg.graduation.entity.Active;
 import com.cslg.graduation.entity.Blog;
-import com.cslg.graduation.mapper.UserSimilarityMapper;
+import com.cslg.graduation.entity.Similarity;
 import com.cslg.graduation.service.BlogService;
-import com.cslg.graduation.service.UserActiveService;
-import com.cslg.graduation.service.UserSimilarityService;
+import com.cslg.graduation.service.ActiveService;
+import com.cslg.graduation.service.SimilarityService;
 import com.cslg.graduation.util.RecommentUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RecommendateTest {
 
     @Autowired
-    private UserActiveService userActiveService;
+    private ActiveService activeService;
     @Autowired
-    private UserSimilarityService userSimilarityService;
+    private SimilarityService similarityService;
 
     @Autowired
     private BlogService blogService;
@@ -40,9 +41,9 @@ public class RecommendateTest {
     @Test
     public void testListAlluserActive(){
         //1.查询出所有用户对所有博客的浏览记录
-        List<UserActiveDTO> userActiveDTOList = userActiveService.listAllUserActive();
+        List<Active> userActiveDTOList = activeService.listAllUserActive();
         //2.输出浏览记录列表
-        for (UserActiveDTO userActiveDTO : userActiveDTOList){
+        for (Active userActiveDTO : userActiveDTOList){
             System.out.println(userActiveDTO.getUserId()+" "+userActiveDTO.getBlogId()+" "+userActiveDTO.getHits());
         }
     }
@@ -54,7 +55,7 @@ public class RecommendateTest {
     @Test
     public void testAssembleUserBehavior(){
         // 1.查询所有的用户浏览记录
-        List<UserActiveDTO> userActiveDTOList = userActiveService.listAllUserActive();
+        List<Active> userActiveDTOList = activeService.listAllUserActive();
 
         // 2.调用推荐模块工具类的方法组装城一个ConcurrentHashMap来存储每个用户以及其对应的博客的点击量
         ConcurrentHashMap<Integer,ConcurrentHashMap<Integer,Integer>> activeMap = RecommentUtils.assembleUserBrower(userActiveDTOList);
@@ -70,24 +71,24 @@ public class RecommendateTest {
     @Test
     public void testCalcSimilarityBetweenUser(){
         //1.查询所有的用户浏览记录
-        List<UserActiveDTO> userActiveDTOList = userActiveService.listAllUserActive();
+        List<Active> userActiveDTOList = activeService.listAllUserActive();
         //2.调用推荐模块工具类的方法组装城一个ConcurrentHashMap来存储每个用户以及其对应的博客的点击量
         ConcurrentHashMap<Integer,ConcurrentHashMap<Integer,Integer>> activeMap = RecommentUtils.assembleUserBrower(userActiveDTOList);
         //3.调用推荐模块工具类的方法计算用户与用户之间的相似度
-        List<UserSimilarityDTO> similarityList = RecommentUtils.calcSimilarityBetweenUsers(activeMap);
+        List<Similarity> similarityList = RecommentUtils.calcSimilarityBetweenUsers(activeMap);
         //4.输出计算好的用户之间的相似度
-        for (UserSimilarityDTO usim:similarityList){
+        for (Similarity usim:similarityList){
             System.out.println(usim.getUserId()+"\t"+usim.getUserRefId()+"\t"+usim.getSimilarity());
             //5.如果用户之间的 相似度已经存在于数据库就修改，不存在就添加
-            if (userSimilarityService.isExistUserSimilarity(usim)){//修改
-                boolean flag = userSimilarityService.updateUserSimilarity(usim);
+            if (similarityService.isExistUserSimilarity(usim)){//修改
+                boolean flag = similarityService.updateUserSimilarity(usim);
                 if (flag){
                     System.out.println("修改数据成功");
                 }else {
                     System.out.println("修改数据失败");
                 }
             }else {//新增
-                boolean flag = userSimilarityService.saveUserSimilarity(usim);
+                boolean flag = similarityService.saveUserSimilarity(usim);
                 if (flag){
                     System.out.println("插入数据成功");
                 }else {
@@ -105,9 +106,9 @@ public class RecommendateTest {
     @Test
     public void testListUserSimilarity(){
         //1.查询出某个用户与其他用户的相似度列表
-        List<UserSimilarityDTO> userSimilarityList = userSimilarityService.listUserSimilarityByUId(5);
+        List<Similarity> userSimilarityList = similarityService.listUserSimilarityByUId(5);
         //2.打印输出
-        for (UserSimilarityDTO userSimilarityDTO:userSimilarityList){
+        for (Similarity userSimilarityDTO:userSimilarityList){
             System.out.println(userSimilarityDTO.getUserId()+"\t"
             +userSimilarityDTO.getUserRefId()+"\t"
             +userSimilarityDTO.getSimilarity());
@@ -122,9 +123,9 @@ public class RecommendateTest {
     @Test
     public void testGetTopNUser(){
         //查询出某个用户与其他用户的相似度列表
-        List<UserSimilarityDTO> userSimilarityList = userSimilarityService.listUserSimilarityByUId(6);
+        List<Similarity> userSimilarityList = similarityService.listUserSimilarityByUId(6);
         //打印输出
-        for (UserSimilarityDTO userSimilarityDTO:userSimilarityList){
+        for (Similarity userSimilarityDTO:userSimilarityList){
             System.out.println(userSimilarityDTO.getUserId()+"\t"
                     +userSimilarityDTO.getUserRefId()+"\t"
                     +userSimilarityDTO.getSimilarity());
@@ -147,10 +148,10 @@ public class RecommendateTest {
     @Test
     public void testGetRecommendateBlogs(){
         // 1.查询出某个用户与其他用户的相似度列表
-        List<UserSimilarityDTO> userSimilarityList = userSimilarityService.listUserSimilarityByUId(8);
+        List<Similarity> userSimilarityList = similarityService.listUserSimilarityByUId(8);
         // 2.获得所有的用户的浏览记录
-        List<UserActiveDTO> userActiveList = userActiveService.listAllUserActive();
-        for (UserSimilarityDTO userSimilarityDTO:userSimilarityList){
+        List<Active> userActiveList = activeService.listAllUserActive();
+        for (Similarity userSimilarityDTO:userSimilarityList){
             System.out.println(userSimilarityDTO.getUserId()+"\t"
                     +userSimilarityDTO.getUserRefId()+"\t"
                     +userSimilarityDTO.getSimilarity());
@@ -177,10 +178,10 @@ public class RecommendateTest {
     @Test
     public void testGetRecommendateBlog(){
         // 1.查询出某个用户与其他用户的相似度列表
-        List<UserSimilarityDTO> userSimilarityList = userSimilarityService.listUserSimilarityByUId(8);
+        List<Similarity> userSimilarityList = similarityService.listUserSimilarityByUId(8);
         // 2.获得所有的用户的浏览记录
-        List<UserActiveDTO> userActiveList = userActiveService.listAllUserActive();
-        for (UserSimilarityDTO userSimilarityDTO:userSimilarityList){
+        List<Active> userActiveList = activeService.listAllUserActive();
+        for (Similarity userSimilarityDTO:userSimilarityList){
             System.out.println(userSimilarityDTO.getUserId()+"\t"
                     +userSimilarityDTO.getUserRefId()+"\t"
                     +userSimilarityDTO.getSimilarity());

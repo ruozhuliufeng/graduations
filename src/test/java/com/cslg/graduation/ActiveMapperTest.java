@@ -1,8 +1,7 @@
 package com.cslg.graduation;
 
-import com.cslg.graduation.dto.UserActiveDTO;
 import com.cslg.graduation.entity.Active;
-import com.cslg.graduation.mapper.UserActiveMapper;
+import com.cslg.graduation.mapper.ActiveMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,10 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @date 2020/4/12 16:09
  */
 @SpringBootTest
-public class UserActiveMapperTest {
+public class ActiveMapperTest {
 
     @Autowired
-    private UserActiveMapper userActiveMapper;
+    private ActiveMapper activeMapper;
 
     /**
      * 功能描述: 测试某个用户的浏览记录的条数
@@ -26,13 +25,14 @@ public class UserActiveMapperTest {
      */
     @Test
     public void testCountUserActive(){
-        UserActiveDTO userActiveDTO = new UserActiveDTO();
-        userActiveDTO.setUserId(1);
-        userActiveDTO.setBlogId(2);
-        userActiveDTO.setHits(5000);
-        int rows = userActiveMapper.saveUserActive(userActiveDTO);
+        Active active = new Active();
+
+        active.setUserId(1);
+        active.setBlogId(2);
+        active.setHits(5000);
+        int rows = activeMapper.saveUserActive(active);
         if (rows>0){
-            System.out.println("存在用户ID为："+userActiveDTO.getUserId()+",博客ID为："+userActiveDTO.getBlogId()+",点击量为："+userActiveDTO.getHits());
+            System.out.println("存在用户ID为："+active.getUserId()+",博客ID为："+active.getBlogId()+",点击量为："+active.getHits());
         }else{
             System.out.println("添加失败！");
         }
@@ -45,13 +45,13 @@ public class UserActiveMapperTest {
      */
     @Test
     public void testGetHitsOfUser(){
-        UserActiveDTO userActiveDTO = new UserActiveDTO();
+        Active active = new Active();
         Integer userId = 1;
         Integer blogId = 1;
-        userActiveDTO.setUserId(userId);
-        userActiveDTO.setBlogId(blogId);
+        active.setUserId(userId);
+        active.setBlogId(blogId);
 
-        int hits = userActiveMapper.getHistsByUserActiveInfo(userActiveDTO);
+        int hits = activeMapper.getHistsByUserActiveInfo(active);
         System.out.println("点击量为："+hits);
     }
 
@@ -62,14 +62,14 @@ public class UserActiveMapperTest {
      */
     @Test
     public void testUpdateHitsOfUser(){
-        UserActiveDTO userActiveDTO = new UserActiveDTO();
+        Active active = new Active();
         Integer userId = 1;
         Integer blogId = 1;
         Integer hits = 5000;
-        userActiveDTO.setBlogId(blogId);
-        userActiveDTO.setUserId(userId);
-        userActiveDTO.setHits(hits);
-        int rows = userActiveMapper.updateUserActive(userActiveDTO);
+        active.setBlogId(blogId);
+        active.setUserId(userId);
+        active.setHits(hits);
+        int rows = activeMapper.updateUserActive(active);
         if (rows>0){
             System.out.println("更新成功");
         }else {

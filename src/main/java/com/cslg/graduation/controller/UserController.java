@@ -28,6 +28,8 @@ public class UserController {
     private HobbyService hobbyService;
     @Autowired
     private StageService stageService;
+    @Autowired
+    private ActiveService activeService;
     //登录
     @PostMapping("/login")
     public String login(UserDTO userDTO, HttpSession httpSession){
@@ -92,7 +94,13 @@ public class UserController {
     @RequestMapping("/centerUpdate")
     public String centerUpdatePage(HttpSession httpSession){
         User user = (User) httpSession.getAttribute("currentUser");
-        Hobby recommendHobby = recommendHobby(user.getId(),10);
+        boolean flag = activeService.findNewsUser(user.getId());
+        Hobby recommendHobby = new Hobby();
+        if (flag){//是新用户，推荐点击量最高的
+            recommendHobby = hobbyService.findMaxHobby();
+        }else {
+            recommendHobby(user.getId(), 10);
+        }
         httpSession.setAttribute("recommendHobby",recommendHobby);
 
         return "/page/userUpdate";

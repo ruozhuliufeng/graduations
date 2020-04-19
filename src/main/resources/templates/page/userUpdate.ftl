@@ -50,7 +50,7 @@
             </div>
             <div class="col-sm-6">
                 <#if recommendHobby??>
-                    根据您浏览过的博客记录，我们为您推荐的兴趣是：${recommendHobby.name}
+                    我们为您推荐的兴趣是：${recommendHobby.name}
                 <#else>
                     若您暂时不知道选择哪一个兴趣，阅读博客，我们会为您推荐相关兴趣
                 </#if>

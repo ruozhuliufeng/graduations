@@ -3,8 +3,6 @@ package com.cslg.graduation.controller;
 import com.cslg.graduation.dto.HobbyDTO;
 import com.cslg.graduation.entity.*;
 import com.cslg.graduation.service.*;
-import com.cslg.graduation.util.Result;
-import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +42,10 @@ public class HobbyController {
         User currentUser = (User) httpSession.getAttribute("currentUser");
         if (currentUser == null) {
             httpSession.setAttribute("learnmsg", "尚未登录，没有兴趣信息！");
+            return "/page/learn";
+        }
+        if (currentUser.getHname() == null){
+            httpSession.setAttribute("learnmsg","尚未选择兴趣，请选择兴趣后访问此页面");
             return "/page/learn";
         }
         Map<String, Object> searchMap = new HashMap<>(10);
@@ -104,9 +106,6 @@ public class HobbyController {
                 }
             }
         }
-//        if (contentList == null){
-//            httpSession.setAttribute("outhErr","所选阶段已超过当前阶段，请认真完成笔记，并联系管理员开启下一阶段!");
-//        }
         httpSession.setAttribute("contentList", contentList);
         return "/page/learn";
     }
@@ -185,7 +184,6 @@ public class HobbyController {
         return "redirect:/admin/hobby";
     }
 
-
     public Integer getCurrentSid(User user,List<Stage> stageList){
         for(Stage stage:stageList){
             Integer currentSid = null;
@@ -195,21 +193,6 @@ public class HobbyController {
             return currentSid;
         }
         return null;
-    }
-
-    @GetMapping("/findPage")
-    public PageResult<Hobby> findPage(int page, int size) {
-        return hobbyService.findPage(page, size);
-    }
-
-    @PostMapping("/findList")
-    public List<Hobby> findList(@RequestBody Map<String, Object> searchMap) {
-        return hobbyService.findList(searchMap);
-    }
-
-    @PostMapping("/findPage")
-    public PageResult<Hobby> findPage(@RequestBody Map<String, Object> searchMap, int page, int size) {
-        return hobbyService.findPage(searchMap, page, size);
     }
 
 }

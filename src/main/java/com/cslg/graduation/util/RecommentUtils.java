@@ -1,8 +1,10 @@
 package com.cslg.graduation.util;
 
+import com.cslg.graduation.entity.Active;
 import com.cslg.graduation.entity.Blog;
 import com.cslg.graduation.dto.UserActiveDTO;
 import com.cslg.graduation.dto.UserSimilarityDTO;
+import com.cslg.graduation.entity.Similarity;
 
 import java.util.*;
 import java.util.List;
@@ -33,21 +35,21 @@ public class RecommentUtils {
     /**
      * 功能描述: 将用户的浏览行为组装城一个map,key为userId,value也是一个map，
      * 这个map记录的是博客的id以及对应的点击量
-     * @param userActiveList 1 用户的浏览行为列表
+     * @param activeList 1 用户的浏览行为列表
      * @return : 组装好的用户的购买行为的map集合
      * @author : ruozhuliufeng
      * @date : 2020/4/12 11:55
      */
-    public static ConcurrentHashMap<Integer,ConcurrentHashMap<Integer,Integer>> assembleUserBrower(List<UserActiveDTO> userActiveList) {
+    public static ConcurrentHashMap<Integer,ConcurrentHashMap<Integer,Integer>> assembleUserBrower(List<Active> activeList) {
         ConcurrentHashMap<Integer,ConcurrentHashMap<Integer,Integer>> activeMap = new ConcurrentHashMap<>();
         //遍历查询到的用户点击行为数据
-        for (UserActiveDTO userActive:userActiveList){
+        for (Active active:activeList){
             // 获取用户id
-            Integer userId = userActive.getUserId();
+            Integer userId = active.getUserId();
             // 获取博客id
-            Integer blogId = userActive.getBlogId();
+            Integer blogId = active.getBlogId();
             // 获取博客点击量
-            Integer hits = userActive.getHits();
+            Integer hits = active.getHits();
 
             //判断activeMap中是否存在了该userId的信息，如果存在，则进行更新
             if (activeMap.containsKey(userId)){
@@ -72,9 +74,9 @@ public class RecommentUtils {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 13:23
      */
-    public static List<UserSimilarityDTO> calcSimilarityBetweenUsers(ConcurrentHashMap<Integer,ConcurrentHashMap<Integer,Integer>> activeMap){
+    public static List<Similarity> calcSimilarityBetweenUsers(ConcurrentHashMap<Integer,ConcurrentHashMap<Integer,Integer>> activeMap){
         //用户之间的相似度对集合
-        List<UserSimilarityDTO> similarityList = new ArrayList<>();
+        List<Similarity> similarityList = new ArrayList<>();
         //获得所有键的集合
         Set<Integer> userSet = activeMap.keySet();
         //吧这些集合放入到ArrayList中
@@ -121,12 +123,12 @@ public class RecommentUtils {
                 //计算整体相似度
                 similarity = molecule / denominator;
                 //创建用户相似度对象
-                UserSimilarityDTO userSimilarityDTO = new UserSimilarityDTO();
-                userSimilarityDTO.setUserId(userIdList.get(i));
-                userSimilarityDTO.setUserRefId(userIdList.get(j));
-                userSimilarityDTO.setSimilarity(similarity);
+                Similarity similarity1 = new Similarity();
+                similarity1.setUserId(userIdList.get(i));
+                similarity1.setUserRefId(userIdList.get(j));
+                similarity1.setSimilarity(similarity);
                 //将计算出的用户以及用户之间的相似度对象存入List集合
-                similarityList.add(userSimilarityDTO);
+                similarityList.add(similarity1);
             }
         }
         return similarityList;
@@ -141,13 +143,13 @@ public class RecommentUtils {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 13:49
      */
-    public static List<Integer> getSimilarityBetweenUsers(Integer userId,List<UserSimilarityDTO> userSimilarityList,Integer topN){
+    public static List<Integer> getSimilarityBetweenUsers(Integer userId,List<Similarity> similarityList,Integer topN){
         //用来记录与userId相似度最高的前N个用户的id
-        List<Integer> similarityList = new ArrayList<>(topN);
+        List<Integer> similarities = new ArrayList<>(topN);
 
         //堆排序找出最高的前N个用户，建立小根堆，遍历的时候当前的这个相似度必堆顶元素大就踢掉堆顶的值，
         // 把这个数入堆（把小的都删除干净，所以要建立小根堆）
-        PriorityQueue<UserSimilarityDTO> minHeap = new PriorityQueue<UserSimilarityDTO>((o1, o2) -> {
+        PriorityQueue<Similarity> minHeap = new PriorityQueue<Similarity>((o1, o2) -> {
             if (o1.getSimilarity() - o2.getSimilarity()>0){
                 return 1;
             }else if (o1.getSimilarity() - o2.getSimilarity() == 0){
@@ -156,20 +158,20 @@ public class RecommentUtils {
                 return -1;
             }
         });
-        for (UserSimilarityDTO userSimilarityDTO:userSimilarityList){
+        for (Similarity similarity:similarityList){
             if (minHeap.size()<topN){
-                minHeap.offer(userSimilarityDTO);
+                minHeap.offer(similarity);
                 System.out.println(minHeap.peek().getSimilarity());
-            }else if (minHeap.peek().getSimilarity()<userSimilarityDTO.getSimilarity()){
+            }else if (minHeap.peek().getSimilarity()<similarity.getSimilarity()){
                 minHeap.poll();
-                minHeap.offer(userSimilarityDTO);
+                minHeap.offer(similarity);
             }
         }
         //把得到的最大的相似度的用户id取出来（不要取自己）
-        for (UserSimilarityDTO userSimilarityDTO:minHeap){
-            similarityList.add(userSimilarityDTO.getUserId().equals(userId) ? userSimilarityDTO.getUserRefId():userSimilarityDTO.getUserId());
+        for (Similarity similarity:minHeap){
+            similarities.add(similarity.getUserId().equals(userId) ? similarity.getUserRefId():similarity.getUserId());
         }
-        return similarityList;
+        return similarities;
     }
 
     /**
@@ -181,21 +183,21 @@ public class RecommentUtils {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 13:27
      */
-    public static List<Integer> getRecommendateBlog(Integer userId,List<Integer> similarUserList,List<UserActiveDTO> userActiveList){
+    public static List<Integer> getRecommendateBlog(Integer userId,List<Integer> similarUserList,List<Active> activeList){
         List<Integer> recommeddateBlogList = new ArrayList<>();
         //userId的浏览行为列表
-        List<UserActiveDTO> userIdActiveList = findUserBrowerBehavior(userId,userActiveList);
+        List<Active> userIdActiveList = findUserBrowerBehavior(userId,activeList);
         //对userId的浏览行为按照博客id排个序，方便后续与推荐的用户的浏览行为中的博客点击次数直接相减
         //避免时间复杂度为o(2)
-        Collections.sort(userIdActiveList,(Comparator.comparing(UserActiveDTO::getBlogId)));
+        Collections.sort(userIdActiveList,(Comparator.comparing(Active::getBlogId)));
 
         //1.从与userId浏览行为相似的每个用户中找出一个推荐的博客
         for (Integer refId : similarUserList){
             //计算当前用户所点击的博客次数与被推荐的用户所点击的博客的次数的差值
             //知道当前这个用户的浏览行为
-            List<UserActiveDTO> currActiveList = findUserBrowerBehavior(refId,userActiveList);
+            List<Active> currActiveList = findUserBrowerBehavior(refId,activeList);
             //排序
-            Collections.sort(currActiveList, Comparator.comparing(UserActiveDTO::getBlogId));
+            Collections.sort(currActiveList, Comparator.comparing(Active::getBlogId));
 
             // 记录差值最大的博客id
             Integer maxBlog = null;
@@ -223,11 +225,11 @@ public class RecommentUtils {
      * @author : ruozhuliufeng
      * @date : 2020/4/12 13:30
      */
-    public static List<UserActiveDTO> findUserBrowerBehavior(Integer userId,List<UserActiveDTO> userActiveList){
-        List<UserActiveDTO> currActiveList = new ArrayList<>();
-        for (UserActiveDTO userActiveDTO:userActiveList){
-            if (userActiveDTO.getUserId().equals(userId)){
-                currActiveList.add(userActiveDTO);
+    public static List<Active> findUserBrowerBehavior(Integer userId,List<Active> activeList){
+        List<Active> currActiveList = new ArrayList<>();
+        for (Active active:activeList){
+            if (active.getUserId().equals(userId)){
+                currActiveList.add(active);
             }
         }
         return currActiveList;
@@ -246,7 +248,7 @@ public class RecommentUtils {
         }
         //记录当前最大的点击量
         Integer maxHits = 1;
-        //记录当前点击量最大的商品
+        //记录当前点击量最大的博客
         Blog blog = new Blog();
         for (Blog temp:blogList){
             if (temp.getHits()>=maxHits){
@@ -256,5 +258,4 @@ public class RecommentUtils {
         }
         return blog;
     }
-
 }
