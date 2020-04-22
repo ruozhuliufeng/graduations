@@ -72,8 +72,7 @@ public class HobbyController {
         }
         Integer currentSid = getCurrentSid(currentUser,stageList);
 
-        //设置内容完成状态
-        /**
+        /* 设置完成状态
          * 将当前阶段的所有内容设置为未完成
          * 将低于当前阶段的所有内容设置为已完成
          * 不显示高于当前阶段的所有内容
@@ -126,10 +125,10 @@ public class HobbyController {
     }
 
     /**
-     * 功能描述: 修改博客
+     * 功能描述: 修改兴趣
      *
-     * @param id          待修改的博客id
-     * @param httpSession 存放查找到的博客
+     * @param id          待修改的兴趣id
+     * @param httpSession 存放查找到的兴趣
      * @return : 返回页面地址
      * @author : ruozhuliufeng
      * @date : 2020/4/12 18:05

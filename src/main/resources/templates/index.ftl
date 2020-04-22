@@ -136,7 +136,7 @@
             </div>
             <div class="field">
                 <label for="message">评论信息</label>
-                <textarea name="message" id="message" rows="6" placeholder="对我们的评价或者改进"></textarea>
+                <textarea name="advice" id="message" rows="6" placeholder="对我们的建议或者相关权限的申请"></textarea>
             </div>
             <ul class="actions">
                 <li><input value="提交评论" onclick="javascript:advice()" class="button alt" type="submit"></li>

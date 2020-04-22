@@ -92,8 +92,8 @@ public class BlogController {
 //        httpSession.setAttribute("maxHitsBlog",maxHitsBlog);
             }
         }
-        Hobby recommendHobby = new Hobby();
-        httpSession.setAttribute("recommendHobby",recommendHobby);
+//        Hobby recommendHobby = new Hobby();
+//        httpSession.setAttribute("recommendHobby",recommendHobby);
         return "/forum/main";
 
     }
@@ -119,7 +119,18 @@ public class BlogController {
         blog.setHits(hits);
         blogService.update(blog);
         //从session中获取用户，从用户-博客点击量表中获取用户对当前博客的点击量，并更新保存
-        // TODO
+        User currentUser = (User) httpSession.getAttribute("currentUser");
+        if (currentUser!=null){
+            //添加或更新浏览
+            Active active = new Active();
+            active.setUserId(currentUser.getId());
+            active.setBlogId(id);
+            Integer hit = activeService.getHitsByUserIdAndBlogId(currentUser.getId(),id);
+            hit ++ ;
+            active.setHits(hit);
+            activeService.saveUserActive(active);
+        }
+
         BlogOutputDTO blogOutputDTO = new BlogOutputDTO();
         //设置输出值
         blogOutputDTO.setUserName(userService.findById(blog.getUserId()).getUsername());

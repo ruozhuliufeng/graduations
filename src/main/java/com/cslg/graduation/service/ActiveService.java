@@ -30,6 +30,7 @@ public interface ActiveService {
      */
     boolean saveUserActive(Active active);
 
+    Integer getHitsByUserIdAndBlogId(Integer userId,Integer blogId);
     /**
      * 功能描述: 判断该用户是否为新用户
      * @param userId 需要判断的用户id

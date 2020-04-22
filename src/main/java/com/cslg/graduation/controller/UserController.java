@@ -30,7 +30,14 @@ public class UserController {
     private StageService stageService;
     @Autowired
     private ActiveService activeService;
-    //登录
+    /**
+     * 功能描述: 用户登录实现
+     * @param userDTO 用户登录信息
+     * @param httpSession 存放数据
+     * @return : 页面地址
+     * @author : ruozhuliufeng
+     * @date : 2020/4/19 20:24
+     */
     @PostMapping("/login")
     public String login(UserDTO userDTO, HttpSession httpSession){
         User currentUser = userService.login(userDTO);
@@ -40,7 +47,6 @@ public class UserController {
         }
         httpSession.setAttribute("currentUser",currentUser);
         return "redirect:/";
-
     }
 
     //注册
@@ -99,7 +105,7 @@ public class UserController {
         if (flag){//是新用户，推荐点击量最高的
             recommendHobby = hobbyService.findMaxHobby();
         }else {
-            recommendHobby(user.getId(), 10);
+            recommendHobby = recommendHobby(user.getId(), 10);
         }
         httpSession.setAttribute("recommendHobby",recommendHobby);
 
@@ -121,8 +127,6 @@ public class UserController {
     @PostMapping("/update")
     public String update(UserDTO userDTO){
         User user = userService.findById(userDTO.getId());
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
         int type;
         if ("管理员".equals(userDTO.getTname())){
             type=1;
@@ -183,7 +187,7 @@ public class UserController {
         // 3.找出与id为userId的用户浏览行为最相似的前topN个用户
         List<Integer> userIds = HobbyRecommentUtils.getSimilarityBetweenUsers(userId,userAttentionList,topN);
         //去除自己
-//        userIds.remove(0);
+        userIds.remove(0);
         // 4.获得应该推荐给userId号用户的博客列表
         List<Integer> list = HobbyRecommentUtils.getRecommendateHobby(userId,userIds,focusList);
         // 列表去重

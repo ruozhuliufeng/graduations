@@ -192,7 +192,7 @@ public class HobbyRecommentUtils {
             currFocusList.sort(Comparator.comparing(Focus::getHobbyId));
 
             // 记录差值最大的博客id
-            Integer maxBlog = 1;
+            Integer maxBlog = null;
             //记录最大的差值
             double maxDifference = 0.0;
             for (int i = 0; i < currFocusList.size(); i++) {
@@ -243,7 +243,7 @@ public class HobbyRecommentUtils {
             return null;
         }
         //记录当前最大的点击量
-        Integer maxHits = 0;
+        Integer maxHits = 1;
         //记录当前点击量最大的兴趣
         Hobby hobby = new Hobby();
         for (Hobby temp:hobbyList){

@@ -137,7 +137,7 @@ public class RecommentUtils {
     /**
      * 功能描述: 找出与userId浏览行为最相似的topN个用户
      * @param userId 需要参考的用户id
-     * @param userSimilarityList 参考的用户行为列表
+     * @param similarityList 参考的用户行为列表
      * @param topN 与userId相似用户的数量
      * @return : 与userId最相似的topN个用户
      * @author : ruozhuliufeng
@@ -178,7 +178,7 @@ public class RecommentUtils {
      * 功能描述: 到similarUserList中的用户方位的二级类目中查找userId不经常点的博客获得被推荐的博客id
      * @param userId 被推荐博客的用户id
      * @param similarUserList 与userId相似的用户集合
-     * @param userActiveList 所有用户的浏览行为
+     * @param activeList 所有用户的浏览行为
      * @return : 可以推荐给userId的博客id列表
      * @author : ruozhuliufeng
      * @date : 2020/4/12 13:27
@@ -220,7 +220,7 @@ public class RecommentUtils {
     /**
      * 功能描述:  找到当前用户的浏览行为列表
      * @param userId 当前用户id
-     * @param userActiveList 所有用户的浏览行为列表
+     * @param activeList 所有用户的浏览行为列表
      * @return : 返回当前用户的浏览行为列表
      * @author : ruozhuliufeng
      * @date : 2020/4/12 13:30

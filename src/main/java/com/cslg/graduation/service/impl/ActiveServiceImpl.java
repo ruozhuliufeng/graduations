@@ -50,6 +50,14 @@ public class ActiveServiceImpl implements ActiveService {
         return flag;
     }
 
+    @Override
+    public Integer getHitsByUserIdAndBlogId(Integer userId, Integer blogId) {
+        Active active = new Active();
+        active.setUserId(userId);
+        active.setBlogId(blogId);
+        return activeMapper.getHistsByUserActiveInfo(active);
+    }
+
     /**
      * 功能描述: 判断该用户是否为新用户
      *
