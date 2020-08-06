@@ -2,12 +2,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>博客详情</title>
-
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/main.css"/>
+<#--    <#include "../common/nav.ftl"/>-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
     <!-- Scripts -->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
     <style>
         .bottom_footer {
             position: fixed;
@@ -73,7 +73,7 @@
             <div style="width: 100%">
                 <#-- 评论 -->
                 <#if currentUser??>
-                    <form class="form-horizontal" action="/comment/add" method="post">
+                    <form class="form-horizontal" action="/graduation/comment/add" method="post">
                         <input type="hidden" name="topicId" value="${blog.id}">
                         <input type="hidden" name="userId" value="${blog.userId}">
                         <div class="form-group">

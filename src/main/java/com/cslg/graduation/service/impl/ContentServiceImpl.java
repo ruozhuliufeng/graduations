@@ -1,5 +1,6 @@
 package com.cslg.graduation.service.impl;
 
+import com.cslg.graduation.dto.ContentDTO;
 import com.cslg.graduation.entity.Content;
 import com.cslg.graduation.entity.PageResult;
 import com.cslg.graduation.mapper.ContentMapper;
@@ -102,6 +103,11 @@ public class ContentServiceImpl implements ContentService {
     @Override
     public void delete(Integer id) {
         contentMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<ContentDTO> findContentList() {
+        return contentMapper.findContentList();
     }
 
     /**

@@ -4,9 +4,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<title>首页 - 个人成长助理平台管理系统</title>
-		<link href="/admin/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/admin/css/materialdesignicons.min.css" rel="stylesheet">
-		<link href="/admin/css/style.min.css" rel="stylesheet">
+		<link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../admin/css/materialdesignicons.min.css" rel="stylesheet">
+		<link href="../admin/css/style.min.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -70,8 +70,8 @@
 											</#if>
 										</td>
 										<td>
-											<a href="/user/delete?id=${user.id}">删除</a> ||
-											<a href="/user/findById?id=${user.id}">修改</a>
+											<a href="/graduation/user/delete?id=${user.id}">删除</a> ||
+											<a href="/graduation/user/findById?id=${user.id}">修改</a>
 										</td>
 									</tr>
 								</#list>
@@ -85,10 +85,10 @@
 			</div>
 		</div>
 
-		<script type="text/javascript" src="/admin/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/admin/js/perfect-scrollbar.min.js"></script>
-		<script type="text/javascript" src="/admin/js/main.min.js"></script>
+		<script type="text/javascript" src="../admin/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../admin/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../admin/js/perfect-scrollbar.min.js"></script>
+		<script type="text/javascript" src="../admin/js/main.min.js"></script>
 
 	</body>
 </html>

@@ -76,7 +76,7 @@
 <div class="card" style="min-width: 500px;">
     <div class="card-body">
 
-        <form class="form-signin" method="POST" action="/user/register">
+        <form class="form-signin" method="POST" action="/graduation/user/register">
 
             <h1 class="h3 mb-3 font-weight-normal">注册账号</h1>
 
@@ -117,11 +117,11 @@
                 注册账号
             </button>
 
-            <a class="btn btn-link" href="/login">
+            <a class="btn btn-link" href="/graduation/login">
                 已有账号，登录
             </a>
 
-            <p class="mt-5 mb-3 text-muted"><a target="_blank" href="/">成长助理平台</a></p>
+            <p class="mt-5 mb-3 text-muted"><a target="_blank" href="/graduation/">成长助理平台</a></p>
         </form>
 
     </div>

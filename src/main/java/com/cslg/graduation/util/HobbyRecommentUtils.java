@@ -243,13 +243,15 @@ public class HobbyRecommentUtils {
             return null;
         }
         //记录当前最大的点击量
-        Integer maxHits = 1;
+        Integer maxHits = 0;
         //记录当前点击量最大的兴趣
-        Hobby hobby = new Hobby();
+        Hobby hobby = hobbyList.get(0);
         for (Hobby temp:hobbyList){
-            if (temp.getHits()>=maxHits){
-                maxHits = temp.getHits();
-                hobby = temp;
+            if (temp!=null){
+                if (temp.getHits()>=maxHits){
+                    maxHits = temp.getHits();
+                    hobby = temp;
+                }
             }
         }
         return hobby;

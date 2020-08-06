@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <title>兴趣管理</title>
-    <link href="/admin/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/admin/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="/admin/css/style.min.css" rel="stylesheet">
+    <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../admin/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="../admin/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,12 +25,13 @@
         <!--页面主要内容-->
         <main class="lyear-layout-content">
             <div class="container-fluid">
-                <a class="btn btn-primary" style="float: right" href="/admin/hobbyAdd">添加</a>
+                <a class="btn btn-primary" style="float: right" href="/graduation/admin/hobbyAdd">添加</a>
                 <table class="table table-striped table-hover">
                     <tr>
                         <th>序号</th>
                         <th>兴趣名称</th>
                         <th>最高阶段</th>
+                        <th>操作</th>
                     </tr>
                     <#list hobbyList as hobby>
                         <tr>
@@ -38,8 +39,8 @@
                             <td>${hobby.name}</td>
                             <td>${hobby.sname}</td>
                             <td>
-                                <a href="/hobby/delete?id=${hobby.id}">删除</a> ||
-                                <a href="/hobby/findById?id=${hobby.id}">修改</a>
+                                <a href="/graduation/hobby/delete?id=${hobby.id}">删除</a> ||
+                                <a href="/graduation/hobby/findById?id=${hobby.id}">修改</a>
 
                             </td>
                         </tr>
@@ -51,10 +52,10 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/admin/js/jquery.min.js"></script>
-<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/admin/js/perfect-scrollbar.min.js"></script>
-<script type="text/javascript" src="/admin/js/main.min.js"></script>
+<script type="text/javascript" src="../admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="../admin/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../admin/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="../admin/js/main.min.js"></script>
 
 </body>
 </html>

@@ -3,11 +3,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>学习论坛</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/main.css"/>
+<#--    <#include "../common/nav.ftl"/>-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
     <!-- Scripts -->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
 
 </head>
 <body>
@@ -21,7 +22,7 @@
             <ul class="nav nav-tabs nav-justified">
                 <#list categoryList as category>
                     <li role="presentation">
-                        <a href="/blog/?id=${category.id}">${category.name}</a>
+                        <a href="/graduation/blog/?id=${category.id}">${category.name}</a>
                     </li>
                 </#list>
             </ul>
@@ -42,7 +43,7 @@
                             <td>${blog.userName}</td>
                             <td>${blog.publishTime?date}</td>
                             <td>${blog.modifyTime?date}</td>
-                            <td><a href="/blog/detail?id=${blog.id}"> ${blog.title}</a></td>
+                            <td><a href="/graduation/blog/detail?id=${blog.id}"> ${blog.title}</a></td>
                             <td>
                                 <#if blog.top==1>
                                     置顶
@@ -68,21 +69,10 @@
         <div class="col-md-4">
             <#if currentUser??>
                 <div style="height: 20px">
-                    <a class="btn btn-primary" style="float: right" href="/blog/addTopic">新建博文</a>
+                    <a class="btn btn-primary" style="float: right" href="/graduation/blog/addTopic">新建博文</a>
                 </div>
                 <div style="margin-top: 20px">
                     <table class="table table-striped table-hover">
-<#--                        <tr>-->
-<#--                            <th colspan="2">点击量最高的博客</th>-->
-<#--                        </tr>-->
-<#--                        <tr>-->
-<#--                            <td>序号</td>-->
-<#--                            <td>标题</td>-->
-<#--                        </tr>-->
-<#--                        <tr>-->
-<#--                            <td>1</td>-->
-<#--                            <td><a href="/blog/detail?id=${maxHitsBlog.id}">${maxHitsBlog.title}</a></td>-->
-<#--                        </tr>-->
                         <tr>
                             <th colspan="2">与您兴趣相同的用户阅读的博客</th>
                         </tr>
@@ -95,7 +85,7 @@
                             <tr>
                                 <td>${recommendBlog_index+1}</td>
                                 <td>
-                                    <a href="/blog/detail?id=${recommendBlog.id}">
+                                    <a href="/graduation/blog/detail?id=${recommendBlog.id}">
                                         ${recommendBlog.title}
                                     </a>
                                 </td>

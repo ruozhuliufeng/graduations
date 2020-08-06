@@ -1,16 +1,19 @@
 package com.cslg.graduation.controller;
 
-import com.cslg.graduation.dto.*;
+import com.cslg.graduation.dto.BlogInputDTO;
+import com.cslg.graduation.dto.BlogOutputDTO;
+import com.cslg.graduation.dto.CommentOutPutDTO;
 import com.cslg.graduation.entity.*;
 import com.cslg.graduation.service.*;
 import com.cslg.graduation.util.RecommentUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
-import java.util.prefs.PreferenceChangeEvent;
 import java.util.stream.Collectors;
 
 
@@ -86,10 +89,8 @@ public class BlogController {
             }else{
                 //获得推荐前十的博客
                 List<Blog> recommendBlogs = recommendBlogs(currentUser.getId(), 10);
-                //获得点击量最高的博客
-//        Blog maxHitsBlog = recommendBlog(currentUser.getId(),10);
+                //作为推荐博客列表存入域中
                 httpSession.setAttribute("recommendBlogs", recommendBlogs);
-//        httpSession.setAttribute("maxHitsBlog",maxHitsBlog);
             }
         }
 //        Hobby recommendHobby = new Hobby();
@@ -120,16 +121,16 @@ public class BlogController {
         blogService.update(blog);
         //从session中获取用户，从用户-博客点击量表中获取用户对当前博客的点击量，并更新保存
         User currentUser = (User) httpSession.getAttribute("currentUser");
-        if (currentUser!=null){
-            //添加或更新浏览
-            Active active = new Active();
-            active.setUserId(currentUser.getId());
-            active.setBlogId(id);
-            Integer hit = activeService.getHitsByUserIdAndBlogId(currentUser.getId(),id);
-            hit ++ ;
-            active.setHits(hit);
-            activeService.saveUserActive(active);
-        }
+//        if (currentUser!=null){
+//            //添加或更新浏览
+//            Active active = new Active();
+//            active.setUserId(currentUser.getId());
+//            active.setBlogId(id);
+//            Integer hit = activeService.getHitsByUserIdAndBlogId(currentUser.getId(),id);
+//            hit ++ ;
+//            active.setHits(hit);
+//            activeService.saveUserActive(active);
+//        }
 
         BlogOutputDTO blogOutputDTO = new BlogOutputDTO();
         //设置输出值

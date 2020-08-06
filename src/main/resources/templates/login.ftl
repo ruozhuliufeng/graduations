@@ -76,7 +76,7 @@
 
 <div class="card" style="min-width: 500px;">
     <div class="card-body">
-        <form class="form-signin" method="POST" action="user/login">
+        <form class="form-signin" method="POST" action="/graduation/user/login">
 
             <h1 class="h3 mb-3 font-weight-normal">登录</h1>
 
@@ -107,14 +107,14 @@
                 登录
             </button>
 
-            <a class="btn btn-link" href="/register">
+            <a class="btn btn-link" href="/graduation/register">
                 注册账号 </a>
 
             <a class="btn btn-link" href="javascript:reSetPassword()">
                 找回密码?
             </a>
 
-            <p class="mt-5 mb-3 text-muted"><a target="_blank" href="/">成长助理平台</a>
+            <p class="mt-5 mb-3 text-muted"><a target="_blank" href="/graduation/">成长助理平台</a>
             </p>
         </form>
     </div>

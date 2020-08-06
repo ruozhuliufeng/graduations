@@ -4,9 +4,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<title>博客管理</title>
-		<link href="/admin/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/admin/css/materialdesignicons.min.css" rel="stylesheet">
-		<link href="/admin/css/style.min.css" rel="stylesheet">
+		<link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../admin/css/materialdesignicons.min.css" rel="stylesheet">
+		<link href="../admin/css/style.min.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -40,8 +40,8 @@
 									<th>发布时间</th>
 									<th>修改时间</th>
 									<th>博客标题</th>
-									<th>用户名称</th>
 									<th>所属分类</th>
+									<th>用户名称</th>
 									<th>是否置顶</th>
 									<th>是否精华</th>
 									<th>博客操作</th>
@@ -57,7 +57,7 @@
 										<td>${blog.good}</td>
 										<td>${blog.top}</td>
 										<td>
-											<a href="/blog/delete?id=${blog.id}">删除</a>
+											<a href="/graduation/blog/delete?id=${blog.id}">删除</a>
 										</td>
 									</tr>
 								</#list>
@@ -72,10 +72,10 @@
 			</div>
 		</div>
 
-		<script type="text/javascript" src="/admin/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/admin/js/perfect-scrollbar.min.js"></script>
-		<script type="text/javascript" src="/admin/js/main.min.js"></script>
+		<script type="text/javascript" src="../admin/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../admin/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../admin/js/perfect-scrollbar.min.js"></script>
+		<script type="text/javascript" src="../admin/js/main.min.js"></script>
 
 	</body>
 </html>

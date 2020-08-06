@@ -5,14 +5,11 @@ import com.cslg.graduation.entity.*;
 import com.cslg.graduation.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 后台管理的Controller
@@ -99,8 +96,8 @@ public class AdminController {
             CommentOutPutDTO commentOutPutDTO;
             Comment comment = comments.get(i);
             String nickName = userService.findById(comment.getUserId()).getUsername();
-            String topicName = blogService.findById(comment.getTopicId()).getTitle();
-            commentOutPutDTO = new CommentOutPutDTO(comment.getId(),comment.getPublishTime(),comment.getModifyTime(),topicName,nickName,comment.getTitle(),comment.getContent());
+//            String topicName = blogService.findById(comment.getTopicId()).getTitle();
+            commentOutPutDTO = new CommentOutPutDTO(comment.getId(),comment.getPublishTime(),comment.getModifyTime(),nickName,comment.getTitle(),comment.getContent());
             commentList.add(commentOutPutDTO);
         }
         httpSession.setAttribute("commentList",commentList);
@@ -124,8 +121,11 @@ public class AdminController {
     //兴趣管理
     @RequestMapping("/hobby")
     public String hobby(HttpSession httpSession){
+        // 获得所有数据
         List<Hobby> hobbies = hobbyService.findAll();
+        // 新建待保存进域的数据
         List<HobbyOutputDTO> hobbyList = new ArrayList<>();
+        // 对从数据库中获得的数据进行处理，以方便前端页面的展示
         for (int i = 0; i < hobbies.size(); i++) {
             Hobby hobby = hobbies.get(i);
             String[] strings = hobby.getSid().split(",");
@@ -133,6 +133,7 @@ public class AdminController {
             HobbyOutputDTO hobbyOutputDTO = new HobbyOutputDTO(hobby.getId(),hobby.getName(),sname);
             hobbyList.add(hobbyOutputDTO);
         }
+        // 将处理后的数据保存进入域中
         httpSession.setAttribute("hobbyList",hobbyList);
         return "/admin/hobby";
     }
@@ -147,14 +148,18 @@ public class AdminController {
     //分类管理
     @RequestMapping("/category")
     public String category(HttpSession httpSession){
+        // 获取所有分类数据
         List<Category> categories = categoryService.findAll();
+        // 创建待保存的分类数据
         List<CategoryOutputDTO> categoryList = new ArrayList<>();
+        // 对分类数据进行处理，以符合界面显示
         for (int i = 0; i < categories.size(); i++) {
             Category category = categories.get(i);
             String userName = userService.findById(category.getMasterId()).getUsername();
             CategoryOutputDTO categoryOutputDTO = new CategoryOutputDTO(category.getId(),category.getName(),userName);
             categoryList.add(categoryOutputDTO);
         }
+        // 分类数据存入到域中
         httpSession.setAttribute("categoryList",categoryList);
         return "/admin/category";
     }
@@ -169,13 +174,21 @@ public class AdminController {
     //内容管理
     @RequestMapping("/content")
     public String content(HttpSession httpSession){
-        List<Content> contents = contentService.findAll();
-        List<ContentDTO> contentList = new ArrayList<>();
-        for (Content content:contents) {
-            ContentDTO contentDTO = new ContentDTO(content.getId(),content.getName(),content.getStatus(),stageService.findById(content.getId()).getName(),content.getClink(),content.getNote());
-            contentList.add(contentDTO);
-        }
-        httpSession.setAttribute("contentList",contentList);
+        List<ContentDTO> contents = contentService.findContentList();
+//        List<ContentDTO> contentList = new ArrayList<>();
+//        for (Content content:contents) {
+//            if(content!=null){
+//                ContentDTO contentDTO = new ContentDTO(
+//                        content.getId(),
+//                        content.getName(),
+//                        content.getStatus(),
+//                        stageService.findById(content.getId()).getName(),
+//                        content.getClink(),
+//                        content.getNote());
+//                contentList.add(contentDTO);
+//            }
+//        }
+        httpSession.setAttribute("contents",contents);
         return "/admin/content";
     }
     //内容添加

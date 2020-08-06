@@ -107,7 +107,10 @@ public class UserController {
         }else {
             recommendHobby = recommendHobby(user.getId(), 10);
         }
-        httpSession.setAttribute("recommendHobby",recommendHobby);
+        if (recommendHobby!=null){
+            httpSession.setAttribute("recommendHobby",recommendHobby);
+        }
+
 
         return "/page/userUpdate";
     }
@@ -126,6 +129,7 @@ public class UserController {
 
     @PostMapping("/update")
     public String update(UserDTO userDTO){
+        //根据用户id获取用户
         User user = userService.findById(userDTO.getId());
         int type;
         if ("管理员".equals(userDTO.getTname())){
@@ -183,11 +187,10 @@ public class UserController {
         List<Attention> userAttentionList = attentionService.listAttentionByUId(userId);
         // 2.获得所有的用户的浏览记录
         List<Focus> focusList = focusService.listAllFocus();
-
         // 3.找出与id为userId的用户浏览行为最相似的前topN个用户
         List<Integer> userIds = HobbyRecommentUtils.getSimilarityBetweenUsers(userId,userAttentionList,topN);
         //去除自己
-        userIds.remove(0);
+//        userIds.remove(0);
         // 4.获得应该推荐给userId号用户的博客列表
         List<Integer> list = HobbyRecommentUtils.getRecommendateHobby(userId,userIds,focusList);
         // 列表去重
@@ -195,7 +198,10 @@ public class UserController {
         for (Integer hobbyId:recommendatesHobby){
             hobbyList.add(hobbyService.findById(hobbyId));
         }
-        return hobbyList;
+        if (hobbyList!=null){
+            return hobbyList;
+        }
+        return null;
     }
 
 
@@ -208,7 +214,12 @@ public class UserController {
      * @date : 2020/4/12 23:21
      */
     public Hobby recommendHobby(Integer userId,Integer topN){
+        Hobby hobby = new Hobby();
         // 5.调用推荐模块工具类获得最高点击量的博客
-        return HobbyRecommentUtils.findMaxHitsHobby(recommendHobbyList(userId,topN));
+        hobby = HobbyRecommentUtils.findMaxHitsHobby(recommendHobbyList(userId,topN));
+        if (hobby!=null){
+            return hobby;
+        }
+        return null;
     }
 }

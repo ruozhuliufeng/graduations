@@ -1,11 +1,12 @@
 <html>
 <head>
     <title>个人中心</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/main.css" />
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
     <!-- Scripts -->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
 
 </head>
 <body>
@@ -16,7 +17,7 @@
     <br>
     <!-- 个人信息 -->
     <div style="text-align: center;"><h1>个人信息</h1></div>
-    <a class="btn btn-primary" style="float: right" href="/user/centerUpdate?id=${currentUser.id}">修改</a>
+    <a class="btn btn-primary" style="float: right" href="/graduation/user/centerUpdate?id=${currentUser.id}">修改</a>
     <table class="table table-hover">
         <tr>
             <td>用户名</td>
@@ -36,7 +37,7 @@
                 <#if currentUser.hname??>
                     ${currentUser.hname}
                     <#else >
-                    <a href="/user/centerUpdate" class="btn btn-primary">未选择兴趣，请去个人中心修改</a>
+                    <a href="/graduation/user/centerUpdate" class="btn btn-primary">未选择兴趣，请去个人中心修改</a>
                 </#if>
 
             </td>

@@ -2,15 +2,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>添加博客</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/main.css"/>
-    <link rel="stylesheet" href="/css/simditor.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
+    <link rel="stylesheet" href="../css/simditor.css"/>
     <!-- Scripts -->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/module.js"></script>
-    <script src="/js/hotkeys.js"></script>
-    <script src="/js/simditor.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/module.js"></script>
+    <script src="../js/hotkeys.js"></script>
+    <script src="../js/simditor.js"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -44,7 +44,7 @@
                     </td>
                     <td class="col-md-8 col-sm-8">
                         <form class="form-horizontal" style="margin-top: 10px;"
-                              action="/blog/add" method="post">
+                              action="/graduation/blog/add" method="post">
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="title">【主题】</label>
                                 <div class="controls col-sm-10">

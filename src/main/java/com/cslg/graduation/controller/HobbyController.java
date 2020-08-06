@@ -78,33 +78,35 @@ public class HobbyController {
          * 不显示高于当前阶段的所有内容
          * 查找用户的所有博客，若用户对应的博客内容id中包含所学内容，将该内容设为已完成
          */
-        if (sid < currentSid) {//当前阶段低于所处阶段，所有内容设置为已完成
-            map.put("sid", sid);
-            contentList = contentService.findList(map);
-            for (Content content : contentList) {
-                content.setStatus(1);
-            }
-        } else if (sid.equals(currentSid)) {
-            //所选阶段就是当前阶段
-            map.put("sid", sid);
-            //当前阶段的所有兴趣内容
-            contentList = contentService.findList(map);
-            //这就是第一阶段，获取用户的所有博客，比对博客的hid与阶段内容是否对应，对应，则将该内容设为已完成
-            Map<String, Object> blogSearch = new HashMap<>();
-            blogSearch.put("user_id", currentUser.getId());
-            //获得当前用户的所有博客
-            List<Blog> searchBlogList = blogService.findList(blogSearch);
-            for (Content content : contentList) {
-                for (Blog blog : searchBlogList) {
-                    //如果博客的兴趣内容hid和兴趣内容id相对应，设为已完成，不然设为未完成
-                    if (blog.getHid().equals(content.getId())) {
-                        content.setStatus(1);
-                    } else {
-                        content.setStatus(0);
-                    }
-                }
-            }
-        }
+//        if (sid < currentSid) {//当前阶段低于所处阶段，所有内容设置为已完成
+//            map.put("sid", sid);
+//            contentList = contentService.findList(map);
+//            for (Content content : contentList) {
+//                content.setStatus(1);
+//            }
+//        } else if (sid.equals(currentSid)) {
+//            //所选阶段就是当前阶段
+//            map.put("sid", sid);
+//            //当前阶段的所有兴趣内容
+//            contentList = contentService.findList(map);
+//            //这就是第一阶段，获取用户的所有博客，比对博客的hid与阶段内容是否对应，对应，则将该内容设为已完成
+//            Map<String, Object> blogSearch = new HashMap<>();
+//            blogSearch.put("user_id", currentUser.getId());
+//            //获得当前用户的所有博客
+//            List<Blog> searchBlogList = blogService.findList(blogSearch);
+//            for (Content content : contentList) {
+//                for (Blog blog : searchBlogList) {
+//                    //如果博客的兴趣内容hid和兴趣内容id相对应，设为已完成，不然设为未完成
+//                    if (blog.getHid().equals(content.getId())) {
+//                        content.setStatus(1);
+//                    } else {
+//                        content.setStatus(0);
+//                    }
+//                }
+//            }
+//        }
+        map.put("sid",sid);
+        contentList = contentService.findList(map);
         httpSession.setAttribute("contentList", contentList);
         return "/page/learn";
     }

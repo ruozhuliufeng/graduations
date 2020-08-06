@@ -4,9 +4,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<title>评论管理</title>
-		<link href="/admin/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/admin/css/materialdesignicons.min.css" rel="stylesheet">
-		<link href="/admin/css/style.min.css" rel="stylesheet">
+		<link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../admin/css/materialdesignicons.min.css" rel="stylesheet">
+		<link href="../admin/css/style.min.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -39,7 +39,7 @@
 									<th>序号</th>
 									<th>发布时间</th>
 									<th>修改时间</th>
-									<th>博客名称</th>
+<#--									<th>博客名称</th>-->
 									<th>用户名称</th>
 									<th>评论标题</th>
 									<th>评论内容</th>
@@ -50,12 +50,12 @@
 										<td>${comment_index+1}</td>
 										<td>${comment.publishTime?date}</td>
 										<td>${comment.modifyTime?date}</td>
-										<td>${comment.topicName}</td>
+<#--										<td>${comment.topicName}</td>-->
 										<td>${comment.userName}</td>
 										<td>${comment.title}</td>
 										<td>${comment.content}</td>
 										<td>
-											<a href="/comment/delete?id=${comment.id}">删除</a>
+											<a href="/graduation/comment/delete?id=${comment.id}">删除</a>
 										</td>
 									</tr>
 								</#list>
@@ -69,11 +69,10 @@
 				<!--End 页面主要内容-->
 			</div>
 		</div>
-
-		<script type="text/javascript" src="/admin/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/admin/js/perfect-scrollbar.min.js"></script>
-		<script type="text/javascript" src="/admin/js/main.min.js"></script>
+		<script type="text/javascript" src="../admin/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../admin/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../admin/js/perfect-scrollbar.min.js"></script>
+		<script type="text/javascript" src="../admin/js/main.min.js"></script>
 
 	</body>
 </html>

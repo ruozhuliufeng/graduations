@@ -1,11 +1,11 @@
 <html>
 <head>
     <title>个人中心修改</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
     <!-- Scripts -->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -15,7 +15,7 @@
     <br>
     <!-- 个人信息 -->
     <div style="text-align: center;"><h1>个人信息修改</h1></div>
-    <form class="form-horizontal" action="/user/mupdate" method="post">
+    <form class="form-horizontal" action="/graduation/user/mupdate" method="post">
         <input type="hidden" name="id" value="${currentUser.id}"/>
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">用户名称</label>

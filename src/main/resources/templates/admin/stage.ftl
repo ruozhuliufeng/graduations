@@ -4,9 +4,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<title>阶段管理</title>
-		<link href="/admin/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/admin/css/materialdesignicons.min.css" rel="stylesheet">
-		<link href="/admin/css/style.min.css" rel="stylesheet">
+		<link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../admin/css/materialdesignicons.min.css" rel="stylesheet">
+		<link href="../admin/css/style.min.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -34,7 +34,7 @@
 					<div class="container-fluid">
 
 						<div class="row">
-							<a class="btn btn-primary" style="float: right" href="/admin/stageAdd">添加</a>
+							<a class="btn btn-primary" style="float: right" href="/graduation/admin/stageAdd">添加</a>
 							<table class="table table-striped table-hover">
 								<tr>
 									<th>序号</th>
@@ -48,7 +48,7 @@
 										<td>${stage.id}</td>
 										<td>${stage.name}</td>
 										<td>
-											<a href="/stage/delete?id=${stage.id}">删除</a>
+											<a href="/graduation/stage/delete?id=${stage.id}">删除</a>
 										</td>
 									</tr>
 								</#list>

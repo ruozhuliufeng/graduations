@@ -19,4 +19,13 @@ public class CommentOutPutDTO {
     private String userName;
     private String title;
     private String content;
+
+    public CommentOutPutDTO(Integer id, Date publishTime, Date modifyTime, String userName, String title, String content) {
+        this.id = id;
+        this.publishTime = publishTime;
+        this.modifyTime = modifyTime;
+        this.userName = userName;
+        this.title = title;
+        this.content = content;
+    }
 }

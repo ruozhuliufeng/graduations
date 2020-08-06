@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title>登录页面</title>
-<link href="/admin/css/bootstrap.min.css" rel="stylesheet">
-<link href="/admin/css/materialdesignicons.min.css" rel="stylesheet">
-<link href="/admin/css/style.min.css" rel="stylesheet">
+  <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../admin/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="../admin/css/style.min.css" rel="stylesheet">
 <style>
 .lyear-wrapper {
     position: relative;
@@ -53,7 +53,7 @@
       <div class="login-header text-center">
           <img alt="light year admin" src="/admin/images/logo-sidebar.png">
       </div>
-      <form action="/admin/login" method="post">
+      <form action="/graduation/admin/login" method="post">
         <div class="form-group has-feedback feedback-left">
           <input type="text" placeholder="请输入您的用户名" class="form-control" name="username" id="username" />
           <span class="mdi mdi-account form-control-feedback" aria-hidden="true"></span>
@@ -79,7 +79,7 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="/admin/js/jquery.min.js"></script>
-<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="./admin/js/bootstrap.min.js"></script>
 </body>
 </html>

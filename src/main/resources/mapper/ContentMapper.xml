@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cslg.graduation.mapper.ContentMapper">
+    <select id="findContentList" resultType="com.cslg.graduation.dto.ContentDTO">
+        SELECT c.id id, c.name name,c.status status,s.name sname,c.clink clink,c.note note
+        FROM content c
+        join stage s
+        on c.sid = s.id
+    </select>
+</mapper>

@@ -17,16 +17,16 @@
 <!-- Header -->
 <header id="header">
     <div class="inner">
-        <a href="/" class="logo"><strong>成长助理</strong> 平台</a>
+        <a href="/graduation/" class="logo"><strong>成长助理</strong> 平台</a>
         <nav id="nav">
-            <a href="/">主页</a>
-            <a href="/hobby/learn">学习进度</a>
-            <a href="/blog/">学习论坛</a>
+            <a href="/graduation/">主页</a>
+            <a href="/graduation/hobby/learn">学习进度</a>
+            <a href="/graduation/blog/">学习论坛</a>
             <#if currentUser??>
-                <a href="/user/center">个人中心</a>
+                <a href="/graduation/user/center">个人中心</a>
             <#else>
-                <a href="/register">注册</a>
-                <a href="/login">登录</a>
+                <a href="/graduation/register">注册</a>
+                <a href="/graduation/login">登录</a>
             </#if>
         </nav>
         <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
@@ -63,7 +63,7 @@
         </div>
 
         <footer>
-            <a href="/info" class="button">了解更多</a>
+            <a href="/graduation/info" class="button">了解更多</a>
         </footer>
     </div>
 </section>
@@ -73,13 +73,18 @@
         <div class="flex flex-2">
             <article>
                 <#if currentUser??>
-                    <header>
-                        <h3>您选择的兴趣是<br/></h3>
-                    </header>
-<#--                    <#elseif currentUser.hname??>-->
-                    <strong>
-                        ${currentUser.hname}
-                    </strong>
+                    <#if currentUser.hname??>
+                        <header>
+                            <h3>您选择的兴趣是<br/></h3>
+                        </header>
+                        <strong>
+                            ${currentUser.hname}
+                        </strong>
+                    <#else>
+                        <header>
+                            <h3>您尚未选择兴趣</h3>
+                        </header>
+                    </#if>
                 <#else>
                     <header>
                         <h3>您尚未登录，无法查看相关信息！</h3>
@@ -107,9 +112,9 @@
                 </table>
                 <footer>
                     <#if currentUser??>
-                        <a href="/user/center" class="button">前往选择</a>
-                        <#else >
-                        <a href="/login" class="button">登录选择</a>
+                        <a href="/graduation/user/center" class="button">前往选择</a>
+                    <#else >
+                        <a href="/graduation/login" class="button">登录选择</a>
                     </#if>
 
                 </footer>
@@ -124,7 +129,7 @@
 
         <h3>联系我们</h3>
 
-        <form action="/advice/add" method="post">
+        <form action="/graduation/advice/add" method="post">
 
             <div class="field half first">
                 <label for="name">姓名</label>
@@ -148,7 +153,7 @@
             <a href="http://www.baidu.com/" target="_blank" title="解惑"><span style="color: #F5E79E;">解惑</span></a> --
             <a href="http://www.csdn.net" target="_blank" title="发现"><span style="color: lemonchiffon;">发现</span>
             </a> --
-            <a href="/admin/loginPage" title="后台管理" target="_blank"><span style="color: red;">后台</span>
+            <a href="/graduation/admin/loginPage" title="后台管理" target="_blank"><span style="color: red;">后台</span>
             </a>
         </div>
     </div>

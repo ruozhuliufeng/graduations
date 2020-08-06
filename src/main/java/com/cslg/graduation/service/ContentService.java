@@ -1,6 +1,7 @@
 package com.cslg.graduation.service;
 
 
+import com.cslg.graduation.dto.ContentDTO;
 import com.cslg.graduation.entity.Content;
 import com.cslg.graduation.entity.PageResult;
 
@@ -35,5 +36,7 @@ import java.util.Map;
 
 
      void delete(Integer id);
+
+    List<ContentDTO> findContentList();
 
 }

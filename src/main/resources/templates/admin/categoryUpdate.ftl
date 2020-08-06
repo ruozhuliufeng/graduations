@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <title>分类修改</title>
-    <link href="/admin/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/admin/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="/admin/css/style.min.css" rel="stylesheet">
+    <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../admin/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="../admin/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
             <div class="container-fluid">
 
                 <div class="row">
-                    <form class="form-horizontal" action="/category/update" method="post">
+                    <form class="form-horizontal" action="/graduation/category/update" method="post">
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">分类名称</label>
                             <div class="col-sm-10">
@@ -61,10 +61,10 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/admin/js/jquery.min.js"></script>
-<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/admin/js/perfect-scrollbar.min.js"></script>
-<script type="text/javascript" src="/admin/js/main.min.js"></script>
+<script type="text/javascript" src="../admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="../admin/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../admin/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="../admin/js/main.min.js"></script>
 
 </body>
 </html>

@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <title>分类管理</title>
-    <link href="/admin/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/admin/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="/admin/css/style.min.css" rel="stylesheet">
+    <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../admin/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="../admin/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
             <div class="container-fluid">
 
                 <div class="row">
-                    <a class="btn btn-primary" style="float: right" href="/admin/categoryAdd">添加</a>
+                    <a class="btn btn-primary" style="float: right" href="/graduation/admin/categoryAdd">添加</a>
                     <table class="table table-striped table-hover">
                         <tr>
                             <th>序号</th>
@@ -43,8 +43,8 @@
                                 <td>${category.name}</td>
                                 <td>${category.username}</td>
                                 <td>
-                                    <a href="/category/delete?id=${category.id}">删除</a> ||
-                                    <a href="/category/findById?id=${category.id}">修改</a>
+                                    <a href="/graduation/category/delete?id=${category.id}">删除</a> ||
+                                    <a href="/graduation/category/findById?id=${category.id}">修改</a>
                                 </td>
                             </tr>
                         </#list>
@@ -58,11 +58,10 @@
         <!--End 页面主要内容-->
     </div>
 </div>
-
-<script type="text/javascript" src="/admin/js/jquery.min.js"></script>
-<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/admin/js/perfect-scrollbar.min.js"></script>
-<script type="text/javascript" src="/admin/js/main.min.js"></script>
+<script type="text/javascript" src="../admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="../admin/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../admin/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="../admin/js/main.min.js"></script>
 
 </body>
 </html>
