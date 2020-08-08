@@ -43,8 +43,8 @@
                                 <td>${category.name}</td>
                                 <td>${category.username}</td>
                                 <td>
-                                    <a href="/graduation/category/delete?id=${category.id}">删除</a> ||
-                                    <a href="/graduation/category/findById?id=${category.id}">修改</a>
+                                    <a href="/category/delete?id=${category.id}">删除</a> ||
+                                    <a href="/category/findById?id=${category.id}">修改</a>
                                 </td>
                             </tr>
                         </#list>

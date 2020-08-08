@@ -8,7 +8,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/thesis?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     username: root
-    password: Bql879543~
+    password:
   freemarker:
     # 是否启用模板引擎
     enabled: true

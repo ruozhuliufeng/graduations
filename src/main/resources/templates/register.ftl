@@ -80,7 +80,7 @@
 
             <h1 class="h3 mb-3 font-weight-normal">注册账号</h1>
 
-            <input type="hidden" name="_token" value="fwthi2kFGosUpy0roUsNrGHt9BFbH5Sg4lWFt72p">
+<#--           h <input type="hidden" name="_token" value="fwthi2kFGosUpy0roUsNrGHt9BFbH5Sg4lWFt72p">-->
 
             <div class="text-left form-group bmd-form-group">
                 <label for="name" class="bmd-label-floating">用户名称</label>

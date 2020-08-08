@@ -2,7 +2,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>博客详情</title>
-<#--    <#include "../common/nav.ftl"/>-->
     <link rel="stylesheet" href="../css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../css/main.css"/>
     <!-- Scripts -->

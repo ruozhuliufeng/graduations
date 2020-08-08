@@ -83,14 +83,14 @@ springboot+freemarker 毕业设计
   - 解决：
     - 1.获取用户所处的阶段，如果获取高于当前阶段的内容，设置值为空，否则设置当前阶段的内容状态为未完成
     - 2.获取用户发布的所有博客信息，只需要博客中的userId(用户id)和hId(兴趣内容id),若兴趣内容id存在，则设置兴趣内容状态为已完成
-- 放到云服务器上运行时配置项目路径名
+- 放到云服务器上运行时配置项目路径名(不需要)
     - 解决：在application.yml中配置serve.sevelt.contet-path: /路径名
         - 前端页面的所有链接需要更改为/项目路径名/请求链接，后端请求不需要改动
 - 服务器上的相关配置
     - java启动jar包：
 
 
-       nohup java -jar demo-0.0.1-SNAPSHOT.jar  > log.file  2>&1 &
+       nohup java -jar demo-0.0.1-SNAPSHOT.jar --server.port=8000  > log.file  2>&1 &
        上面的2 和 1 的意思如下:
        0    标准输入（一般是键盘）
        1    标准输出（一般是显示屏，是用户终端控制台）
@@ -110,21 +110,21 @@ springboot+freemarker 毕业设计
         server_name example.com;
         
         location ^~ /project1 {
-        proxy_pass http://127.0.0.1:8081;
+        proxy_pass http://127.0.0.1:8081/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         }
         
         location ^~ /project2 {
-        proxy_pass http://127.0.0.1:8082;
+        proxy_pass http://127.0.0.1:8082/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         }
         
         location / {
-        proxy_pass http://127.0.0.1:8080;
+        proxy_pass http://127.0.0.1:8080/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

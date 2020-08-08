@@ -84,7 +84,6 @@
 				<!--End 页面主要内容-->
 			</div>
 		</div>
-
 		<script type="text/javascript" src="../admin/js/jquery.min.js"></script>
 		<script type="text/javascript" src="../admin/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../admin/js/perfect-scrollbar.min.js"></script>

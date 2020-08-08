@@ -1,7 +1,6 @@
 <html>
 <head>
     <title>个人中心</title>
-
     <link rel="stylesheet" href="../css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../css/main.css"/>
     <!-- Scripts -->

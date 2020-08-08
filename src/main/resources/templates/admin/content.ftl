@@ -49,8 +49,8 @@
                             <td>${content.sname}</td>
                             <td>${content.clink}</td>
                             <td>
-                                <a href="/graduation/content/delete?id=${content.id}">删除</a> ||
-                                <a href="/graduation/content/findById?id=${content.id}">修改</a>
+                                <a href="/content/delete?id=${content.id}">删除</a> ||
+                                <a href="/content/findById?id=${content.id}">修改</a>
                             </td>
                         </tr>
                     </#list>

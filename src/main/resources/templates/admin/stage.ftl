@@ -63,10 +63,10 @@
 			</div>
 		</div>
 
-		<script type="text/javascript" src="/admin/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/admin/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/admin/js/perfect-scrollbar.min.js"></script>
-		<script type="text/javascript" src="/admin/js/main.min.js"></script>
+		<script type="text/javascript" src="../admin/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../admin/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../admin/js/perfect-scrollbar.min.js"></script>
+		<script type="text/javascript" src="../admin/js/main.min.js"></script>
 
 	</body>
 </html>

@@ -1,6 +1,6 @@
 <!-- logo -->
 <div id="logo" class="sidebar-header">
-    <a href="/graduation/admin/indexPage">
+    <a href="/admin/indexPage">
 
         <img src="images/logo-sidebar.png" title="LightYear" alt="LightYear"/>
     </a>

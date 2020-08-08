@@ -3,7 +3,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>学习论坛</title>
-<#--    <#include "../common/nav.ftl"/>-->
     <link rel="stylesheet" href="../css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../css/main.css"/>
     <!-- Scripts -->
@@ -43,7 +42,7 @@
                             <td>${blog.userName}</td>
                             <td>${blog.publishTime?date}</td>
                             <td>${blog.modifyTime?date}</td>
-                            <td><a href="/graduation/blog/detail?id=${blog.id}"> ${blog.title}</a></td>
+                            <td><a href="/blog/detail?id=${blog.id}"> ${blog.title}</a></td>
                             <td>
                                 <#if blog.top==1>
                                     置顶
@@ -85,7 +84,7 @@
                             <tr>
                                 <td>${recommendBlog_index+1}</td>
                                 <td>
-                                    <a href="/graduation/blog/detail?id=${recommendBlog.id}">
+                                    <a href="/blog/detail?id=${recommendBlog.id}">
                                         ${recommendBlog.title}
                                     </a>
                                 </td>
